@@ -199,7 +199,7 @@ namespace HIRE.Datos
                     }
                     else
                     {
-                        objPerfilCV.perfilProfesional = "Agrega información a tu perfil profesional";                        
+                        objPerfilCV.perfilProfesional = "Agrega información a tu perfil profesional";                      
                     }
 
 
