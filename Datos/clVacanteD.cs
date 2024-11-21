@@ -15,36 +15,44 @@ namespace HIRE.Datos
             List<clVacanteE> objVacanteE = new List<clVacanteE>();
 
 
-
-            SqlCommand cmd = new SqlCommand("spExplorarVacantes", objConexion.MtdAbrirConexion());
-            cmd.Parameters.AddWithValue("@parametros", parametros);
-            cmd.Parameters.AddWithValue("@municipio", objVacante.municipio);
-            cmd.Parameters.AddWithValue("@tipoContrato", objVacante.tipoContrato);
-            cmd.Parameters.AddWithValue("@tipoEmpleo", objVacante.tipoEmpleo);
-
-            using (SqlDataReader fila = cmd.ExecuteReader())
+            try
             {
-                while (fila.Read())
-                {
 
-                    objVacanteE.Add(new clVacanteE
+                SqlCommand cmd = new SqlCommand("spExplorarVacantes", objConexion.MtdAbrirConexion());
+                cmd.Parameters.AddWithValue("@parametros", parametros);
+                cmd.Parameters.AddWithValue("@municipio", objVacante.municipio);
+                cmd.Parameters.AddWithValue("@tipoContrato", objVacante.tipoContrato);
+                cmd.Parameters.AddWithValue("@tipoEmpleo", objVacante.tipoEmpleo);
+
+                using (SqlDataReader fila = cmd.ExecuteReader())
+                {
+                    while (fila.Read())
                     {
-                        idVacante = int.Parse(fila["idVacante"].ToString()),
-                        titulo = fila["titulo"].ToString(),
-                        salario = fila["salario"].ToString(),
-                        municipio = fila["municipio"].ToString(),
-                        tipoContrato = fila["tipoContrato"].ToString(),
-                        tipoEmpleo = fila["tipoEmpleo"].ToString(),
-                        fechaLimite = fila["fechaLimite"].ToString()
-                    });
+
+                        objVacanteE.Add(new clVacanteE
+                        {
+                            idVacante = int.Parse(fila["idVacante"].ToString()),
+                            titulo = fila["titulo"].ToString(),
+                            salario = fila["salario"].ToString(),
+                            municipio = fila["municipio"].ToString(),
+                            tipoContrato = fila["tipoContrato"].ToString(),
+                            tipoEmpleo = fila["tipoEmpleo"].ToString(),
+                            fechaLimite = fila["fechaLimite"].ToString()
+                        });
+
+                    }
+
+
+
+                    objConexion.MtdCerrarConexion();
+                    fila.Close();
 
                 }
+            }
+            catch (Exception e)
+            {
 
-
-
-                objConexion.MtdCerrarConexion();
-                fila.Close();
-
+                Console.WriteLine(e.Message);
             }
 
 
