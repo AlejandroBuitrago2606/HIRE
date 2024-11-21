@@ -1,0 +1,384 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="menu.master.cs" Inherits="HIRE.Vista.menu" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="recursos/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <link href="recursos/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="recursos/css/main.css" rel="stylesheet" />
+
+
+    <asp:ContentPlaceHolder ID="Content_Head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+
+
+            <!-- Page Wrapper -->
+            <div id="wrapper">
+
+                <!-- Sidebar -->
+                <ul runat="server" class="navbar-nav sidebar sidebar-dark accordion colorBase" visible="true" id="menuLateral">
+
+                    <br />
+                    <!-- Sidebar - Brand -->
+                    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                        <div class="sidebar-brand-icon">
+                            <img src="recursos/imagenes/logo-ProyectoHIRE-Login.png" width="110" height="110" />
+                        </div>
+
+                    </a>
+
+
+                    <!-- Nav Item - Dashboard -->
+
+
+                    <li class="nav-item active">
+                        <a class="nav-link collapsed" href="index.aspx">
+                            <i class="fas fa-fw fa-home"></i>
+                            <span>Inicio</span></a>
+                    </li>
+
+                    <li class="nav-item active">
+                        <a class="nav-link collapsed" href="perfilCV.aspx">
+                            <i class="fas fa-fw fa-file-alt"></i>
+                            <span>Mi CV</span></a>
+                    </li>
+
+                    <!-- Divider -->
+                    <hr class="sidebar-divider">
+
+
+
+                    <!-- Heading -->
+                    <div class="sidebar-heading">
+                        Empleos
+                    </div>
+                    <li class="nav-item">
+                        <!-- Nav Item - Pages Collapse Menu -->
+                        <a class="nav-link collapsed" href="#">
+                            <i class="fas fa-fw fa-search"></i>
+                            <span>Buscar empleos</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#">
+                            <i class="fas fa-fw fa-briefcase"></i>
+                            <span>Gestionar empleos</span>
+                        </a>
+                    </li>
+
+                    <hr class="sidebar-divider">
+
+                    <!-- Heading -->
+                    <div class="sidebar-heading">
+                        Administración
+                    </div>
+
+                    <!-- Nav Item - Pages Collapse Menu -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="listaEmpresas.aspx">
+                            <i class="fas fa-fw fa-building"></i>
+                            <span>Mis empresas</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>Crear Empresa</span>
+                        </a>
+                    </li>
+
+                    <hr class="sidebar-divider d-none d-md-block">
+
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#">
+                            <i class="fas fa-fw fa-cog"></i>
+                            <span>Ajustes</span>
+                        </a>
+                    </li>
+
+
+
+
+                </ul>
+                <!-- End of Sidebar -->
+
+                <!-- Content Wrapper -->
+                <div id="content-wrapper" class="d-flex flex-column">
+
+                    <!-- Main Content -->
+                    <div id="content" style="margin-left: 0">
+
+                        <!-- Topbar -->
+                        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                            <!-- Topbar Search -->
+
+                            <!--                            <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                <div class="input-group">
+                                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                        aria-label="Search" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>-->
+
+
+                            <ul class="navbar-nav ml-auto" id="ftLogo"  runat="server" visible="true">
+
+                                <asp:HyperLink ID="HyperLink1" NavigateUrl="~/Vista/inicio.aspx" runat="server">
+                                        <img src="recursos/imagenes/logo-ProyectoHIRE-Login.png" width="80" height="80" />
+                                </asp:HyperLink>
+                            </ul>
+
+                            <ul class="navbar-nav ml-auto" visible="true" id="opcionesBusqueda" runat="server">
+
+                                <li class="nav-item">
+                                    <a href="#" class="nav-Link">
+                                        <i class="fas fa-home"></i>Inicio
+                                    </a>
+                                </li>
+                                <br />
+                                <li class="nav-item" style="margin-left: 26px">
+                                    <a href="#" class="nav-Link">
+                                        <i class="fas fa-fw fa-search"></i>Empleos
+                                    </a>
+                                </li>
+                                <br />
+                                <li class="nav-item" style="margin-left: 26px">
+                                    <a href="#" class="nav-Link">
+                                        <i class="fas fa-fw fa-building"></i>Empresas
+                                    </a>
+                                </li>
+                            </ul>
+
+
+
+
+
+
+                            <!-- Topbar Navbar -->
+                            <ul class="navbar-nav ml-auto">
+
+
+
+
+
+
+
+
+                                <%--Cuadro de busqueda--%>
+
+                                <%--                                <li class="nav-item dropdown no-arrow d-sm-none">
+                                    <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-search fa-fw"></i>
+                                    </a>
+                                    <!-- Dropdown - Messages -->
+                                    <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                        aria-labelledby="searchDropdown">
+                                        <form class="form-inline mr-auto w-100 navbar-search">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control bg-light border-0 small"
+                                                    placeholder="Search for..." aria-label="Search"
+                                                    aria-describedby="basic-addon2">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-primary" type="button">dsfasfdvfdvxzcvasfdv
+                                                        <i class="fas fa-search fa-sm"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </li>--%>
+
+
+
+
+
+
+
+
+
+                                <!-- Nav Item - Alerts -->
+                                <li id="alerta" runat="server" class="nav-item dropdown no-arrow mx-1" visible="true">
+                                    <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-bell fa-fw"></i>
+                                        <!-- Counter - Alerts -->
+                                        <span class="badge badge-danger badge-counter">3+</span>
+                                    </a>
+                                    <!-- Dropdown - Alerts -->
+                                    <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                        aria-labelledby="alertsDropdown">
+                                        <h6 class="dropdown-header">Alerts Center
+                                        </h6>
+                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <div class="mr-3">
+                                                <div class="icon-circle bg-primary">
+                                                    <i class="fas fa-file-alt text-white"></i>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="small text-gray-500">December 12, 2019</div>
+                                                <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <div class="mr-3">
+                                                <div class="icon-circle bg-success">
+                                                    <i class="fas fa-donate text-white"></i>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="small text-gray-500">December 7, 2019</div>
+                                                $290.29 has been deposited into your account!
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <div class="mr-3">
+                                                <div class="icon-circle bg-warning">
+                                                    <i class="fas fa-exclamation-triangle text-white"></i>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="small text-gray-500">December 2, 2019</div>
+                                                Spending Alert: We've noticed unusually high spending for your account.
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                                    </div>
+                                </li>
+
+
+                                <div id="barraDivisora" runat="server" class="topbar-divider d-none d-sm-block"></div>
+
+                                <li class="nav-item no-arrow" runat="server" id="pcsAutenticacion" visible="true" style="margin-top: auto; margin-bottom: auto;">
+                                    <asp:HyperLink ID="btnCrearCuenta" NavigateUrl="#" runat="server">Crear cuenta</asp:HyperLink>
+                                    <asp:HyperLink ID="btnIniciarSesion" NavigateUrl="~/Vista/login.aspx" Style="border-radius: 20px; margin-left: 10px;" CssClass="btn btn-success" runat="server">Iniciar Sesion</asp:HyperLink>
+
+                                </li>
+
+
+                                <!-- Nav Item - User Information -->
+                                <li runat="server" id="opcionesAdministracion" class="nav-item dropdown no-arrow" visible="true">
+
+
+                                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span id="txtNombreUsuario" runat="server" class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
+                                        <img id="imgFotoPerfil" visible="true" runat="server" class="img-profile rounded-circle">
+                                    </a>
+                                    <!-- Dropdown - User Information -->
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                        aria-labelledby="userDropdown">
+                                        <a class="dropdown-item" href="#">
+                                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            Cuenta
+                                        </a>
+
+                                        <div class="dropdown-divider"></div>
+
+                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            Cerrar sesion
+                                        </a>
+                                    </div>
+                                </li>
+
+                            </ul>
+
+                        </nav>
+                        <!-- End of Topbar -->
+
+                        <!-- Begin Page Content -->
+                        <div class="container-fluid">
+
+                            <!-- ///////////////////////////////////////////Body////////////////////////////////////////////////////// -->
+                            <div class="content-body-scrollable">
+                                <asp:ContentPlaceHolder ID="Content_Body" runat="server">
+                                </asp:ContentPlaceHolder>
+                            </div>
+
+                        </div>
+                        <!-- /.container-fluid -->
+
+                    </div>
+                    <!-- End of Main Content -->
+
+                    <!-- Footer -->
+                    <footer class="sticky-footer bg-white">
+                        <div class="container my-auto">
+                            <div class="copyright text-center my-auto">
+                                <span>&copy; 2024 HIRE. Todos los derechos reservados.</span>
+                            </div>
+                        </div>
+                    </footer>
+                    <!-- End of Footer -->
+
+                </div>
+                <!-- End of Content Wrapper -->
+
+            </div>
+            <!-- End of Page Wrapper -->
+
+            <!-- Scroll to Top Button-->
+
+            <!-- Logout Modal-->
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true" runat="server" visible="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Cerrar Sesion</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">Cerraras sesion en tu dispositivo actual.</div>
+                        <div class="modal-footer">
+                            <asp:Button ID="btnCerrarSesion" OnClick="btnCerrarSesion_Click" CssClass="btn btn-danger" Style="color: white" runat="server" Text="Cerrar sesion" />
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <script src="recursos/js/main.js"></script>
+            <script src="recursos/vendor/jquery/jquery.min.js"></script>
+            <script src="recursos/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+            <!-- Core plugin JavaScript-->
+            <script src="recursos/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+            <!-- Custom scripts for all pages-->
+            <script src="recursos/js/sb-admin-2.min.js"></script>
+
+            <!-- Page level plugins -->
+            <script src="recursos/vendor/chart.js/Chart.min.js"></script>
+
+            <!-- Page level custom scripts -->
+            <script src="recursos/js/demo/chart-area-demo.js"></script>
+            <script src="recursos/js/demo/chart-pie-demo.js"></script>
+
+
+
+        </div>
+    </form>
+</body>
+</html>
