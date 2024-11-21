@@ -1791,6 +1791,7 @@
     <Compile Include="Datos\clVacanteD.cs" />
     <Compile Include="Entidades\clEmpresaE.cs" />
     <Compile Include="Entidades\clPerfilE.cs" />
+    <Compile Include="Entidades\clVacanteE.cs" />
     <Compile Include="Logica\clEmpresaL.cs" />
     <Compile Include="Entidades\clUsuarioE.cs" />
     <Compile Include="Logica\clEnviarCorreoL.cs" />
