@@ -1788,7 +1788,7 @@
     <Compile Include="Datos\clEmpresaD.cs" />
     <Compile Include="Datos\clPerfilD.cs" />
     <Compile Include="Datos\clUsuarioD.cs" />
-    <Compile Include="Datos\clVacante.cs" />
+    <Compile Include="Datos\clVacanteD.cs" />
     <Compile Include="Entidades\clEmpresaE.cs" />
     <Compile Include="Entidades\clPerfilE.cs" />
     <Compile Include="Logica\clEmpresaL.cs" />
