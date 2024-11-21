@@ -81,6 +81,7 @@ namespace HIRE.Vista
             Session.Clear();
             Session.Abandon();
             Response.Redirect("inicio.aspx");
+            //k
         }
     }
 }
