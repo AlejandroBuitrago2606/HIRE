@@ -55,16 +55,10 @@
         }
 
 
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
-
-.row {
+.rowSearch {
     display: flex;
-    justify-content: center; /* Centra horizontalmente */
     align-items: center; /* Centra verticalmente */
-    height: 100vh; /* Hace que el contenedor ocupe toda la altura de la ventana */
+
 }
 
 .search-bar {
@@ -91,7 +85,7 @@ body {
     }
 
 .search-button {
-    background-color: #333;
+    background-color: #4E73DF;
     border: none;
     padding: 10px 20px;
     display: flex;
@@ -101,9 +95,9 @@ body {
 }
 
     .search-button:hover {
-        background-color: #555;
+        background-color: #072385;
     }
 
-    .search-button svg {
-        fill: #fff;
+    .search-button i {
+        fill: black;
     }

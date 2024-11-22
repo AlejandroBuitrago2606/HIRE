@@ -6,28 +6,83 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Content_Body" runat="server">
 
 
-    <div class="row">
+    <div class="row rowSearch">
 
         <div class="col-md-2"></div>
         <div class="col-md-3">
 
-            <div class="search-bar">
-                <input type="text" placeholder="Search..." class="search-input">
-                <button class="search-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" width="24" fill="#ffffff">
-                        <path d="M796 896 536 636q-30 26-67 39t-73 13q-99 0-169.5-70.5T156 448q0-99 70.5-169.5T396 208q99 0 169.5 70.5T636 448q0 38-12.5 74.5T584 588l260 260q12 12 11.5 28.5T844 905q-12 12-28 11.5T796 896ZM396 536q66 0 113-47t47-113q0-66-47-113t-113-47q-66 0-113 47t-47 113q0 66 47 113t113 47Z" />
-                    </svg>
-                </button>
+            <div style="margin-top: 100px">
+                <h4>Encuentra el empleo ideal para ti...</h4>
+                <div class="search-bar input-group">
+
+                    <asp:TextBox ID="txtParametros" TextMode="SingleLine" CssClass="form-control search-input" Style="width: auto; height: 52px" placeholder="Buscar..." runat="server"></asp:TextBox>
+                    <button class="btn search-button" id="buscarVacante" style="height: 52px;" runat="server" onserverclick="buscarVacante_ServerClick">
+                        <i class="fas fa-fw fa-search" style="color: white;"></i>
+                    </button>
+
+                </div>
+                <div class="row" style="margin-top: 20px;">
+
+                    <asp:DropDownList ID="cbMunicipios" CssClass="form-control" Style="border-radius: 20px; width: auto; height: 38px; margin-left: 15px" runat="server"></asp:DropDownList>
+                    <asp:DropDownList ID="cbContratos" CssClass="form-control" Style="border-radius: 20px; width: auto; height: 38px; margin-left: 15px" runat="server"></asp:DropDownList>
+                    <asp:DropDownList ID="cbEmpleos" CssClass="form-control" Style="border-radius: 20px; width: auto; height: 38px; margin-left: 15px" runat="server"></asp:DropDownList>
+
+                </div>
             </div>
 
-
         </div>
-        <div class="col-md-5"></div>
+        <div class="col-md-5 ">
+
+            <asp:Repeater runat="server" ID="rpVacantes">
+
+                <ItemTemplate>
+
+
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body" style="margin-top: 0">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="row" style="text-align:center">
+                                        <h3 runat="server" style="font-size: 160%;" id="txtNombreEmpresa"><b><%# Eval("titulo") %></b></h3>
+                                    </div>
+                                    <div class="row">
+                                        <h6 runat="server" style="font-size: 83%; color: gray;"><%# Eval("salario") %></h6>
+
+                                    </div>
+                                    <div class="row">
+                                        <h6 runat="server" style="font-size: 83%; color: gray;"><b>Lugar: </b><%# Eval("municipio") %></h6>
+
+                                    </div>
+                                    <div class="row">
+                                        <h6 runat="server" style="font-size: 83%; color: gray;"><b>Contrato: </b><%# Eval("tipoContrato") %>, Boyaca</h6>
+
+                                    </div>
+                                    <div class="row">
+                                        <h6 runat="server" style="font-size: 83%; color: gray;"><%# Eval("tipoEmpleo") %>, Boyaca</h6>
+
+                                    </div>
+                                    <div class="row">
+                                        <h6 runat="server" style="font-size: 83%; color: gray;"><b>Maximo hasta: </b><%# Eval("fechaLimite") %>, Boyaca</h6>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-3">
+                                    <asp:Button runat="server" CssClass="btn btn-warning" Style="color: black; margin-top: 40px; width: 80px; margin-left: 50%;" Text="Ir" />
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+                </ItemTemplate>
+
+            </asp:Repeater>
+        </div>
+        </div>
         <div class="col-md-2"></div>
-
-
-
-    </div>
 
 
 

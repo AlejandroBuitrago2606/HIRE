@@ -13,5 +13,10 @@ namespace HIRE.Vista
         {
 
         }
+
+        protected void buscarVacante_ServerClick(object sender, EventArgs e)
+        {
+
+        }
     }
 }
