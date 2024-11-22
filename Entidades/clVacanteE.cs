@@ -22,16 +22,16 @@ namespace HIRE.Entidades
         public string tipoEmpleo { get; set; }
         public string tipoContrato { get; set; }
         public string municipio { get; set; }
-        public string idTipoEmpleo { get; set; }
-        public string idTipoContrato { get; set; }
-        public string idMunicipio { get; set; }
+        public int idTipoEmpleo { get; set; }
+        public int idTipoContrato { get; set; }
+        public int idMunicipio { get; set; }
 
     }
 
     public class clNivelAcademicoE
     {
         public int idVacanteNivelAcademico { get; set; }
-        public int nivelAcademico { get; set; }
+        public string nivelAcademico { get; set; }
 
     }
 
@@ -54,8 +54,8 @@ namespace HIRE.Entidades
     {
         public int idCategoria { get; set; }
         public int idCompetenciaVacante { get; set; }
-        public int nombreCompetencia { get; set; }
-        public int descripcion { get; set; }
+        public string nombreCompetencia { get; set; }
+        public string descripcion { get; set; }
 
 
 
@@ -65,11 +65,11 @@ namespace HIRE.Entidades
     public class clDatosVacante
     {
 
-        public List<clVacanteE> ClVacante { get; set; }
-        public List<clNivelAcademicoE> ClNivelAcademico { get; set; }
-        public List<clFuncionE> ClFuncion { get; set; }
-        public List<clRequisitoE> ClRequisito { get; set; }
-        public List<clHabilidadE> ClHabilidad { get; set; }
+        public clVacanteE objVacante { get; set; }
+        public List<clNivelAcademicoE> objNivelAcademico { get; set; }
+        public List<clFuncionE> objFuncion { get; set; }
+        public List<clRequisitoE> objRequisito { get; set; }
+        public List<clHabilidadE> objHabilidad { get; set; }
 
 
     }
