@@ -1800,6 +1800,7 @@
     </Compile>
     <Compile Include="Logica\clPerfilL.cs" />
     <Compile Include="Logica\clUsuarioL.cs" />
+    <Compile Include="Logica\clVacanteL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Vista\busqueda.aspx.cs">
       <DependentUpon>busqueda.aspx</DependentUpon>
