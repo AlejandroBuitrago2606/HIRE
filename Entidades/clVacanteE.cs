@@ -26,7 +26,52 @@ namespace HIRE.Entidades
         public string idTipoContrato { get; set; }
         public string idMunicipio { get; set; }
 
+    }
+
+    public class clNivelAcademicoE
+    {
+        public int idVacanteNivelAcademico { get; set; }
+        public int nivelAcademico { get; set; }
+
+    }
+
+    public class clFuncionE
+    {
+        public int idFuncion { get; set; }
+        public string descripcionFuncion { get; set; }
+    }
+
+
+    public class clRequisitoE
+    {
+        public int idRequisito { get; set; }
+        public string descripcionRequisito { get; set; }
+
+    }
+
+
+    public class clHabilidadE
+    {
+        public int idCategoria { get; set; }
+        public int idCompetenciaVacante { get; set; }
+        public int nombreCompetencia { get; set; }
+        public int descripcion { get; set; }
+
 
 
     }
+
+
+    public class clDatosVacante
+    {
+
+        public List<clVacanteE> ClVacante { get; set; }
+        public List<clNivelAcademicoE> ClNivelAcademico { get; set; }
+        public List<clFuncionE> ClFuncion { get; set; }
+        public List<clRequisitoE> ClRequisito { get; set; }
+        public List<clHabilidadE> ClHabilidad { get; set; }
+
+
+    }
+
 }
