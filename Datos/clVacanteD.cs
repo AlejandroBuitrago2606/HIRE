@@ -1,5 +1,6 @@
 ﻿using HIRE.Entidades;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -207,6 +208,71 @@ namespace HIRE.Datos
 
 
             return objDatosVacante;
+        }
+
+        public (ArrayList, ArrayList, ArrayList) mtdListarFiltros()
+        {
+            SqlCommand cmd = new SqlCommand("spListarFiltros", objConexion.MtdAbrirConexion());
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            ArrayList municipios = new ArrayList();
+            ArrayList tipoContrato = new ArrayList();
+            ArrayList tipoEmpleo = new ArrayList();
+
+            try
+            {
+                using (SqlDataReader fila = cmd.ExecuteReader())
+                {
+                    if (fila.HasRows)
+                    {
+
+                        while (fila.Read())
+                        {
+
+                            municipios.Add(fila["municipio"].ToString());
+                        }
+
+                        if (fila.NextResult())
+                        {
+                            while (fila.Read())
+                            {
+
+                                tipoContrato.Add(fila["tipoContrato"].ToString());
+                            }
+                        }
+
+                        if (fila.NextResult())
+                        {
+                            while (fila.Read())
+                            {
+
+                                tipoEmpleo.Add(fila["tipoEmpleo"].ToString());
+                            }
+                        }
+
+
+                    }
+                    
+                    else
+                    {
+                        municipios = null;
+                        tipoContrato = null;
+                        tipoEmpleo = null;
+                    }
+
+                    fila.Close();
+                    objConexion.MtdCerrarConexion();
+
+                }
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e.Message);
+            }
+
+            return (municipios, tipoContrato, tipoEmpleo);
+
         }
 
     }
