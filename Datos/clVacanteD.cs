@@ -178,11 +178,11 @@ namespace HIRE.Datos
                         }
 
 
-                        objDatosVacante.ClNivelAcademico = objNivelAcademico;
-                        objDatosVacante.ClFuncion = objFuncion;
-                        objDatosVacante.ClRequisito = objRequisito;
-                        objDatosVacante.ClHabilidad = objHabilidad;
-                        objDatosVacante.ClVacante = objVacante;
+                        objDatosVacante.objNivelAcademico = objNivelAcademico;
+                        objDatosVacante.objFuncion = objFuncion;
+                        objDatosVacante.objRequisito = objRequisito;
+                        objDatosVacante.objHabilidad = objHabilidad;
+                        objDatosVacante.objVacante = objVacante;
 
                     }
                     else
