@@ -20,6 +20,7 @@ namespace HIRE.Datos
                 try
                 {
                     SqlCommand cmd = new SqlCommand("spExplorarVacantes", objConexion.MtdAbrirConexion());
+                    cmd.CommandType = CommandType.StoredProcedure;
                     using (SqlDataReader fila = cmd.ExecuteReader())
                     {
                         while (fila.Read())
@@ -91,10 +92,10 @@ namespace HIRE.Datos
                 {
                     SqlCommand cmd = new SqlCommand("spExplorarVacantes", objConexion.MtdAbrirConexion());
                     cmd.Parameters.AddWithValue("@parametros", parametros);
-                    cmd.Parameters.AddWithValue("@municipio", string.IsNullOrEmpty(objVacante.municipio) ? "" : objVacante.municipio);
-                    cmd.Parameters.AddWithValue("@tipoContrato", string.IsNullOrEmpty(objVacante.tipoContrato) ? "" : objVacante.tipoContrato);
-                    cmd.Parameters.AddWithValue("@tipoEmpleo", string.IsNullOrEmpty(objVacante.tipoEmpleo) ? "" : objVacante.tipoEmpleo);
-
+                    cmd.Parameters.AddWithValue("@municipio",objVacante.municipio);
+                    cmd.Parameters.AddWithValue("@tipoContrato",objVacante.tipoContrato);
+                    cmd.Parameters.AddWithValue("@tipoEmpleo",objVacante.tipoEmpleo);
+                    cmd.CommandType = CommandType.StoredProcedure;
                     using (SqlDataReader fila = cmd.ExecuteReader())
                     {
                         while (fila.Read())

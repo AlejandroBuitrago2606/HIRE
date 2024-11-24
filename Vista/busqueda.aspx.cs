@@ -36,7 +36,7 @@ namespace HIRE.Vista
             clVacanteE objVacante = new clVacanteE();
             string parametros = "";
 
-            parametros = txtParametros.Text;
+            parametros = string.IsNullOrEmpty(txtParametros.Text) ? null : txtParametros.Text;
 
 
             objVacante.municipio = string.IsNullOrEmpty(cbMunicipios.SelectedValue) ? null : cbMunicipios.SelectedValue;
