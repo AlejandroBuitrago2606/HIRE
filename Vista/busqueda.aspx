@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Content_Body" runat="server">
 
 
-    <div class="row rowSearch">
+    <div class="row">
 
         <div class="col-md-2"></div>
         <div class="col-md-3">
@@ -34,24 +34,24 @@
 
                         <div class="col-md-8">
                             <h6><b>Municipio</b></h6>
-                            <asp:DropDownList ID="cbMunicipios" CssClass="form-control" Style="border-radius: 20px; width: auto; height: 38px; margin-left: 15px" runat="server">                          
+                            <asp:DropDownList ID="cbMunicipios" CssClass="form-control" Style="border-radius: 20px; width: auto; height: 38px; margin-left: 15px" runat="server">
                             </asp:DropDownList>
-                            
+
                         </div>
 
                         <div class="col-md-4">
                             <h6><b>Modalidad</b></h6>
-                            <asp:DropDownList ID="cbEmpleos" Style="border-radius: 20px; width: auto; height: 38px; margin-left: 15px"  CssClass="form-control"  runat="server">
+                            <asp:DropDownList ID="cbEmpleos" Style="border-radius: 20px; width: auto; height: 38px; margin-left: 15px" CssClass="form-control" runat="server">
                             </asp:DropDownList>
-                             
+
                         </div>
                     </div>
 
                     <div class="row" style="margin-top: 27px">
                         <h6><b>Tipo de contrato</b></h6>
-                        <asp:DropDownList ID="cbContratos" Style="border-radius: 20px; width: auto; height: 38px; margin-left: 15px" CssClass="form-control" runat="server">                       
+                        <asp:DropDownList ID="cbContratos" Style="border-radius: 20px; width: auto; height: 38px; margin-left: 15px" CssClass="form-control" runat="server">
                         </asp:DropDownList>
-                         
+
                     </div>
 
 
@@ -61,9 +61,11 @@
             </div>
 
         </div>
+
         <div class="col-md-5">
 
             <div style="max-height: calc(100vh - 150px); overflow-y: auto;">
+                <h5 runat="server" id="txtTotalVacantes"></h5>
                 <asp:Repeater runat="server" ID="rpVacantes">
 
                     <ItemTemplate>
@@ -111,4 +113,5 @@
             </div>
         </div>
         <div class="col-md-2"></div>
+    </div>
 </asp:Content>
