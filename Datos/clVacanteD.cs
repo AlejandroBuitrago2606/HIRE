@@ -13,6 +13,7 @@ namespace HIRE.Datos
         public List<clVacanteE> mtdBuscarVacante(clVacanteE objVacante = null, string parametros = null)
         {
             List<clVacanteE> objVacanteE = new List<clVacanteE>();
+            
 
             if (objVacante == null && parametros == null)
             {
@@ -20,8 +21,10 @@ namespace HIRE.Datos
                 try
                 {
                     SqlCommand cmd = new SqlCommand("spExplorarVacantes", objConexion.MtdAbrirConexion());
+                    cmd.CommandType = CommandType.StoredProcedure;
                     using (SqlDataReader fila = cmd.ExecuteReader())
                     {
+
                         while (fila.Read())
                         {
                             DateTime fechaLimiteConHoras = Convert.ToDateTime(fila["fechaLimite"].ToString());
@@ -30,6 +33,7 @@ namespace HIRE.Datos
 
                             if (fila["tipoEmpleo"].ToString() == "Remoto" || fila["tipoEmpleo"].ToString() == "")
                             {
+
                                 objVacanteE.Add(new clVacanteE
                                 {
                                     idVacante = int.Parse(fila["idVacante"].ToString()),
@@ -41,11 +45,11 @@ namespace HIRE.Datos
                                     fechaLimite = fechaLimite
 
                                 });
-
+                               
                             }
                             else
                             {
-
+                                
                                 objVacanteE.Add(new clVacanteE
                                 {
                                     idVacante = int.Parse(fila["idVacante"].ToString()),
@@ -57,17 +61,11 @@ namespace HIRE.Datos
                                     fechaLimite = fechaLimite
 
                                 });
-
-
+                               
 
                             }
 
-
-
-
                         }
-
-
 
                         objConexion.MtdCerrarConexion();
                         fila.Close();
@@ -91,10 +89,10 @@ namespace HIRE.Datos
                 {
                     SqlCommand cmd = new SqlCommand("spExplorarVacantes", objConexion.MtdAbrirConexion());
                     cmd.Parameters.AddWithValue("@parametros", parametros);
-                    cmd.Parameters.AddWithValue("@municipio", string.IsNullOrEmpty(objVacante.municipio) ? "" : objVacante.municipio);
-                    cmd.Parameters.AddWithValue("@tipoContrato", string.IsNullOrEmpty(objVacante.tipoContrato) ? "" : objVacante.tipoContrato);
-                    cmd.Parameters.AddWithValue("@tipoEmpleo", string.IsNullOrEmpty(objVacante.tipoEmpleo) ? "" : objVacante.tipoEmpleo);
-
+                    cmd.Parameters.AddWithValue("@municipio", objVacante.municipio);
+                    cmd.Parameters.AddWithValue("@tipoContrato", objVacante.tipoContrato);
+                    cmd.Parameters.AddWithValue("@tipoEmpleo", objVacante.tipoEmpleo);
+                    cmd.CommandType = CommandType.StoredProcedure;
                     using (SqlDataReader fila = cmd.ExecuteReader())
                     {
                         while (fila.Read())
@@ -102,9 +100,9 @@ namespace HIRE.Datos
                             DateTime fechaLimiteConHoras = Convert.ToDateTime(fila["fechaLimite"].ToString());
                             string fechaLimite = fechaLimiteConHoras.ToString("dd-MM-yyyy");
 
-
                             if (fila["tipoEmpleo"].ToString() == "Remoto" || fila["tipoEmpleo"].ToString() == "")
                             {
+                               
                                 objVacanteE.Add(new clVacanteE
                                 {
                                     idVacante = int.Parse(fila["idVacante"].ToString()),
@@ -120,7 +118,7 @@ namespace HIRE.Datos
                             }
                             else
                             {
-
+                                
                                 objVacanteE.Add(new clVacanteE
                                 {
                                     idVacante = int.Parse(fila["idVacante"].ToString()),

@@ -60,6 +60,15 @@ namespace HIRE.Vista
         protected global::System.Web.UI.WebControls.DropDownList cbContratos;
 
         /// <summary>
+        /// Control txtTotalVacantes.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtTotalVacantes;
+
+        /// <summary>
         /// Control rpVacantes.
         /// </summary>
         /// <remarks>
