@@ -34,18 +34,24 @@
 
                         <div class="col-md-8">
                             <h6><b>Municipio</b></h6>
-                            <asp:DropDownList ID="cbMunicipios" CssClass="form-control" Style="border-radius: 20px; width: auto; height: 38px; margin-left: 15px" runat="server"></asp:DropDownList>
+                            <asp:DropDownList ID="cbMunicipios" CssClass="form-control" Style="border-radius: 20px; width: auto; height: 38px; margin-left: 15px" runat="server">                          
+                            </asp:DropDownList>
+                            
                         </div>
 
                         <div class="col-md-4">
                             <h6><b>Modalidad</b></h6>
-                            <asp:DropDownList ID="cbEmpleos" CssClass="form-control" Style="border-radius: 20px; width: auto; height: 38px; margin-left: 15px" runat="server"></asp:DropDownList>
+                            <asp:DropDownList ID="cbEmpleos" Style="border-radius: 20px; width: auto; height: 38px; margin-left: 15px"  CssClass="form-control"  runat="server">
+                            </asp:DropDownList>
+                             
                         </div>
                     </div>
 
                     <div class="row" style="margin-top: 27px">
                         <h6><b>Tipo de contrato</b></h6>
-                        <asp:DropDownList ID="cbContratos" CssClass="form-control" Style="border-radius: 20px; width: auto; height: 38px; margin-left: 15px" runat="server"></asp:DropDownList>
+                        <asp:DropDownList ID="cbContratos" Style="border-radius: 20px; width: auto; height: 38px; margin-left: 15px" CssClass="form-control" runat="server">                       
+                        </asp:DropDownList>
+                         
                     </div>
 
 

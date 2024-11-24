@@ -91,9 +91,9 @@ namespace HIRE.Datos
                 {
                     SqlCommand cmd = new SqlCommand("spExplorarVacantes", objConexion.MtdAbrirConexion());
                     cmd.Parameters.AddWithValue("@parametros", parametros);
-                    cmd.Parameters.AddWithValue("@municipio", objVacante.municipio);
-                    cmd.Parameters.AddWithValue("@tipoContrato", objVacante.tipoContrato);
-                    cmd.Parameters.AddWithValue("@tipoEmpleo", objVacante.tipoEmpleo);
+                    cmd.Parameters.AddWithValue("@municipio", string.IsNullOrEmpty(objVacante.municipio) ? "" : objVacante.municipio);
+                    cmd.Parameters.AddWithValue("@tipoContrato", string.IsNullOrEmpty(objVacante.tipoContrato) ? "" : objVacante.tipoContrato);
+                    cmd.Parameters.AddWithValue("@tipoEmpleo", string.IsNullOrEmpty(objVacante.tipoEmpleo) ? "" : objVacante.tipoEmpleo);
 
                     using (SqlDataReader fila = cmd.ExecuteReader())
                     {
@@ -324,7 +324,7 @@ namespace HIRE.Datos
                 {
                     if (fila.HasRows)
                     {
-                        municipios.Add("Seleccionar");
+                        municipios.Add("");
                         while (fila.Read())
                         {
 
@@ -333,7 +333,7 @@ namespace HIRE.Datos
 
                         if (fila.NextResult())
                         {
-                            tipoContrato.Add("Seleccionar");
+                            tipoContrato.Add("");
                             while (fila.Read())
                             {
 
@@ -343,7 +343,7 @@ namespace HIRE.Datos
 
                         if (fila.NextResult())
                         {
-                            tipoEmpleo.Add("Seleccionar");
+                            tipoEmpleo.Add("");
                             while (fila.Read())
                             {
 
