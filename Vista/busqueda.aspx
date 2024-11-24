@@ -21,11 +21,35 @@
                     </button>
 
                 </div>
-                <div class="row" style="margin-top: 20px;">
+                <hr class="sidebar-divider">
+                <div class="input-group">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+                        <path fill="#858796" d="M6 1a3 3 0 0 0-2.83 2H0v2h3.17a3.001 3.001 0 0 0 5.66 0H16V3H8.83A3 3 0 0 0 6 1M5 4a1 1 0 1 1 2 0a1 1 0 0 1-2 0m5 5a3 3 0 0 0-2.83 2H0v2h7.17a3.001 3.001 0 0 0 5.66 0H16v-2h-3.17A3 3 0 0 0 10 9m-1 3a1 1 0 1 1 2 0a1 1 0 0 1-2 0" />
+                    </svg>
+                    <h5 style="margin-left :8px"><b>Filtros de busqueda</b></h5>
+                </div>
 
-                    <asp:DropDownList ID="cbMunicipios" CssClass="form-control" Style="border-radius: 20px; width: auto; height: 38px; margin-left: 15px" runat="server"></asp:DropDownList>
-                    <asp:DropDownList ID="cbContratos" CssClass="form-control" Style="border-radius: 20px; width: auto; height: 38px; margin-left: 15px" runat="server"></asp:DropDownList>
-                    <asp:DropDownList ID="cbEmpleos" CssClass="form-control" Style="border-radius: 20px; width: auto; height: 38px; margin-left: 15px" runat="server"></asp:DropDownList>
+                <div class="row" style="margin-top: 40px;">
+                    <div class="row">
+
+                        <div class="col-md-8">
+                            <h6><b>Municipio</b></h6>
+                            <asp:DropDownList ID="cbMunicipios" CssClass="form-control" Style="border-radius: 20px; width: auto; height: 38px; margin-left: 15px" runat="server"></asp:DropDownList>
+                        </div>
+
+                        <div class="col-md-4">
+                            <h6><b>Modalidad</b></h6>
+                            <asp:DropDownList ID="cbEmpleos" CssClass="form-control" Style="border-radius: 20px; width: auto; height: 38px; margin-left: 15px" runat="server"></asp:DropDownList>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top: 27px">
+                        <h6><b>Tipo de contrato</b></h6>
+                        <asp:DropDownList ID="cbContratos" CssClass="form-control" Style="border-radius: 20px; width: auto; height: 38px; margin-left: 15px" runat="server"></asp:DropDownList>
+                    </div>
+
+
+
 
                 </div>
             </div>
@@ -43,7 +67,7 @@
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="row" style="text-align:center">
+                                    <div class="row" style="text-align: center">
                                         <h3 runat="server" style="font-size: 160%;" id="txtNombreEmpresa"><b><%# Eval("titulo") %></b></h3>
                                     </div>
                                     <div class="row">
@@ -81,8 +105,8 @@
 
             </asp:Repeater>
         </div>
-        </div>
-        <div class="col-md-2"></div>
+    </div>
+    <div class="col-md-2"></div>
 
 
 

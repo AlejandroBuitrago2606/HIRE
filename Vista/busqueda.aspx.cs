@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HIRE.Logica;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,18 @@ namespace HIRE.Vista
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            if (!IsPostBack)
+            {
+                clVacanteL objVacanteL = new clVacanteL();
+                cbMunicipios.DataSource = objVacanteL.mtdListarFiltros().Item1;
+                cbContratos.DataSource = objVacanteL.mtdListarFiltros().Item2;
+                cbEmpleos.DataSource = objVacanteL.mtdListarFiltros().Item3;
+                cbMunicipios.DataBind();
+                cbContratos.DataBind();
+                cbEmpleos.DataBind();
+
+            }
 
         }
 

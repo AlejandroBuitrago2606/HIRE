@@ -225,7 +225,7 @@ namespace HIRE.Datos
                 {
                     if (fila.HasRows)
                     {
-
+                        municipios.Add("Seleccionar");
                         while (fila.Read())
                         {
 
@@ -234,6 +234,7 @@ namespace HIRE.Datos
 
                         if (fila.NextResult())
                         {
+                            tipoContrato.Add("Seleccionar");
                             while (fila.Read())
                             {
 
@@ -243,6 +244,7 @@ namespace HIRE.Datos
 
                         if (fila.NextResult())
                         {
+                            tipoEmpleo.Add("Seleccionar");
                             while (fila.Read())
                             {
 
@@ -252,7 +254,7 @@ namespace HIRE.Datos
 
 
                     }
-                    
+
                     else
                     {
                         municipios = null;

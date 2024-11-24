@@ -42,15 +42,6 @@ namespace HIRE.Vista
         protected global::System.Web.UI.WebControls.DropDownList cbMunicipios;
 
         /// <summary>
-        /// Control cbContratos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cbContratos;
-
-        /// <summary>
         /// Control cbEmpleos.
         /// </summary>
         /// <remarks>
@@ -58,6 +49,15 @@ namespace HIRE.Vista
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList cbEmpleos;
+
+        /// <summary>
+        /// Control cbContratos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cbContratos;
 
         /// <summary>
         /// Control rpVacantes.
