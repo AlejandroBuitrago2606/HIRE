@@ -14,7 +14,7 @@ namespace HIRE.Logica
         clVacanteD objVacanteD = new clVacanteD();
 
 
-        public List<clVacanteE> mtdBuscarVacante(clVacanteE objVacante, string parametros)
+        public List<clVacanteE> mtdBuscarVacante(clVacanteE objVacante = null, string parametros = null)
         {
 
             List<clVacanteE> objBusqueda = objVacanteD.mtdBuscarVacante(objVacante, parametros);

@@ -4,57 +4,156 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 
 namespace HIRE.Datos
 {
     public class clVacanteD
     {
         ClConexion objConexion = new ClConexion();
-        public List<clVacanteE> mtdBuscarVacante(clVacanteE objVacante, string parametros)
+        public List<clVacanteE> mtdBuscarVacante(clVacanteE objVacante = null, string parametros = null)
         {
             List<clVacanteE> objVacanteE = new List<clVacanteE>();
 
-
-            try
+            if (objVacante == null && parametros == null)
             {
 
-                SqlCommand cmd = new SqlCommand("spExplorarVacantes", objConexion.MtdAbrirConexion());
-                cmd.Parameters.AddWithValue("@parametros", parametros);
-                cmd.Parameters.AddWithValue("@municipio", objVacante.municipio);
-                cmd.Parameters.AddWithValue("@tipoContrato", objVacante.tipoContrato);
-                cmd.Parameters.AddWithValue("@tipoEmpleo", objVacante.tipoEmpleo);
-
-                using (SqlDataReader fila = cmd.ExecuteReader())
+                try
                 {
-                    while (fila.Read())
+                    SqlCommand cmd = new SqlCommand("spExplorarVacantes", objConexion.MtdAbrirConexion());
+                    using (SqlDataReader fila = cmd.ExecuteReader())
                     {
-
-                        objVacanteE.Add(new clVacanteE
+                        while (fila.Read())
                         {
-                            idVacante = int.Parse(fila["idVacante"].ToString()),
-                            titulo = fila["titulo"].ToString(),
-                            salario = fila["salario"].ToString(),
-                            municipio = fila["municipio"].ToString(),
-                            tipoContrato = fila["tipoContrato"].ToString(),
-                            tipoEmpleo = fila["tipoEmpleo"].ToString(),
-                            fechaLimite = fila["fechaLimite"].ToString()
-                        });
+                            DateTime fechaLimiteConHoras = Convert.ToDateTime(fila["fechaLimite"].ToString());
+                            string fechaLimite = fechaLimiteConHoras.ToString("dd-MM-yyyy");
+
+
+                            if (fila["tipoEmpleo"].ToString() == "Remoto" || fila["tipoEmpleo"].ToString() == "")
+                            {
+                                objVacanteE.Add(new clVacanteE
+                                {
+                                    idVacante = int.Parse(fila["idVacante"].ToString()),
+                                    titulo = fila["titulo"].ToString(),
+                                    salario = fila["salario"].ToString(),
+                                    municipio = "No aplica",
+                                    tipoContrato = fila["tipoContrato"].ToString(),
+                                    tipoEmpleo = fila["tipoEmpleo"].ToString(),
+                                    fechaLimite = fechaLimite
+
+                                });
+
+                            }
+                            else
+                            {
+
+                                objVacanteE.Add(new clVacanteE
+                                {
+                                    idVacante = int.Parse(fila["idVacante"].ToString()),
+                                    titulo = fila["titulo"].ToString(),
+                                    salario = fila["salario"].ToString(),
+                                    municipio = fila["municipio"].ToString(),
+                                    tipoContrato = fila["tipoContrato"].ToString(),
+                                    tipoEmpleo = fila["tipoEmpleo"].ToString(),
+                                    fechaLimite = fechaLimite
+
+                                });
+
+
+
+                            }
+
+
+
+
+                        }
+
+
+
+                        objConexion.MtdCerrarConexion();
+                        fila.Close();
 
                     }
-
-
-
-                    objConexion.MtdCerrarConexion();
-                    fila.Close();
-
                 }
+                catch (Exception e)
+                {
+
+                    Console.WriteLine(e.Message);
+                }
+
+
+
             }
-            catch (Exception e)
+            else
             {
 
-                Console.WriteLine(e.Message);
+
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("spExplorarVacantes", objConexion.MtdAbrirConexion());
+                    cmd.Parameters.AddWithValue("@parametros", parametros);
+                    cmd.Parameters.AddWithValue("@municipio", objVacante.municipio);
+                    cmd.Parameters.AddWithValue("@tipoContrato", objVacante.tipoContrato);
+                    cmd.Parameters.AddWithValue("@tipoEmpleo", objVacante.tipoEmpleo);
+
+                    using (SqlDataReader fila = cmd.ExecuteReader())
+                    {
+                        while (fila.Read())
+                        {
+                            DateTime fechaLimiteConHoras = Convert.ToDateTime(fila["fechaLimite"].ToString());
+                            string fechaLimite = fechaLimiteConHoras.ToString("dd-MM-yyyy");
+
+
+                            if (fila["tipoEmpleo"].ToString() == "Remoto" || fila["tipoEmpleo"].ToString() == "")
+                            {
+                                objVacanteE.Add(new clVacanteE
+                                {
+                                    idVacante = int.Parse(fila["idVacante"].ToString()),
+                                    titulo = fila["titulo"].ToString(),
+                                    salario = fila["salario"].ToString(),
+                                    municipio = "No aplica",
+                                    tipoContrato = fila["tipoContrato"].ToString(),
+                                    tipoEmpleo = fila["tipoEmpleo"].ToString(),
+                                    fechaLimite = fechaLimite
+
+                                });
+
+                            }
+                            else
+                            {
+
+                                objVacanteE.Add(new clVacanteE
+                                {
+                                    idVacante = int.Parse(fila["idVacante"].ToString()),
+                                    titulo = fila["titulo"].ToString(),
+                                    salario = fila["salario"].ToString(),
+                                    municipio = fila["municipio"].ToString(),
+                                    tipoContrato = fila["tipoContrato"].ToString(),
+                                    tipoEmpleo = fila["tipoEmpleo"].ToString(),
+                                    fechaLimite = fechaLimite
+
+                                });
+
+
+
+                            }
+
+
+
+
+                        }
+
+
+
+                        objConexion.MtdCerrarConexion();
+                        fila.Close();
+
+                    }
+                }
+                catch (Exception e)
+                {
+
+                    Console.WriteLine(e.Message);
+                }
             }
 
 

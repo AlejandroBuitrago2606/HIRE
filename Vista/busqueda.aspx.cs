@@ -23,6 +23,9 @@ namespace HIRE.Vista
                 cbContratos.DataBind();
                 cbEmpleos.DataBind();
 
+                rpVacantes.DataSource = objVacanteL.mtdBuscarVacante();
+                rpVacantes.DataBind();
+
             }
 
         }
