@@ -65,7 +65,7 @@
                     </div>
                     <li class="nav-item">
                         <!-- Nav Item - Pages Collapse Menu -->
-                        <a class="nav-link collapsed" href="#">
+                        <a class="nav-link collapsed" href="busqueda.aspx">
                             <i class="fas fa-fw fa-search"></i>
                             <span>Buscar empleos</span>
                         </a>

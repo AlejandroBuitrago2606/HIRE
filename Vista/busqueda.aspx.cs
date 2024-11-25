@@ -28,6 +28,20 @@ namespace HIRE.Vista
                 rpVacantes.DataBind();
                 txtTotalVacantes.InnerText = "N° de vacantes disponibles: " + objVacantes.Count.ToString();
 
+                string sesion = Session["sesion"].ToString();
+                if (sesion == "true")
+                {
+                    fila.Attributes["style"] = "margin-left: 3%;";
+                    contenedorDerecho.Visible = false;
+                    contenedorIzquierdo.Visible = false;
+                    contenedorBusqueda.Attributes["class"] = "col-md-4";
+                    contenedorRepeater.Attributes["class"] = "col-md-6";
+
+
+                }
+
+
+
             }
 
 

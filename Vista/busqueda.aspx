@@ -6,10 +6,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Content_Body" runat="server">
 
 
-    <div class="row">
+    <div class="row" runat="server" id="fila">
 
-        <div class="col-md-2"></div>
-        <div class="col-md-3">
+        <div class="col-md-2" runat="server" id="contenedorIzquierdo"></div>
+        <div class="col-md-3" runat="server" id="contenedorBusqueda">
 
             <div style="margin-top: 100px">
                 <h4>Encuentra el empleo ideal para ti...</h4>
@@ -62,7 +62,7 @@
 
         </div>
 
-        <div class="col-md-5">
+        <div class="col-md-5" runat="server" id="contenedorRepeater">
 
             <div style="max-height: calc(100vh - 150px); overflow-y: auto;">
                 <h5 runat="server" id="txtTotalVacantes"></h5>
@@ -112,6 +112,6 @@
                 </asp:Repeater>
             </div>
         </div>
-        <div class="col-md-2"></div>
+        <div class="col-md-2" runat="server" id="contenedorDerecho"></div>
     </div>
 </asp:Content>
