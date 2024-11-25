@@ -1,13 +1,6 @@
-﻿using HIRE.Logica;
+﻿using HIRE.Entidades;
+using HIRE.Logica;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using HIRE.Entidades;
-using System.Drawing;
-using static System.Collections.Specialized.BitVector32;
 
 namespace HIRE.Vista
 {
@@ -70,12 +63,33 @@ namespace HIRE.Vista
                         }
                     }
 
-
                 }
+
+            }
+
+            switch (ruta)
+            {
+
+                case "inicio":
+
+                    inicioItem.Attributes["style"] = "color: #00000000";
+
+                    break;
+
+                case "busqueda":
+                    empleosItem.Attributes["style"] = "color: #00000000";
+                    empresasItem.Attributes["style"] = "color: #00000000";
+
+                    break ;
+
 
 
 
             }
+
+
+
+
         }
 
 

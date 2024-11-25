@@ -93,6 +93,7 @@
     <Content Include="Vista\listaEmpresas.aspx" />
     <Content Include="Vista\recursos\fotosPerfil\fotoFernando.jpg" />
     <Content Include="Vista\recursos\fotosPerfil\fotoYuber.png" />
+    <Content Include="Vista\recursos\imagenes\fondoBusqueda.jpg" />
     <Content Include="Vista\recursos\imagenes\perfil.png" />
     <Content Include="Vista\perfilCV.aspx" />
     <Content Include="Vista\recursos\css\main.css" />
