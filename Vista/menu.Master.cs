@@ -67,29 +67,6 @@ namespace HIRE.Vista
 
             }
 
-            switch (ruta)
-            {
-
-                case "inicio":
-
-                    inicioItem.Attributes["style"] = "color: #00000000";
-
-                    break;
-
-                case "busqueda":
-                    empleosItem.Attributes["style"] = "color: #00000000";
-                    empresasItem.Attributes["style"] = "color: #00000000";
-
-                    break ;
-
-
-
-
-            }
-
-
-
-
         }
 
 
