@@ -15,6 +15,33 @@ namespace HIRE.Vista
     {
 
         /// <summary>
+        /// Control fila.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl fila;
+
+        /// <summary>
+        /// Control contenedorIzquierdo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl contenedorIzquierdo;
+
+        /// <summary>
+        /// Control contenedorBusqueda.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl contenedorBusqueda;
+
+        /// <summary>
         /// Control txtParametros.
         /// </summary>
         /// <remarks>
@@ -60,6 +87,15 @@ namespace HIRE.Vista
         protected global::System.Web.UI.WebControls.DropDownList cbContratos;
 
         /// <summary>
+        /// Control contenedorRepeater.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl contenedorRepeater;
+
+        /// <summary>
         /// Control txtTotalVacantes.
         /// </summary>
         /// <remarks>
@@ -76,5 +112,14 @@ namespace HIRE.Vista
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rpVacantes;
+
+        /// <summary>
+        /// Control contenedorDerecho.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl contenedorDerecho;
     }
 }

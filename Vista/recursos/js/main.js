@@ -1,7 +1,15 @@
-﻿document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', function () {
+﻿
+    document.addEventListener("DOMContentLoaded", function () {
+        const currentPath = window.location.pathname.split('/').pop();
+    const links = document.querySelectorAll(".nav-Link");
 
-        document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
-        this.classList.add('active');
+        links.forEach(link => {
+        // Limpiar clases activas previamente
+        link.parentElement.classList.remove("active");
+
+    // Agregar clase "active" si coincide con la ruta
+    if (link.getAttribute("href") === currentPath) {
+        link.parentElement.classList.add("active");
+            }
+        });
     });
-});

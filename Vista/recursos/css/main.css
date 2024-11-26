@@ -101,3 +101,9 @@
     .search-button i {
         fill: black;
     }
+
+.carousel-inner .carousel-item img {
+    filter: brightness(40%);
+}
+
+
