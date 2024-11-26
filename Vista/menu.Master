@@ -121,7 +121,7 @@
                     <div id="content" style="margin-left: 0">
 
                         <!-- Topbar -->
-                        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" runat="server" id="menuSuperior">
 
                             <!-- Topbar Search -->
 
@@ -307,10 +307,10 @@
                         <div class="container-fluid">
 
                             <!-- ///////////////////////////////////////////Body////////////////////////////////////////////////////// -->
-                            <div class="content-body-scrollable">
+                  
                                 <asp:ContentPlaceHolder ID="Content_Body" runat="server">
                                 </asp:ContentPlaceHolder>
-                            </div>
+                            
 
                         </div>
                         <!-- /.container-fluid -->

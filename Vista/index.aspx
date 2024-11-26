@@ -8,5 +8,7 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Content_Body" runat="server">
-    <h1>Dashboard</h1>
+    <div class="content-body-scrollable">
+        <h1>Dashboard</h1>
+    </div>
 </asp:Content>
