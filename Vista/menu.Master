@@ -13,7 +13,7 @@
         rel="stylesheet">
     <link href="recursos/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="recursos/css/main.css" rel="stylesheet" />
-
+    <title></title>
 
     <asp:ContentPlaceHolder ID="Content_Head" runat="server">
     </asp:ContentPlaceHolder>

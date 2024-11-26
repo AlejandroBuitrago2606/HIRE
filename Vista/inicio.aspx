@@ -13,6 +13,7 @@
     <!-- Libraries Stylesheet -->
     <link href="recursos/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="recursos/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <title>Inicio</title>
 
     <%--    <!-- Customized Bootstrap Stylesheet -->
     <link href="recursos/css/style.css" rel="stylesheet">--%>
