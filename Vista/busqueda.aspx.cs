@@ -49,17 +49,47 @@ namespace HIRE.Vista
 
         protected void buscarVacante_ServerClick(object sender, EventArgs e)
         {
-            clVacanteE objVacante = new clVacanteE();
 
             string parametros = string.IsNullOrEmpty(txtParametros.Text) ? null : txtParametros.Text;
 
+            clVacanteL objVacanteL = new clVacanteL();
+            List<clVacanteE> objVacantes = objVacanteL.mtdBuscarVacante(null, parametros);
+            if (objVacantes.Count.ToString() != "0")
+            {
+                txtTotalVacantes.InnerText = "N° de vacantes disponibles: " + objVacantes.Count.ToString();
 
-            objVacante.municipio = string.IsNullOrEmpty(cbMunicipios.SelectedValue) ? null : cbMunicipios.SelectedValue;
-            objVacante.tipoContrato = string.IsNullOrEmpty(cbContratos.SelectedValue) ? null : cbContratos.SelectedValue;
-            objVacante.tipoEmpleo = string.IsNullOrEmpty(cbEmpleos.SelectedValue) ? null : cbEmpleos.SelectedValue;
+            }
+            else
+            {
+
+                txtTotalVacantes.InnerText = "No hay vacantes disponibles";
+            }
+
+            
+            rpVacantes.DataSource = objVacantes;
+            rpVacantes.DataBind();
+
+
+
+
+
+        }
+
+        protected void btnBuscarVacanteFiltros_ServerClick(object sender, EventArgs e)
+        {
+
+
+
+
+            clVacanteE objVacante = new clVacanteE
+            {
+                municipio = string.IsNullOrEmpty(cbMunicipios.SelectedValue) ? null : cbMunicipios.SelectedValue,
+                tipoContrato = string.IsNullOrEmpty(cbContratos.SelectedValue) ? null : cbContratos.SelectedValue,
+                tipoEmpleo = string.IsNullOrEmpty(cbEmpleos.SelectedValue) ? null : cbEmpleos.SelectedValue
+            };
 
             clVacanteL objVacanteL = new clVacanteL();
-            List<clVacanteE> objVacantes = objVacanteL.mtdBuscarVacante(objVacante, parametros);
+            List<clVacanteE> objVacantes = objVacanteL.mtdBuscarVacante(objVacante);
             if (objVacantes.Count.ToString() != "0")
             {
                 txtTotalVacantes.InnerText = "N° de vacantes disponibles: " + objVacantes.Count.ToString();
@@ -74,11 +104,9 @@ namespace HIRE.Vista
                 txtTotalVacantes.InnerText = "No hay vacantes disponibles";
             }
 
-            
+
             rpVacantes.DataSource = objVacantes;
             rpVacantes.DataBind();
-
-
 
 
 

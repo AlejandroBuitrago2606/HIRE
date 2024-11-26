@@ -87,6 +87,15 @@ namespace HIRE.Vista
         protected global::System.Web.UI.WebControls.DropDownList cbContratos;
 
         /// <summary>
+        /// Control btnBuscarVacanteFiltros.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnBuscarVacanteFiltros;
+
+        /// <summary>
         /// Control contenedorRepeater.
         /// </summary>
         /// <remarks>
