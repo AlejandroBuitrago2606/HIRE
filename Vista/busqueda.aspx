@@ -30,29 +30,33 @@
                     </div>
 
                     <div class="row" style="margin-top: 40px;">
-                        <div class="row">
 
-                            <div class="col-md-8">
-                                <h6><b>Municipio</b></h6>
-                                <asp:DropDownList ID="cbMunicipios" CssClass="form-control" Style="border-radius: 20px; width: auto; height: 38px; margin-left: 15px" runat="server">
-                                </asp:DropDownList>
 
-                            </div>
+                        <div class="col-md-10">
+                            <h6><b>Municipio</b></h6>
+                            <asp:DropDownList ID="cbMunicipios" CssClass="form-control" Style="border-radius: 38px; width: 221px; height: 38px; margin-left: 15px" runat="server">
+                            </asp:DropDownList>
 
-                            <div class="col-md-4">
-                                <h6><b>Modalidad</b></h6>
-                                <asp:DropDownList ID="cbEmpleos" Style="border-radius: 20px; width: auto; height: 38px; margin-left: 15px" CssClass="form-control" runat="server">
-                                </asp:DropDownList>
 
-                            </div>
-                        </div>
 
-                        <div class="row" style="margin-top: 27px">
-                            <h6><b>Tipo de contrato</b></h6>
-                            <asp:DropDownList ID="cbContratos" Style="border-radius: 20px; width: auto; height: 38px; margin-left: 15px" CssClass="form-control" runat="server">
+
+                            <h6 style="margin-top: 20px"><b>Modalidad</b></h6>
+                            <asp:DropDownList ID="cbEmpleos" Style="border-radius: 20px; width: 221px; height: 38px; margin-left: 15px" CssClass="form-control" runat="server">
+                            </asp:DropDownList>
+
+
+
+                            <h6 style="margin-top: 20px"><b>Tipo de contrato</b></h6>
+                            <asp:DropDownList ID="cbContratos" Style="border-radius: 20px; width: 221px; height: 38px; margin-left: 15px" CssClass="form-control" runat="server">
                             </asp:DropDownList>
 
                         </div>
+                        <div class="col-md-2" style="display: flex; align-items: center; justify-content: center;">
+                            <button class="btn search-button rounded-circle" id="btnBuscarVacanteFiltros" style="height: 47px; width: 47px; border-radius: 15px; margin-left: 0; margin-right: 100%;" runat="server" onserverclick="btnBuscarVacanteFiltros_ServerClick">
+                                <i class="fas fa-fw fa-search" style="color: white;"></i>
+                            </button>
+                        </div>
+
 
 
 
