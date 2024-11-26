@@ -27,6 +27,8 @@ namespace HIRE.Vista
                     logoutModal.Visible = false;
                     alerta.Visible = false;
                     barraDivisora.Visible = false;
+                    menuSuperior.Attributes["style"] = "position:sticky:";
+
                 }
                 else
                 {
