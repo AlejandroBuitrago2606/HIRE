@@ -51,6 +51,15 @@ namespace HIRE.Vista
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl menuLateral;
 
         /// <summary>
+        /// Control menuSuperior.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl menuSuperior;
+
+        /// <summary>
         /// Control ftLogo.
         /// </summary>
         /// <remarks>
@@ -103,15 +112,6 @@ namespace HIRE.Vista
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl empresasItem;
-
-        /// <summary>
-        /// Control menuSuperior.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl menuSuperior;
 
         /// <summary>
         /// Control alerta.
