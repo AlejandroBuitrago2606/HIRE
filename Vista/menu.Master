@@ -157,7 +157,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item" id="empresasItem" runat="server">
-                                    <a href="busquedaVacante.aspx" class="nav-Link">
+                                    <a href="busquedaEmpresa.aspx" class="nav-Link">
                                         <i class="fas fa-fw fa-building"></i>Empresas
                                     </a>
                                 </li>

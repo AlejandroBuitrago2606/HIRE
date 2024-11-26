@@ -86,6 +86,7 @@
     <Content Include="global.asax" />
     <Content Include="Scripts\alertify.js" />
     <Content Include="Scripts\alertify.min.js" />
+    <Content Include="Vista\busquedaEmpresa.aspx" />
     <Content Include="Vista\busquedaVacante.aspx" />
     <Content Include="Vista\css\style.css" />
     <Content Include="Vista\index.aspx" />
@@ -1847,6 +1848,13 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\busquedaEmpresa.aspx.cs">
+      <DependentUpon>busquedaEmpresa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\busquedaEmpresa.aspx.designer.cs">
+      <DependentUpon>busquedaEmpresa.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\busquedaVacante.aspx.cs">
       <DependentUpon>busquedaVacante.aspx</DependentUpon>
