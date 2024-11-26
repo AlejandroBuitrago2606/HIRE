@@ -86,7 +86,7 @@
     <Content Include="global.asax" />
     <Content Include="Scripts\alertify.js" />
     <Content Include="Scripts\alertify.min.js" />
-    <Content Include="Vista\busqueda.aspx" />
+    <Content Include="Vista\busquedaVacante.aspx" />
     <Content Include="Vista\css\style.css" />
     <Content Include="Vista\index.aspx" />
     <Content Include="Vista\inicio.aspx" />
@@ -1848,12 +1848,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Vista\busqueda.aspx.cs">
-      <DependentUpon>busqueda.aspx</DependentUpon>
+    <Compile Include="Vista\busquedaVacante.aspx.cs">
+      <DependentUpon>busquedaVacante.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Vista\busqueda.aspx.designer.cs">
-      <DependentUpon>busqueda.aspx</DependentUpon>
+    <Compile Include="Vista\busquedaVacante.aspx.designer.cs">
+      <DependentUpon>busquedaVacante.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
