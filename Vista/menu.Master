@@ -65,7 +65,7 @@
                     </div>
                     <li class="nav-item">
                         <!-- Nav Item - Pages Collapse Menu -->
-                        <a class="nav-link collapsed" href="busqueda.aspx">
+                        <a class="nav-link collapsed" href="busquedaVacante.aspx">
                             <i class="fas fa-fw fa-search"></i>
                             <span>Buscar empleos</span>
                         </a>
@@ -85,6 +85,13 @@
                     </div>
 
                     <!-- Nav Item - Pages Collapse Menu -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="busquedaEmpresa.aspx">
+                            <i class="fas fa-fw fa-search"></i>
+                            <span>Buscar empresa</span>
+                        </a>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link collapsed" href="listaEmpresas.aspx">
                             <i class="fas fa-fw fa-building"></i>
@@ -307,10 +314,10 @@
                         <div class="container-fluid">
 
                             <!-- ///////////////////////////////////////////Body////////////////////////////////////////////////////// -->
-                  
-                                <asp:ContentPlaceHolder ID="Content_Body" runat="server">
-                                </asp:ContentPlaceHolder>
-                            
+
+                            <asp:ContentPlaceHolder ID="Content_Body" runat="server">
+                            </asp:ContentPlaceHolder>
+
 
                         </div>
                         <!-- /.container-fluid -->
