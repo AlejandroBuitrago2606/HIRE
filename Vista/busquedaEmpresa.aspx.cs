@@ -33,7 +33,18 @@ namespace HIRE.Vista
                 txtTotalEmpresas.InnerText = totalEmpresas > 100 ? "Mas de 100 empresas existentes" : totalEmpresas + " " + "empresas existentes";
                 rpEmpresas.DataSource = objEmpresas;
                 rpEmpresas.DataBind();
-                
+
+                string sesion = Session["sesion"].ToString();
+                if (sesion == "true")
+                {
+                    fila.Attributes["style"] = "margin-left: 3%;";
+                    contenedorDerecho.Visible = false;
+                    contenedorIzquierdo.Visible = false;
+                    contenedorBusqueda.Attributes["class"] = "col-md-4";
+                    contenedorRepeater.Attributes["class"] = "col-md-6";
+
+                }
+
             }
 
         }
@@ -41,7 +52,7 @@ namespace HIRE.Vista
         protected void buscarEmpresaPorMunicipio(object sender, EventArgs e)
         {
             string municipioSeleccionado = cbMunicipios.SelectedItem.Text;
-            
+
 
             List<clEmpresaE> objEmpresas = objEmpresaL.mtdBuscarEmpresa(null, municipioSeleccionado);
 
