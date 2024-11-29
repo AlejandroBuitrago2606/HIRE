@@ -73,27 +73,59 @@ namespace HIRE.Datos
 
             List<clEmpresaE> objEmpresaE = new List<clEmpresaE>();
 
-            if (municipio == null)
+            if (parametros == null && municipio == null)
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("spExplorarEmpresas", objConexion.MtdAbrirConexion());
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataReader fila = cmd.ExecuteReader())
+                    {
+                        if (fila.HasRows)
+                        {
+                            while (fila.Read())
+                            {
+                                objEmpresaE.Add(new clEmpresaE
+                                {
+                                    idEmpresa = int.Parse(fila["idEmpresa"].ToString()),
+                                    foto = fila["foto"].ToString(),
+                                    nombre = fila["nombre"].ToString(),
+                                    sector = fila["sector"].ToString(),
+                                    municipio = fila["municipio"].ToString(),
+                                    descripcion = fila["descripcion"].ToString(),
+                                    totalVacantes = fila["totalVacantes"].ToString()
+                                });
+                            }
+                        }
+
+                        fila.Close();
+                        objConexion.MtdCerrarConexion();
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
+
+
+            }
+
+            else if (municipio == null)
             {
                 try
                 {
                     SqlCommand cmd = new SqlCommand("spExplorarEmpresas", objConexion.MtdAbrirConexion());
                     cmd.Parameters.AddWithValue("@parametros", parametros);
                     cmd.CommandType = CommandType.StoredProcedure;
-
                     using (SqlDataReader fila = cmd.ExecuteReader())
                     {
-
                         if (fila.HasRows)
                         {
-
                             while (fila.Read())
                             {
-
-
                                 objEmpresaE.Add(new clEmpresaE
                                 {
-
                                     idEmpresa = int.Parse(fila["idEmpresa"].ToString()),
                                     foto = fila["foto"].ToString(),
                                     nombre = fila["nombre"].ToString(),
@@ -101,55 +133,34 @@ namespace HIRE.Datos
                                     municipio = fila["municipio"].ToString(),
                                     descripcion = fila["descripcion"].ToString(),
                                     totalVacantes = fila["totalVacantes"].ToString()
-
                                 });
-
-
-
-
                             }
-
-
-
                         }
 
                         fila.Close();
                         objConexion.MtdCerrarConexion();
-
                     }
                 }
                 catch (Exception e)
                 {
-
                     Console.WriteLine(e.Message);
                 }
-
-
-
-
-
             }
-            else
+            else if (parametros == null)
             {
                 try
                 {
                     SqlCommand cmd = new SqlCommand("spExplorarEmpresas", objConexion.MtdAbrirConexion());
                     cmd.Parameters.AddWithValue("@municipio", municipio);
                     cmd.CommandType = CommandType.StoredProcedure;
-
                     using (SqlDataReader fila = cmd.ExecuteReader())
                     {
-
                         if (fila.HasRows)
                         {
-
                             while (fila.Read())
                             {
-
-
                                 objEmpresaE.Add(new clEmpresaE
                                 {
-
                                     idEmpresa = int.Parse(fila["idEmpresa"].ToString()),
                                     foto = fila["foto"].ToString(),
                                     nombre = fila["nombre"].ToString(),
@@ -157,26 +168,18 @@ namespace HIRE.Datos
                                     municipio = fila["municipio"].ToString(),
                                     descripcion = fila["descripcion"].ToString(),
                                     totalVacantes = fila["totalVacantes"].ToString()
-
                                 });
-
-
                             }
-
-
                         }
 
                         fila.Close();
                         objConexion.MtdCerrarConexion();
-
                     }
                 }
                 catch (Exception e)
                 {
-
                     Console.WriteLine(e.Message);
                 }
-
             }
 
             return objEmpresaE;
