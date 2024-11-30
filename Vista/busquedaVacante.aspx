@@ -102,8 +102,10 @@
 
                                 <div class="card-footer">
                                     <div class="col-md-3" style="margin-bottom: 10px; margin-top: 2px;">
-                                        <asp:Button runat="server" CssClass="btn btn-warning" Style="color: black;" Text="Ver mas..." />
+
+                                        <asp:Button id="btnVerVacante" CssClass="btn btn-warning" data-bs-toggle="modal" runat="server"  style="color: black;" CommandName="enviarIDVacante" CommandArgument='<%# Eval("idVacante") %>' OnCommand="btnVerVacante_Click" data-bs-target="#exampleModal" Text="Ver mas →" />
                                     </div>
+
                                 </div>
 
 
@@ -114,9 +116,175 @@
                         </ItemTemplate>
 
                     </asp:Repeater>
+                     
+                    <h6 runat="server" id="ID"></h6>
+
+                    <div class="modal fade" id="datosVacante" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="d-flex justify-content-center">
+                                        <h1 class="modal-title fs-4" style="text-align: center" id="exampleModalLabel">Informacion de la vacante</h1>
+                                    </div>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <div class="d-flex justify-content-center">
+                                        <h5 runat="server" id="txtTitulo" style="font-weight: bold;"></h5>
+                                    </div>
+
+                                    <br />
+                                    <h6 runat="server" id="txtDescripcion"></h6>
+                                    <br />
+
+                                    <div class="input-group">
+                                        <h6><b>Empleo </b></h6>
+                                        <h6 runat="server" id="txtTipoEmpleo"></h6>
+                                    </div>
+
+                                    <div class="input-group">
+                                        <h6><b>Contrato </b></h6>
+                                        <h6 runat="server" id="txtTipoContrato"></h6>
+                                    </div>
+
+                                    <div class="input-group">
+                                        <h6><b>Jornada </b></h6>
+                                        <h6 runat="server" id="txtJornada"></h6>
+                                    </div>
+
+                                    <div class="input-group">
+                                        <h6><b>Horario </b></h6>
+                                        <h6 runat="server" id="txtHorario"></h6>
+                                    </div>
+
+                                    <br />
+
+                                    <div class="input-group">
+                                        <h6><b>Salario </b></h6>
+                                        <h6 runat="server" id="txtSalario"></h6>
+                                    </div>
+
+                                    <div class="input-group">
+                                        <h6><b>Idiomas requeridos </b></h6>
+                                        <h6 runat="server" id="txtIdiomaRequerido"></h6>
+                                    </div>
+
+                                    <br />
+
+                                    <div class="input-group">
+                                        <h6><b>Fecha de inicio </b></h6>
+                                        <h6 runat="server" id="txtFechaInicio"></h6>
+                                    </div>
+
+                                    <div class="input-group">
+                                        <h6><b>Fecha límite de la vacante </b></h6>
+                                        <h6 runat="server" id="txtFechaLimite"></h6>
+                                    </div>
+
+                                    <div class="input-group">
+                                        <h6><b>Publicado el </b></h6>
+                                        <h6 runat="server" id="txtFechaPublicacion"></h6>
+                                    </div>
+
+                                    <br />
+
+                                    <div class="input-group">
+                                        <h6><b>Lugar </b></h6>
+                                        <h6 runat="server" id="txtMunicipio"></h6>
+                                    </div>
+
+                                    <br />
+
+                                    <div class="input-group">
+                                        <h6><b>Nivel academico: </b></h6>
+                                        <asp:Repeater ID="rpNivelAcademico" runat="server">
+
+                                            <ItemTemplate>
+                                                <div class="row">
+                                                    <h6><%# Eval("nivelAcademico") %></h6>
+                                                </div>
+                                            </ItemTemplate>
+
+                                        </asp:Repeater>
+
+
+
+                                    </div>
+
+                                    <div class="input-group">
+                                        <h6><b>Requisitos: </b></h6>
+                                        <asp:Repeater ID="rpRequisitos" runat="server">
+
+                                            <ItemTemplate>
+                                                <div class="row">
+                                                    <h6><%# Eval("descripcionRequisito") %></h6>
+                                                </div>
+                                            </ItemTemplate>
+
+                                        </asp:Repeater>
+
+
+
+                                    </div>
+
+                                    <div class="input-group">
+                                        <h6><b>Habilidades: </b></h6>
+                                        <asp:Repeater ID="rpHabilidades" runat="server">
+
+                                            <ItemTemplate>
+
+                                                <div class="row" style="margin-left: 5%">
+                                                    <h6><b><%# Eval("nombreCompetencia") %></b></h6>
+                                                    <h6><%# Eval("descripcion") %></h6>
+                                                </div>
+                                            </ItemTemplate>
+
+                                        </asp:Repeater>
+
+
+
+                                    </div>
+
+                                    <br />
+
+                                    <div class="input-group">
+                                        <h6><b>Funciones: </b></h6>
+                                        <asp:Repeater ID="rpFunciones" runat="server">
+
+                                            <ItemTemplate>
+                                                <div class="row">
+                                                    <h6><%# Eval("descripcionFuncion") %></h6>
+                                                </div>
+                                            </ItemTemplate>
+
+                                        </asp:Repeater>
+
+                                    </div>
+
+                                    <div class="input-group">
+                                        <h6><b>Experiencia mínima </b></h6>
+                                        <h6 runat="server" id="txtExperienciaMinima"></h6>
+                                    </div>
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn color2" style="color: white">Postularse</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
                 </div>
             </div>
             <div class="col-md-2" runat="server" id="contenedorDerecho"></div>
         </div>
     </div>
+
+
+    <script src="recursos/js/main3.js"></script>
 </asp:Content>
