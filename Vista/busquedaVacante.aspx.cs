@@ -65,7 +65,7 @@ namespace HIRE.Vista
                 txtTotalVacantes.InnerText = "No hay vacantes disponibles";
             }
 
-            
+
             rpVacantes.DataSource = objVacantes;
             rpVacantes.DataBind();
 
@@ -111,5 +111,78 @@ namespace HIRE.Vista
 
 
         }
+
+        protected void btnVerVacante_Click(object sender, CommandEventArgs e)
+        {
+
+            int idVacante = int.Parse( e.CommandArgument.ToString());
+
+            if (e.CommandName == "enviarIDVacante")
+            {
+
+                clVacanteL objVacanteL = new clVacanteL();
+                clDatosVacante objDatosVacante = objVacanteL.mtdTraerVacante(idVacante);
+
+                clVacanteE objVacante = objDatosVacante.objVacante;
+
+                txtTitulo.InnerHtml = objVacante.titulo;
+                txtDescripcion.InnerHtml = objVacante.descripcion;
+                txtExperienciaMinima.InnerHtml = ": " + objVacante.tiempoExperiencia;
+                txtSalario.InnerHtml = ": " + objVacante.salario;
+                txtJornada.InnerHtml = ": " + objVacante.jornada;
+                txtHorario.InnerHtml = ": " + objVacante.horario;
+                txtIdiomaRequerido.InnerHtml = ": " + objVacante.idiomaRequerido;
+                txtTipoEmpleo.InnerHtml = ": " + objVacante.tipoEmpleo;
+                txtTipoContrato.InnerHtml = ": " + objVacante.tipoContrato;
+                txtMunicipio.InnerHtml = ": " + objVacante.municipio + ", Boyacá";
+
+                DateTime fechaI = DateTime.Parse(objVacante.fechaInicio);
+                DateTime fechaL = DateTime.Parse(objVacante.fechaLimite);
+                DateTime fechaPub = DateTime.Parse(objVacante.fechaPublicacion);
+
+                string fechaInicio = fechaI.ToString("yyyy-MM-dd");
+                string fechaLimite = fechaL.ToString("yyyy-MM-dd");
+                string fechaPublicacion = fechaPub.ToString("yyyy-MM-dd");
+
+                txtFechaInicio.InnerHtml = ": " +  fechaInicio;
+                txtFechaLimite.InnerHtml = ": " + fechaLimite;
+                txtFechaPublicacion.InnerHtml = ": " + fechaPublicacion;
+
+
+
+
+
+
+                List<clNivelAcademicoE> objNivelAcademico = objDatosVacante.objNivelAcademico;
+                rpNivelAcademico.DataSource = objNivelAcademico;
+                rpNivelAcademico.DataBind();
+
+
+                List<clRequisitoE> objRequisito = objDatosVacante.objRequisito;
+                rpRequisitos.DataSource = objRequisito;
+                rpRequisitos.DataBind();
+
+                List<clHabilidadE> objHabilidad = objDatosVacante.objHabilidad;
+                rpHabilidades.DataSource = objHabilidad;    
+                rpHabilidades.DataBind();
+
+                List<clFuncionE> objFuncion = objDatosVacante.objFuncion;
+                rpFunciones.DataSource = objFuncion;
+                rpFunciones.DataBind();
+
+                string abrirModal = @"
+                  $(document).ready(function () {
+                  $('#datosVacante').modal('show');
+                  });";
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "OpenModal", abrirModal, true);
+
+            }
+
+
+
+        }
     }
 }
+
+
