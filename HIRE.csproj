@@ -88,10 +88,12 @@
     <Content Include="Scripts\alertify.min.js" />
     <Content Include="Vista\busquedaEmpresa.aspx" />
     <Content Include="Vista\busquedaVacante.aspx" />
+    <Content Include="Vista\crearCuenta.aspx" />
     <Content Include="Vista\css\style.css" />
     <Content Include="Vista\index.aspx" />
     <Content Include="Vista\inicio.aspx" />
     <Content Include="Vista\listaEmpresas.aspx" />
+    <Content Include="Vista\recuperarContrasena.aspx" />
     <Content Include="Vista\recursos\css\style.css" />
     <Content Include="Vista\recursos\css\style.min.css" />
     <Content Include="Vista\recursos\fotosPerfil\fotoFernando.jpg" />
@@ -1863,6 +1865,13 @@
     <Compile Include="Vista\busquedaVacante.aspx.designer.cs">
       <DependentUpon>busquedaVacante.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Vista\crearCuenta.aspx.cs">
+      <DependentUpon>crearCuenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\crearCuenta.aspx.designer.cs">
+      <DependentUpon>crearCuenta.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Vista\index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1904,6 +1913,13 @@
     </Compile>
     <Compile Include="Vista\perfilCV.aspx.designer.cs">
       <DependentUpon>perfilCV.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\recuperarContrasena.aspx.cs">
+      <DependentUpon>recuperarContrasena.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\recuperarContrasena.aspx.designer.cs">
+      <DependentUpon>recuperarContrasena.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
