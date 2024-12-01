@@ -47,12 +47,14 @@
 
                                         <div class="text-center pt-1 mb-5 pb-1">
                                             <asp:Button ID="btnIniciarSesion" OnClick="btnIniciarSesion_Click" CssClass="btn btn-primary btn-block colorBase" runat="server" Text="Iniciar Sesion" />
-                                            <a class="text-muted" href="#!">Olvidaste tu contraseña?</a>
+                                            <a class="text-muted" href="recuperarContrasena.aspx">Olvidaste tu contraseña?</a>
                                         </div>
 
                                         <div class="d-flex align-items-center justify-content-center pb-4">
                                             <p class="mb-0 me-2">No tienes una cuenta?</p>
-                                            <asp:Button ID="btnRegistrarse" CssClass="btn btn-outline-primary" runat="server" Text="Crea una aqui" />
+                                            <a class="btn btn-outline-primary" href="crearCuenta.aspx">Crea una aqui</a>
+                                            
+                                            
                                         </div>
 
                                     </form>

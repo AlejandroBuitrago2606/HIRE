@@ -207,16 +207,14 @@ namespace HIRE.Datos
 
                         objEmpresaE.idEmpresa = int.Parse(fila["idEmpresa"].ToString());
                         objEmpresaE.nombre = fila["nombre"].ToString();
-                        objEmpresaE.nit = fila["nit"].ToString();
-                        objEmpresaE.sector = fila["sector"].ToString();
-                        objEmpresaE.descripcion = fila["descripcion"].ToString();
-                        objEmpresaE.fechaConstitucion = fila["fechaConstitucion"].ToString();
-                        objEmpresaE.direccion = fila["direccion"].ToString();
-                        objEmpresaE.telefono = fila["telefono"].ToString();
-                        objEmpresaE.url = fila["url"].ToString();
                         objEmpresaE.foto = fila["foto"].ToString();
-                        objEmpresaE.tipoNegocio = fila["tipoNegocio"].ToString();
+                        objEmpresaE.descripcion = fila["descripcion"].ToString();
+                        objEmpresaE.numeroEmpleados = fila["numeroEmpleados"].ToString();
+                        objEmpresaE.direccion = fila["direccion"].ToString();
                         objEmpresaE.municipio = fila["municipio"].ToString();
+                        objEmpresaE.telefono = fila["telefono"].ToString();
+                        objEmpresaE.correo = fila["correo"].ToString();
+                        objEmpresaE.url = fila["url"].ToString();
 
                     };
 

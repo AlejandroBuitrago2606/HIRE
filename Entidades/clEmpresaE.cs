@@ -21,7 +21,8 @@ namespace HIRE.Entidades
         public string tipoNegocio { get; set; }
         public string municipio { get; set; }
         public string totalVacantes { get; set; }
-
+        public string correo { get; set; }
+        public string numeroEmpleados { get; set; }
 
         public bool validacion { get; set; }
     }
