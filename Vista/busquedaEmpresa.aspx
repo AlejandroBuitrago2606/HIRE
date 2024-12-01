@@ -81,8 +81,7 @@
 
                                             </div>
                                             <div class="row">
-                                                <h6 runat="server" style="font-size: 83%; color: gray;" id="H4"><b><%# Eval("totalVacantes") %> vacantes disponibles</b></h6>
-
+                                                <h6 runat="server" style="font-size: 83%; color: gray;" id="H4"><b><%# Eval("totalVacantes") %> vacantes disponibles</b></h6>                                                
                                             </div>
 
                                         </div>
@@ -92,9 +91,11 @@
 
                                 <div class="card-footer">
                                     <div class="col-md-3" style="margin-bottom: 10px; margin-top: 2px;">
-                                        <asp:Button runat="server" CssClass="btn btn-warning" CommandName="seleccionarID" CommandArgument='<%# Eval("idEmpresa") %>' Style="color: black;" Text="Ver mas →" />
+                                        <asp:Button runat="server" CssClass="btn btn-warning" OnCommand="traerEmpresa_Click" CommandName="traerEmpresa" CommandArgument='<%# Eval("idEmpresa") %>' Style="color: black;" Text="Ver mas →" />
                                     </div>
                                 </div>
+
+
 
                             </div>
                         </ItemTemplate>
@@ -102,11 +103,128 @@
                     </asp:Repeater>
 
 
+                    <div class="modal fade" id="datosEmpresa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="d-flex justify-content-center">
+                                        <h1 class="modal-title fs-4" style="text-align: center" id="exampleModalLabel">Informacion del negocio.</h1>
+                                    </div>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <div class="d-flex justify-content-center">
+                                        <h5 runat="server" id="txtNombreEmpresa" style="font-weight: bold;"></h5>
+                                    </div>
+
+                                    <br />
+                                    <br />
+
+                                    <div class="d-flex justify-content-center">
+                                        <img class="img-profile rounded-circle" runat="server" id="imgEmpresa"
+                                            alt="error" width="100" height="100">
+                                    </div>
+
+                                    <br />
+                                    <h6 runat="server" id="txtDescripcionEmpresa"></h6>
+                                    <br />
+
+                                    <div class="input-group">
+                                        <h6><b>Numero de Empleados</b></h6>
+                                        <h6 runat="server" id="txtNumeroEmpleados"></h6>
+                                    </div>
+
+                                    <div class="input-group">
+                                        <h6><b>Ubicación </b></h6>
+                                        <h6 runat="server" id="txtUbicacion"></h6>
+                                    </div>
+
+                                    <div class="input-group" style="margin-top: 2%">
+
+                                        <span>📞</span>
+                                        <h6 runat="server" id="txtTelefono"></h6>
+                                    </div>
+
+                                    <div class="input-group">
+                                        <span>✉️</span>
+                                        <h6 runat="server" id="txtCorreo"></h6>
+
+                                    </div>
+                                    <div class="input-group">
+                                        <span>🌐</span>
+                                        <a id="Web" runat="server"></a>
+                                    </div>
+
+
+                                    <br />
+                                    <br />
+
+                                    <div class="input-group">
+                                        
+                                            <h6><b runat="server" id="txtVacantesPublicadas"></b></h6>
+                                        <br />
+                                        <div style="max-height: calc(100vh - 100px); overflow-y: auto;">
+                                        <asp:Repeater ID="rpVacantesPublicadas" runat="server">
+
+                                            <ItemTemplate>
+
+                                                <div class="card mb-4 shadow-sm">
+                                                    <div class="card-body" style="margin-top: 2%">
+                                                        <div class="row" style="text-align: center">
+                                                            <h3 runat="server" style="font-size: 160%;" id="txtNombreEmpresa"><b><%# Eval("titulo") %></b></h3>
+                                                        </div>
+                                                        <br />
+                                                        <div class="row">
+                                                            <h6 runat="server" style="font-size: 83%; color: mediumseagreen;"><b><%# Eval("salario") %></b></h6>
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <h6 runat="server" id="txtMunicipio" style="font-size: 83%; color: gray;"><b>Lugar: </b><%#Eval("municipio")%></h6>
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <h6 runat="server" style="font-size: 83%; color: gray;"><b>Contrato: </b><%# Eval("tipoContrato")%>, (<%# Eval("tipoEmpleo") %>)</h6>
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <h6 runat="server" style="font-size: 83%; color: gray;"><b>Maximo hasta: </b><%# Eval("fechaLimite") %></h6>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="card-footer">
+                                                        <div class="col-md-3" style="margin-bottom: 10px; margin-top: 2px;">
+
+                                                            <asp:Button ID="btnVerVacante" CssClass="btn btn-warning" data-bs-toggle="modal" runat="server" Style="color: black;" Text="Ver mas →" />
+                                                        </div>
+
+                                                    </div>
+
+
+                                                </div>
+
+                                            </ItemTemplate>
+
+                                        </asp:Repeater>
+                                            </div>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
                 </div>
             </div>
             <div class="col-md-2" runat="server" id="contenedorDerecho"></div>
         </div>
     </div>
-
 
 </asp:Content>

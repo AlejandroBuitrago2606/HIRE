@@ -86,5 +86,53 @@ namespace HIRE.Vista
 
 
         }
+
+        protected void traerEmpresa_Click(object sender, CommandEventArgs e)
+        {
+
+            int idEmpresa = int.Parse(e.CommandArgument.ToString());
+
+            if (e.CommandName == "traerEmpresa")
+            {
+
+                clEmpresaL objEmpresaL = new clEmpresaL();
+
+                clEmpresaE objDatosEmpresa = objEmpresaL.mtdTraerEmpresa(idEmpresa).Item1;
+                List<clVacanteE> objVacantesE = objEmpresaL.mtdTraerEmpresa(idEmpresa).Item2;
+
+                int totalVacantesPub = objVacantesE.Count;
+
+                txtNombreEmpresa.InnerText = objDatosEmpresa.nombre;
+                imgEmpresa.Src = ResolveUrl(objDatosEmpresa.foto);
+
+                txtDescripcionEmpresa.InnerText = objDatosEmpresa.descripcion;
+                txtNumeroEmpleados.InnerText = ": " +  objDatosEmpresa.numeroEmpleados;
+                txtUbicacion.InnerText = ": " +  objDatosEmpresa.direccion + ", " + objDatosEmpresa.municipio;
+                txtTelefono.InnerText = " " +  objDatosEmpresa.telefono;
+                txtCorreo.InnerText = " " + objDatosEmpresa.correo;
+                Web.InnerText = " " + objDatosEmpresa.url;
+                Web.HRef = ResolveUrl(objDatosEmpresa.url);
+                txtVacantesPublicadas.InnerText = "Vacantes publicadas " + "(" +  totalVacantesPub.ToString() + ")";
+                rpVacantesPublicadas.DataSource = objVacantesE;
+                rpVacantesPublicadas.DataBind();
+
+
+
+
+                string abrirModal = @"
+                  $(document).ready(function () {
+                  $('#datosEmpresa').modal('show');
+                  });";
+
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "OpenModal", abrirModal, true);
+
+                
+
+
+            }
+
+        }
+
     }
 }
