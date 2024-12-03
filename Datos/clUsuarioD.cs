@@ -5,19 +5,20 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using HIRE.Entidades;
+using HIRE.Logica;
 
 namespace HIRE.Datos
 {
     public class clUsuarioD
     {
-
+        ClConexion objConexion = new ClConexion();
         public clUsuarioE mtdValidarUsuario(clUsuarioE objUsuario, int idUsuario)
         {
             clUsuarioE objDatosE = new clUsuarioE();
 
             try
             {
-                ClConexion objConexion = new ClConexion();
+
                 SqlCommand cmd = new SqlCommand("spValidarUsuario", objConexion.MtdAbrirConexion());
                 cmd.Parameters.AddWithValue("@correo", objUsuario.correo.ToString());
                 cmd.Parameters.AddWithValue("@contrasena", objUsuario.contrasena.ToString());
@@ -65,7 +66,7 @@ namespace HIRE.Datos
 
             try
             {
-                ClConexion objConexion = new ClConexion();
+
                 SqlCommand cmd = new SqlCommand("spValidarUsuario", objConexion.MtdAbrirConexion());
                 cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
                 cmd.CommandType = CommandType.StoredProcedure; //le especifico que es un SP
@@ -107,7 +108,93 @@ namespace HIRE.Datos
             return objDatosE;
         }
 
+        public clUsuarioE mtdRecuperarContrasena(string idUsuario = null, string correo = null, string contrasena = null)
+        {
 
+            clUsuarioE objUsuarioE = new clUsuarioE();
+
+            if (correo == null)
+            {
+
+
+                try
+                {
+
+                    SqlCommand cmd = new SqlCommand("spRecuperarContrasena", objConexion.MtdAbrirConexion());
+                    cmd.Parameters.AddWithValue("@idUsuario", int.Parse(idUsuario));
+                    cmd.Parameters.AddWithValue("@contrasena", contrasena);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
+                    objUsuarioE.validar = true;
+
+                }
+                catch (Exception e)
+                {
+                    objUsuarioE.validar = false;
+                    Console.WriteLine(e.Message);
+                }
+
+
+
+
+
+
+
+
+
+            }
+            else
+            {
+
+
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("spRecuperarContrasena", objConexion.MtdAbrirConexion());
+                    cmd.Parameters.AddWithValue("@correo", correo);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    using (SqlDataReader fila = cmd.ExecuteReader())
+                    {
+
+                        if (fila.HasRows)
+                        {
+                            while (fila.Read())
+                            {
+
+                                objUsuarioE.idUsuario = int.Parse(fila["idUsuario"].ToString());
+                                objUsuarioE.nombre = fila["nombre"].ToString();
+                                objUsuarioE.apellido = fila["apellido"].ToString();
+                                objUsuarioE.correo = fila["correo"].ToString();
+                                objUsuarioE.validar = true;
+                            }
+
+                        }
+                        else
+                        {
+                            objUsuarioE.validar = false;
+                        }
+
+
+                        fila.Close();
+                        objConexion.MtdCerrarConexion();
+                    }
+
+
+                }
+                catch (Exception e)
+                {
+
+                    Console.WriteLine(e.Message);
+
+                }
+
+
+            }
+
+            return objUsuarioE;
+
+        }
 
     }
+
 }

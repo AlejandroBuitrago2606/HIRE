@@ -104,6 +104,7 @@
     <Content Include="Vista\recursos\imagenes\carrusel3.jpg" />
     <Content Include="Vista\recursos\imagenes\carrusel4.jpg" />
     <Content Include="Vista\recursos\imagenes\fondoBusqueda.jpg" />
+    <Content Include="Vista\recursos\imagenes\fondoRecuperarC.jpg" />
     <Content Include="Vista\recursos\imagenes\perfil.png" />
     <Content Include="Vista\perfilCV.aspx" />
     <Content Include="Vista\recursos\css\main.css" />

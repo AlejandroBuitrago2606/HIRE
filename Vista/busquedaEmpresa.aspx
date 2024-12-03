@@ -13,7 +13,7 @@
             <div class="col-md-3" runat="server" id="contenedorBusqueda">
 
                 <div style="margin-top: 100px">
-                    <h4>Encuentra el empleo ideal para ti...</h4>
+                    <h4>Explora empresas que transforman Boyacá...</h4>
                     <div class="search-bar input-group" style="position: sticky;">
 
                         <asp:TextBox ID="txtParametros" TextMode="SingleLine" CssClass="form-control search-input" Style="width: auto; height: 52px" placeholder="Buscar..." runat="server"></asp:TextBox>

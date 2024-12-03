@@ -10,8 +10,10 @@ namespace HIRE.Vista
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (!IsPostBack)
             {
+                Session["ruta"] = "login";
                 txtCorreo.Attributes["required"] = "required";
                 txtContrasena.Attributes["required"] = "required";
                 txtCorreo.Text = "";
