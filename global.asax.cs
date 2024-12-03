@@ -23,7 +23,10 @@ namespace HIRE
             Session["sessionActiva"] = false;
             Session["idUsuario"] = 0;
             Session["sesion"] = "false";
-
+            Session["autenticacion"] = "";
+            Session["correoUsuario"] = "";
+            Session["ruta"] = "";
+            Session["correoEnviado"] = "false";
 
 
         }
@@ -49,6 +52,10 @@ namespace HIRE
             Session["sessionActiva"] = false;
             Session["idUsuario"] = 0;
             Session["sesion"] = "false";
+            Session["autenticacion"] = "";
+            Session["correoUsuario"] = "";
+            Session["ruta"] = "";
+            Session["correoEnviado"] = "false";
         }
 
         protected void Application_End(object sender, EventArgs e)

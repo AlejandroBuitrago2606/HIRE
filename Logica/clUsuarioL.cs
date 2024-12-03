@@ -11,11 +11,10 @@ namespace HIRE.Logica
 {
     public class clUsuarioL
     {
-
+        clUsuarioD objUsuarioD = new clUsuarioD();
         public clUsuarioE mtdValidarUsuario(clUsuarioE objUsuario, int idUsuario)
         {
             clUsuarioE objDatosUsuario = new clUsuarioE();
-            clUsuarioD objUsuarioD = new clUsuarioD();
 
             if (objUsuario == null)
             {
@@ -33,6 +32,12 @@ namespace HIRE.Logica
 
         }
 
+        public clUsuarioE mtdRecuperarContrasena(string idUsuario = null, string correo = null, string contrasena = null)
+        {
+
+            clUsuarioE objUsuarioE = objUsuarioD.mtdRecuperarContrasena(idUsuario, correo, contrasena);
+            return objUsuarioE;
+        }
 
     }
 }
