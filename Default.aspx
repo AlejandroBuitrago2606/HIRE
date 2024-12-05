@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vista/menu.Master" AutoEventWireup="true" CodeBehind="inicio.aspx.cs" Inherits="HIRE.Vista.inicio" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vista/menu.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="HIRE.Vista.inicio" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Content_Head" runat="server">
     <link href="img/favicon.ico" rel="icon">
@@ -11,8 +11,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="recursos/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="recursos/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="Vista/recursos/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="Vista/recursos/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
     <title>Inicio</title>
 
     <%--    <!-- Customized Bootstrap Stylesheet -->
@@ -30,7 +30,7 @@
                 <div class="carousel-item position-relative active" style="height: 100vh; min-height: 200px;">
                     <div class="overlay"></div>
                     <!-- Capa de fondo oscuro -->
-                    <img class="position-absolute w-100 h-100" src="recursos/imagenes/carrusel1.jpg" style="object-fit: cover; border-radius: 10px;">
+                    <img class="position-absolute w-100 h-100" src="Vista/recursos/imagenes/carrusel1.jpg" style="object-fit: cover; border-radius: 10px;">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">Encuentra tu futuro</h4>
@@ -43,7 +43,7 @@
                 <div class="carousel-item position-relative" style="height: 100vh; min-height: 200px;">
                     <div class="overlay"></div>
                     <!-- Capa de fondo oscuro -->
-                    <img class="position-absolute w-100 h-100" src="recursos/imagenes/carrusel2.jpg" style="object-fit: cover; border-radius: 10px;">
+                    <img class="position-absolute w-100 h-100" src="Vista/recursos/imagenes/carrusel2.jpg" style="object-fit: cover; border-radius: 10px;">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">Impulsa tu carrera</h4>
@@ -57,7 +57,7 @@
                     <div class="overlay"></div>
 
                     <!-- Capa de fondo oscuro -->
-                    <img class="position-absolute w-100 h-100" src="recursos/imagenes/carrusel3.jpg" style="object-fit: cover; border-radius: 10px;">
+                    <img class="position-absolute w-100 h-100" src="Vista/recursos/imagenes/carrusel3.jpg" style="object-fit: cover; border-radius: 10px;">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">Eficiencia en tus manos</h4>
@@ -71,7 +71,7 @@
                 <div class="carousel-item position-relative" style="height: 100vh; min-height: 200px;">
                     <div class="overlay"></div>
                     <!-- Capa de fondo oscuro -->
-                    <img class="position-absolute w-100 h-100" src="recursos/imagenes/carrusel4.jpg" style="object-fit: cover; border-radius: 10px;">
+                    <img class="position-absolute w-100 h-100" src="Vista/recursos/imagenes/carrusel4.jpg" style="object-fit: cover; border-radius: 10px;">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">Conecta con empresas</h4>
@@ -205,7 +205,7 @@
             <div class="row">
                 <div class="col-lg-6" style="min-height: 500px;">
                     <div class="position-relative h-100 rounded overflow-hidden">
-                        <img class="position-absolute w-100 h-100" src="recursos/imagenes/bannerFinal.jpg" style="object-fit: cover;">
+                        <img class="position-absolute w-100 h-100" src="Vista/recursos/imagenes/bannerFinal.jpg" style="object-fit: cover;">
                     </div>
                 </div>
                 <div class="col-lg-6 pt-5 pb-lg-5">
@@ -316,15 +316,15 @@
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="recursos/lib/easing/easing.min.js"></script>
-    <script src="recursos/lib/waypoints/waypoints.min.js"></script>
-    <script src="recursos/lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="recursos/lib/tempusdominus/js/moment.min.js"></script>
-    <script src="recursos/lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="recursos/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="Vista/recursos/lib/easing/easing.min.js"></script>
+    <script src="Vista/recursos/lib/waypoints/waypoints.min.js"></script>
+    <script src="Vista/recursos/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="Vista/recursos/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="Vista/recursos/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="Vista/recursos/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="recursos/js/main2.js"></script>
+    <script src="Vista/recursos/js/main2.js"></script>
 
 
 </asp:Content>

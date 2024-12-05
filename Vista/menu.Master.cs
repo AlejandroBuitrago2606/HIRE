@@ -17,7 +17,7 @@ namespace HIRE.Vista
 
             if (!IsPostBack)
             {
-                if (ruta.Contains("inicio") || ruta.Contains("busqueda") && sesion == "false")
+                if (ruta.Contains("Default") || ruta.Contains("busqueda") && sesion == "false")
                 {
 
 
@@ -43,25 +43,18 @@ namespace HIRE.Vista
                     objUsuarioE = objTraerDatosUsuario.mtdValidarUsuario(objDatosEnvio = null, idUsuario);
 
 
-                    if (objUsuarioE.foto == "")
-                    {
-                        txtNombreUsuario.InnerText = objUsuarioE.nombre + " " + objUsuarioE.apellido;
-                        imgFotoPerfil.Src = "recursos/imagenes/perfil.png";
-
-
-                    }
-                    else
+                    if (objUsuarioE != null)
                     {
                         txtNombreUsuario.InnerText = objUsuarioE.nombre + " " + objUsuarioE.apellido;
 
-                        if (ruta.Contains("inicio") && sesion == "false")
+                        // Verifica si la foto es null o vacía
+                        if (string.IsNullOrEmpty(objUsuarioE.foto))
                         {
                             imgFotoPerfil.Src = "recursos/imagenes/perfil.png";
                         }
                         else
                         {
-                            imgFotoPerfil.Src = ResolveUrl("recursos/fotosPerfil/" + objUsuarioE.foto.ToString());
-                            imgFotoPerfil.Alt = "error";
+                            imgFotoPerfil.Src = ResolveUrl(objUsuarioE.foto); // Ya no se necesita .ToString()
                         }
                     }
 
@@ -77,7 +70,7 @@ namespace HIRE.Vista
         {
             Session.Clear();
             Session.Abandon();
-            Response.Redirect("inicio.aspx");
+            Response.Redirect("~/Default.aspx");
 
         }
     }

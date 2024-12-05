@@ -27,7 +27,7 @@ namespace HIRE
             Session["correoUsuario"] = "";
             Session["ruta"] = "";
             Session["correoEnviado"] = "false";
-
+            Session["registro"] = "false";
 
         }
 
@@ -56,6 +56,7 @@ namespace HIRE
             Session["correoUsuario"] = "";
             Session["ruta"] = "";
             Session["correoEnviado"] = "false";
+            Session["registro"] = "false";
         }
 
         protected void Application_End(object sender, EventArgs e)

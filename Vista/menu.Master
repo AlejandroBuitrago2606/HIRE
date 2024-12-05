@@ -148,7 +148,7 @@
                             <ul class="navbar-nav ml-auto" id="ftLogo" runat="server" visible="true">
 
                                 <asp:HyperLink ID="HyperLink1" NavigateUrl="~/Vista/inicio.aspx" runat="server">
-                                        <img src="recursos/imagenes/logo-ProyectoHIRE-Login.png" width="80" height="80" />
+                                        <img src="Vista/recursos/imagenes/logo-ProyectoHIRE-Login.png" width="80" height="80" />
                                 </asp:HyperLink>
                             </ul>
 
@@ -273,7 +273,7 @@
                                 <div id="barraDivisora" runat="server" class="topbar-divider d-none d-sm-block"></div>
 
                                 <li class="nav-item no-arrow" runat="server" id="pcsAutenticacion" visible="true" style="margin-top: auto; margin-bottom: auto;">
-                                    <asp:HyperLink ID="btnCrearCuenta" NavigateUrl="#" runat="server">Crear cuenta</asp:HyperLink>
+                                    <asp:HyperLink ID="btnCrearCuenta" NavigateUrl="~/Vista/crearCuenta.aspx" runat="server">Crear cuenta</asp:HyperLink>
                                     <asp:HyperLink ID="btnIniciarSesion" NavigateUrl="~/Vista/login.aspx" Style="border-radius: 20px; margin-left: 10px;" CssClass="btn btn-success" runat="server">Iniciar Sesion</asp:HyperLink>
 
                                 </li>

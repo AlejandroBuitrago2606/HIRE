@@ -39,5 +39,38 @@ namespace HIRE.Logica
             return objUsuarioE;
         }
 
+        public bool mtdRegistrarUsuario(clUsuarioE objUsuarioE, string idTipo)
+        {
+            bool validacion = false;
+
+            int contador = 0;
+
+            int idUsuario = objUsuarioD.mtdRegistrarUsuario(objUsuarioE);
+
+            int idTipoUsuario = 0;
+
+            if (idUsuario != 0)
+            {
+
+                int IDTipo = int.Parse(idTipo.ToString());
+
+                contador += 1;
+                idTipoUsuario = objUsuarioD.mtdRegistrarUsuario(null, IDTipo, idUsuario);
+
+
+            }
+
+            if (idTipoUsuario != 0)
+            {
+
+
+                contador += 1;
+
+            }
+
+
+            return contador == 2 ? validacion = true : validacion = false;
+        }
+
     }
 }

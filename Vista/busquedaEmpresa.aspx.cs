@@ -23,10 +23,12 @@ namespace HIRE.Vista
 
                 List<clEmpresaE> objEmpresas = objEmpresaL.mtdBuscarEmpresa();
                 clVacanteL objListarMunicipios = new clVacanteL();
-                ArrayList municipios = objListarMunicipios.mtdListarFiltros().Item1;
+                List<clMunicipioE> listaMunicipios = objListarMunicipios.mtdListarFiltros().Item1;
 
-                cbMunicipios.DataSource = municipios;
-                cbMunicipios.DataBind();
+                foreach (clMunicipioE municipio in listaMunicipios)
+                {
+                    cbMunicipios.Items.Add(new ListItem(municipio.nombre, municipio.idMunicipio.ToString()));                    
+                }
 
                 int totalEmpresas = objEmpresas.Count;
 

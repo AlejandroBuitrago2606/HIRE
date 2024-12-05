@@ -17,7 +17,15 @@ namespace HIRE.Vista
             if (!IsPostBack)
             {
 
-                cbMunicipios.DataSource = objVacanteL.mtdListarFiltros().Item1;
+                List<clMunicipioE> listaMunicipios = objVacanteL.mtdListarFiltros().Item1;
+
+                foreach (clMunicipioE municipio in listaMunicipios)
+                {
+                    cbMunicipios.Items.Add(new ListItem(municipio.nombre, municipio.idMunicipio.ToString()));
+                }
+
+
+
                 cbContratos.DataSource = objVacanteL.mtdListarFiltros().Item2;
                 cbEmpleos.DataSource = objVacanteL.mtdListarFiltros().Item3;
                 cbMunicipios.DataBind();
@@ -115,7 +123,7 @@ namespace HIRE.Vista
         protected void btnVerVacante_Click(object sender, CommandEventArgs e)
         {
 
-            int idVacante = int.Parse( e.CommandArgument.ToString());
+            int idVacante = int.Parse(e.CommandArgument.ToString());
 
             if (e.CommandName == "enviarIDVacante")
             {
@@ -144,7 +152,7 @@ namespace HIRE.Vista
                 string fechaLimite = fechaL.ToString("yyyy-MM-dd");
                 string fechaPublicacion = fechaPub.ToString("yyyy-MM-dd");
 
-                txtFechaInicio.InnerHtml = ": " +  fechaInicio;
+                txtFechaInicio.InnerHtml = ": " + fechaInicio;
                 txtFechaLimite.InnerHtml = ": " + fechaLimite;
                 txtFechaPublicacion.InnerHtml = ": " + fechaPublicacion;
 
@@ -163,7 +171,7 @@ namespace HIRE.Vista
                 rpRequisitos.DataBind();
 
                 List<clHabilidadE> objHabilidad = objDatosVacante.objHabilidad;
-                rpHabilidades.DataSource = objHabilidad;    
+                rpHabilidades.DataSource = objHabilidad;
                 rpHabilidades.DataBind();
 
                 List<clFuncionE> objFuncion = objDatosVacante.objFuncion;
