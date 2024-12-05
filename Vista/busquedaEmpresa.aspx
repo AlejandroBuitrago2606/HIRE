@@ -36,6 +36,7 @@
                         <div class="col-md-10">
                             <h6><b>Municipio</b></h6>
                             <asp:DropDownList ID="cbMunicipios" CssClass="form-control" Style="border-radius: 38px; width: 221px; height: 38px; margin-left: 15px" runat="server" OnSelectedIndexChanged="buscarEmpresaPorMunicipio" AutoPostBack="true">
+                                <asp:ListItem></asp:ListItem>
                             </asp:DropDownList>
 
                         </div>
@@ -81,7 +82,7 @@
 
                                             </div>
                                             <div class="row">
-                                                <h6 runat="server" style="font-size: 83%; color: gray;" id="H4"><b><%# Eval("totalVacantes") %> vacantes disponibles</b></h6>                                                
+                                                <h6 runat="server" style="font-size: 83%; color: gray;" id="H4"><b><%# Eval("totalVacantes") %> vacantes disponibles</b></h6>
                                             </div>
 
                                         </div>
@@ -161,54 +162,54 @@
                                     <br />
 
                                     <div class="input-group">
-                                        
-                                            <h6><b runat="server" id="txtVacantesPublicadas"></b></h6>
+
+                                        <h6><b runat="server" id="txtVacantesPublicadas"></b></h6>
                                         <br />
                                         <div style="max-height: calc(100vh - 100px); overflow-y: auto;">
-                                        <asp:Repeater ID="rpVacantesPublicadas" runat="server">
+                                            <asp:Repeater ID="rpVacantesPublicadas" runat="server">
 
-                                            <ItemTemplate>
+                                                <ItemTemplate>
 
-                                                <div class="card mb-4 shadow-sm">
-                                                    <div class="card-body" style="margin-top: 2%">
-                                                        <div class="row" style="text-align: center">
-                                                            <h3 runat="server" style="font-size: 160%;" id="txtNombreEmpresa"><b><%# Eval("titulo") %></b></h3>
+                                                    <div class="card mb-4 shadow-sm">
+                                                        <div class="card-body" style="margin-top: 2%">
+                                                            <div class="row" style="text-align: center">
+                                                                <h3 runat="server" style="font-size: 160%;" id="txtNombreEmpresa"><b><%# Eval("titulo") %></b></h3>
+                                                            </div>
+                                                            <br />
+                                                            <div class="row">
+                                                                <h6 runat="server" style="font-size: 83%; color: mediumseagreen;"><b><%# Eval("salario") %></b></h6>
+
+                                                            </div>
+                                                            <div class="row">
+                                                                <h6 runat="server" id="txtMunicipio" style="font-size: 83%; color: gray;"><b>Lugar: </b><%#Eval("municipio")%></h6>
+
+                                                            </div>
+                                                            <div class="row">
+                                                                <h6 runat="server" style="font-size: 83%; color: gray;"><b>Contrato: </b><%# Eval("tipoContrato")%>, (<%# Eval("tipoEmpleo") %>)</h6>
+
+                                                            </div>
+                                                            <div class="row">
+                                                                <h6 runat="server" style="font-size: 83%; color: gray;"><b>Maximo hasta: </b><%# Eval("fechaLimite") %></h6>
+
+                                                            </div>
+
                                                         </div>
-                                                        <br />
-                                                        <div class="row">
-                                                            <h6 runat="server" style="font-size: 83%; color: mediumseagreen;"><b><%# Eval("salario") %></b></h6>
+
+                                                        <div class="card-footer">
+                                                            <div class="col-md-3" style="margin-bottom: 10px; margin-top: 2px;">
+
+                                                                <asp:Button ID="btnVerVacante" CssClass="btn btn-warning" data-bs-toggle="modal" runat="server" Style="color: black;" Text="Ver mas →" />
+                                                            </div>
 
                                                         </div>
-                                                        <div class="row">
-                                                            <h6 runat="server" id="txtMunicipio" style="font-size: 83%; color: gray;"><b>Lugar: </b><%#Eval("municipio")%></h6>
 
-                                                        </div>
-                                                        <div class="row">
-                                                            <h6 runat="server" style="font-size: 83%; color: gray;"><b>Contrato: </b><%# Eval("tipoContrato")%>, (<%# Eval("tipoEmpleo") %>)</h6>
-
-                                                        </div>
-                                                        <div class="row">
-                                                            <h6 runat="server" style="font-size: 83%; color: gray;"><b>Maximo hasta: </b><%# Eval("fechaLimite") %></h6>
-
-                                                        </div>
 
                                                     </div>
 
-                                                    <div class="card-footer">
-                                                        <div class="col-md-3" style="margin-bottom: 10px; margin-top: 2px;">
+                                                </ItemTemplate>
 
-                                                            <asp:Button ID="btnVerVacante" CssClass="btn btn-warning" data-bs-toggle="modal" runat="server" Style="color: black;" Text="Ver mas →" />
-                                                        </div>
-
-                                                    </div>
-
-
-                                                </div>
-
-                                            </ItemTemplate>
-
-                                        </asp:Repeater>
-                                            </div>
+                                            </asp:Repeater>
+                                        </div>
                                     </div>
 
                                 </div>

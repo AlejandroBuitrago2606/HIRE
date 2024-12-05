@@ -381,14 +381,15 @@ namespace HIRE.Datos
             return objDatosVacante;
         }
 
-        public (ArrayList, ArrayList, ArrayList) mtdListarFiltros()
+        public (List<clMunicipioE>, ArrayList, ArrayList, List<clCargoE>) mtdListarFiltros()
         {
             SqlCommand cmd = new SqlCommand("spListarFiltros", objConexion.MtdAbrirConexion());
             cmd.CommandType = CommandType.StoredProcedure;
 
-            ArrayList municipios = new ArrayList();
+            List<clMunicipioE> municipios = new List<clMunicipioE>();
             ArrayList tipoContrato = new ArrayList();
             ArrayList tipoEmpleo = new ArrayList();
+            List<clCargoE> cargo = new List<clCargoE>();
 
             try
             {
@@ -396,11 +397,18 @@ namespace HIRE.Datos
                 {
                     if (fila.HasRows)
                     {
-                        municipios.Add("");
+
                         while (fila.Read())
                         {
 
-                            municipios.Add(fila["municipio"].ToString());
+                            municipios.Add(new clMunicipioE
+                            {
+
+                                idMunicipio = int.Parse(fila["idMunicipio"].ToString()),
+                                nombre = fila["municipio"].ToString()
+
+                            });
+
                         }
 
                         if (fila.NextResult())
@@ -412,6 +420,22 @@ namespace HIRE.Datos
                                 tipoContrato.Add(fila["tipoContrato"].ToString());
                             }
                         }
+
+                        if (fila.NextResult())
+                        {
+
+                            while (fila.Read())
+                            {
+
+                                cargo.Add(new clCargoE
+                                {
+
+                                    idTipo = int.Parse(fila["idTipo"].ToString()),
+                                    cargo = fila["cargo"].ToString()
+                                });
+                            }
+                        }
+
 
                         if (fila.NextResult())
                         {
@@ -428,6 +452,8 @@ namespace HIRE.Datos
 
                     else
                     {
+
+                        //CORREGIR ELSE'S DE TODOS LOS RESULTADOS
                         municipios = null;
                         tipoContrato = null;
                         tipoEmpleo = null;
@@ -444,7 +470,7 @@ namespace HIRE.Datos
                 Console.WriteLine(e.Message);
             }
 
-            return (municipios, tipoContrato, tipoEmpleo);
+            return (municipios, tipoContrato, tipoEmpleo, cargo);
 
         }
 

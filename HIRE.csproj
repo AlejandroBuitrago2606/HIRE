@@ -91,7 +91,7 @@
     <Content Include="Vista\crearCuenta.aspx" />
     <Content Include="Vista\css\style.css" />
     <Content Include="Vista\index.aspx" />
-    <Content Include="Vista\inicio.aspx" />
+    <Content Include="Default.aspx" />
     <Content Include="Vista\listaEmpresas.aspx" />
     <Content Include="Vista\recuperarContrasena.aspx" />
     <Content Include="Vista\recursos\css\style.css" />
@@ -133,6 +133,7 @@
     <Content Include="Vista\recursos\js\demo\chart-bar-demo.js" />
     <Content Include="Vista\recursos\js\demo\chart-pie-demo.js" />
     <Content Include="Vista\recursos\js\demo\datatables-demo.js" />
+    <Content Include="Vista\recursos\js\main3.js" />
     <Content Include="Vista\recursos\js\main.js" />
     <Content Include="Vista\recursos\js\main2.js" />
     <Content Include="Vista\recursos\js\sb-admin-2.js" />
@@ -1835,6 +1836,7 @@
     <Compile Include="Datos\clUsuarioD.cs" />
     <Compile Include="Datos\clVacanteD.cs" />
     <Compile Include="Entidades\clEmpresaE.cs" />
+    <Compile Include="Entidades\clFiltrosE.cs" />
     <Compile Include="Entidades\clPerfilE.cs" />
     <Compile Include="Entidades\clVacanteE.cs" />
     <Compile Include="Logica\clEmpresaL.cs" />
@@ -1880,12 +1882,12 @@
     <Compile Include="Vista\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Vista\inicio.aspx.cs">
-      <DependentUpon>inicio.aspx</DependentUpon>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Vista\inicio.aspx.designer.cs">
-      <DependentUpon>inicio.aspx</DependentUpon>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\listaEmpresas.aspx.cs">
       <DependentUpon>listaEmpresas.aspx</DependentUpon>

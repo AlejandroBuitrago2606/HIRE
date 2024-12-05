@@ -29,18 +29,28 @@ namespace HIRE.Logica
             return objDatosVacante;
         }
 
-        public (ArrayList, ArrayList, ArrayList) mtdListarFiltros()
+        public (List<clMunicipioE>, ArrayList, ArrayList, List<clCargoE>, ArrayList) mtdListarFiltros()
         {
 
-            ArrayList municipios = new ArrayList();
-            ArrayList tipoContrato = new ArrayList();
-            ArrayList tipoEmpleo = new ArrayList();
 
-            municipios = objVacanteD.mtdListarFiltros().Item1;
-            tipoContrato = objVacanteD.mtdListarFiltros().Item2;
-            tipoEmpleo = objVacanteD.mtdListarFiltros().Item3;
+            List<clMunicipioE> objMunicipios = objVacanteD.mtdListarFiltros().Item1;
+            ArrayList tipoContrato = objVacanteD.mtdListarFiltros().Item2;
+            ArrayList tipoEmpleo = objVacanteD.mtdListarFiltros().Item3;
+            List<clCargoE> cargo = objVacanteD.mtdListarFiltros().Item4;
 
-            return (municipios, tipoContrato, tipoEmpleo);
+
+            ArrayList estadoCivil = new ArrayList();
+            estadoCivil.Add("");            
+            estadoCivil.Add("Soltero");
+            estadoCivil.Add("Casado");
+            estadoCivil.Add("Union Libre");
+            estadoCivil.Add("Separado");
+            estadoCivil.Add("Divorciado");
+            estadoCivil.Add("Viudo");
+            estadoCivil.Add("Prefiero no decirlo");
+            
+
+            return (objMunicipios, tipoContrato, tipoEmpleo, cargo, estadoCivil);
         }
 
 

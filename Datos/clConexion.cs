@@ -14,7 +14,7 @@ namespace HIRE.Datos
         public ClConexion()
         {
 
-            conex = new SqlConnection("Data Source=.;Initial Catalog=dbProyectoHIRE;Integrated Security=True");
+            conex = new SqlConnection("Data Source=.;Initial Catalog=dbProyectoHIRE;User ID=Uchiha;Password=alejandro2606;");
 
         }
         public SqlConnection MtdAbrirConexion()

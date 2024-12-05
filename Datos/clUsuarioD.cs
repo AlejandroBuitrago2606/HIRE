@@ -195,6 +195,102 @@ namespace HIRE.Datos
 
         }
 
+
+        public int mtdRegistrarUsuario(clUsuarioE objDatosE = null, int idTipo = 0, int idUsuario = 0)
+        {
+
+            int idValorRetorno = 0;
+
+
+
+            if (idTipo == 0 && idUsuario == 0)
+            {
+
+
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("spRegistrarCuenta", objConexion.MtdAbrirConexion());
+                    cmd.Parameters.AddWithValue("@nombre", objDatosE.nombre);
+                    cmd.Parameters.AddWithValue("@apellido", objDatosE.apellido);
+                    cmd.Parameters.AddWithValue("@documento", objDatosE.documento);
+                    cmd.Parameters.AddWithValue("@fechaNacimiento", objDatosE.fechaNacimiento);
+                    cmd.Parameters.AddWithValue("@estadoCivil", objDatosE.estadoCivil);
+                    cmd.Parameters.AddWithValue("@numeroHijos", objDatosE.numeroHijos);
+                    cmd.Parameters.AddWithValue("@correo", objDatosE.correo);
+                    cmd.Parameters.AddWithValue("@telefono", objDatosE.telefono);
+                    cmd.Parameters.AddWithValue("@direccion", objDatosE.direccion == null ? "" : objDatosE.direccion);
+                    cmd.Parameters.AddWithValue("@ubicacion", objDatosE.ubicacion == null ? "" : objDatosE.ubicacion);
+                    cmd.Parameters.AddWithValue("@foto", objDatosE.foto == null ? "" : objDatosE.foto);
+                    cmd.Parameters.AddWithValue("@contrasena", objDatosE.contrasena);
+                    cmd.Parameters.AddWithValue("@estado", objDatosE.estado);
+                    cmd.Parameters.AddWithValue("@idMunicipio", objDatosE.idMunicipio);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    //Obtengo el parametro de salida
+                    SqlParameter idUsuarioR = new SqlParameter("@parametroDevuelto", SqlDbType.Int)
+                    {
+
+                        Direction = ParameterDirection.Output
+
+                    };
+                    cmd.Parameters.Add(idUsuarioR);
+
+                    cmd.ExecuteNonQuery();
+                    objConexion.MtdCerrarConexion();
+
+                    idValorRetorno = int.Parse(idUsuarioR.Value.ToString());
+
+
+
+                }
+                catch (Exception e)
+                {
+
+                    Console.WriteLine(e.Message);
+                }
+
+            }
+            else
+            {
+
+                try
+                {
+                    //Registrar tipoUsuario
+                    SqlCommand cmd = new SqlCommand("spRegistrarCuenta", objConexion.MtdAbrirConexion());
+                    cmd.Parameters.AddWithValue("@idTipo", idTipo);
+                    cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlParameter idTipoUsuarioR = new SqlParameter("@parametroDevuelto", SqlDbType.Int)
+                    {
+
+                        Direction = ParameterDirection.Output
+
+                    };
+                    cmd.Parameters.Add(idTipoUsuarioR);
+
+                    cmd.ExecuteNonQuery();
+                    objConexion.MtdCerrarConexion();
+
+                    idValorRetorno = int.Parse(idTipoUsuarioR.Value.ToString());
+
+
+                }
+                catch (Exception e)
+                {
+
+                    Console.WriteLine(e.Message);
+
+                }
+
+            }
+
+
+
+            return idValorRetorno;
+
+        }
+
     }
 
 }

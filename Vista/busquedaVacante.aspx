@@ -35,6 +35,7 @@
                         <div class="col-md-10">
                             <h6><b>Municipio</b></h6>
                             <asp:DropDownList ID="cbMunicipios" CssClass="form-control" Style="border-radius: 38px; width: 221px; height: 38px; margin-left: 15px" runat="server">
+                                <asp:ListItem></asp:ListItem>
                             </asp:DropDownList>
 
 
@@ -103,7 +104,7 @@
                                 <div class="card-footer">
                                     <div class="col-md-3" style="margin-bottom: 10px; margin-top: 2px;">
 
-                                        <asp:Button id="btnVerVacante" CssClass="btn btn-warning" data-bs-toggle="modal" runat="server"  style="color: black;" CommandName="enviarIDVacante" CommandArgument='<%# Eval("idVacante") %>' OnCommand="btnVerVacante_Click" data-bs-target="#exampleModal" Text="Ver mas →" />
+                                        <asp:Button ID="btnVerVacante" CssClass="btn btn-warning" data-bs-toggle="modal" runat="server" Style="color: black;" CommandName="enviarIDVacante" CommandArgument='<%# Eval("idVacante") %>' OnCommand="btnVerVacante_Click" data-bs-target="#exampleModal" Text="Ver mas →" />
                                     </div>
 
                                 </div>
@@ -116,7 +117,7 @@
                         </ItemTemplate>
 
                     </asp:Repeater>
-                     
+
                     <h6 runat="server" id="ID"></h6>
 
                     <div class="modal fade" id="datosVacante" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
