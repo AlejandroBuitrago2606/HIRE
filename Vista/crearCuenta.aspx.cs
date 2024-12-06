@@ -339,7 +339,7 @@ namespace HIRE.Vista
 
                     string alerta = @"
 
-                            alertify.error('Hubo un error al enviar el correo');
+                            alertify.error('Hubo un error al enviar el correo \n Registro Completado con errores');
                             ";
 
                     ScriptManager.RegisterStartupScript(this, GetType(), "alertify", alerta, true);

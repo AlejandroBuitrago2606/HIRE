@@ -195,7 +195,6 @@ namespace HIRE.Datos
 
         }
 
-
         public int mtdRegistrarUsuario(clUsuarioE objDatosE = null, int idTipo = 0, int idUsuario = 0)
         {
 

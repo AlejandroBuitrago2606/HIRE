@@ -147,24 +147,24 @@
 
                             <ul class="navbar-nav ml-auto" id="ftLogo" runat="server" visible="true">
 
-                                <asp:HyperLink ID="HyperLink1" NavigateUrl="~/Vista/inicio.aspx" runat="server">
-                                        <img src="Vista/recursos/imagenes/logo-ProyectoHIRE-Login.png" width="80" height="80" />
+                                <asp:HyperLink ID="HyperLink1" NavigateUrl="~/Default.aspx" runat="server">
+                                        <img src="../Vista/recursos/imagenes/logo-ProyectoHIRE-Login.png" width="80" height="80" />
                                 </asp:HyperLink>
                             </ul>
 
                             <ul class="navbar-nav ml-auto" id="opcionesBusqueda" runat="server">
                                 <li class="nav-item" id="inicioItem" runat="server">
-                                    <a href="inicio.aspx" class="nav-Link">
+                                    <a href="../Default.aspx" class="nav-Link">
                                         <i class="fas fa-home"></i>Inicio
                                     </a>
                                 </li>
                                 <li class="nav-item" id="empleosItem" runat="server">
-                                    <a href="busquedaVacante.aspx" class="nav-Link">
+                                    <a href="../Vista/busquedaVacante.aspx" class="nav-Link">
                                         <i class="fas fa-fw fa-search"></i>Empleos
                                     </a>
                                 </li>
                                 <li class="nav-item" id="empresasItem" runat="server">
-                                    <a href="busquedaEmpresa.aspx" class="nav-Link">
+                                    <a href="../Vista/busquedaEmpresa.aspx" class="nav-Link">
                                         <i class="fas fa-fw fa-building"></i>Empresas
                                     </a>
                                 </li>
