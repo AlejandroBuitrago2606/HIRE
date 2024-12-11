@@ -28,6 +28,8 @@ namespace HIRE.Vista
 
                 cbContratos.DataSource = objVacanteL.mtdListarFiltros().Item2;
                 cbEmpleos.DataSource = objVacanteL.mtdListarFiltros().Item3;
+
+
                 cbMunicipios.DataBind();
                 cbContratos.DataBind();
                 cbEmpleos.DataBind();
@@ -91,7 +93,7 @@ namespace HIRE.Vista
 
             clVacanteE objVacante = new clVacanteE
             {
-                municipio = string.IsNullOrEmpty(cbMunicipios.SelectedValue) ? null : cbMunicipios.SelectedValue,
+                municipio = string.IsNullOrEmpty(cbMunicipios.SelectedItem.Text) ? null : cbMunicipios.SelectedItem.Text,
                 tipoContrato = string.IsNullOrEmpty(cbContratos.SelectedValue) ? null : cbContratos.SelectedValue,
                 tipoEmpleo = string.IsNullOrEmpty(cbEmpleos.SelectedValue) ? null : cbEmpleos.SelectedValue
             };
