@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Xml.Linq;
 
 namespace HIRE.Entidades
 {
@@ -25,6 +27,9 @@ namespace HIRE.Entidades
         public string idMunicipio { get; set; }
         public string ubicacion { get; set; }
         public string estado { get; set; }
+        public string idTipo { get; set; }
 
-    }
+        }
+
+
 }

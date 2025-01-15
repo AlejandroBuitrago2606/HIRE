@@ -4,6 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Net;
 using System.Net.Mail;
+using MailKit.Net.Imap;
+using MailKit.Search;
+using MimeKit;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace HIRE.Logica
 {
@@ -18,7 +23,7 @@ namespace HIRE.Logica
             try
             {
                 var remitente = new MailAddress("alejo.yb06@gmail.com", "Equipo de cuentas de HIRE");
-                var destinatario = new MailAddress(Destinatario, nombre);
+                var destinatario = new MailAddress(Destinatario, nombre != null ? nombre : "");
                 const string contrasenaRemitente = "zhqf owkv hptj xnnd";
 
                 var smtp = new SmtpClient
@@ -46,7 +51,6 @@ namespace HIRE.Logica
 
                 }
 
-
             }
             catch (Exception e)
             {
@@ -56,10 +60,7 @@ namespace HIRE.Logica
             }
 
             return validacion;
-
-
         }
-
 
     }
 }
