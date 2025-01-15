@@ -39,38 +39,52 @@ namespace HIRE.Logica
             return objUsuarioE;
         }
 
-        public bool mtdRegistrarUsuario(clUsuarioE objUsuarioE, string idTipo)
+        public (bool, int, int, int) mtdRegistrarUsuario(clUsuarioE objUsuarioE = null, string correo = null)
         {
-            bool validacion = false;
 
             int contador = 0;
-
-            int idUsuario = objUsuarioD.mtdRegistrarUsuario(objUsuarioE);
-
             int idTipoUsuario = 0;
+            int correoExistente = 0;
+            int idUsuario = 0;
 
-            if (idUsuario != 0)
+
+            if (correo != null)
+            {
+                var resultado = objUsuarioD.mtdRegistrarUsuario(null, correo);
+                correoExistente = resultado.Item2;
+
+            }
+            else
             {
 
-                int IDTipo = int.Parse(idTipo.ToString());
+                var resultado = objUsuarioD.mtdRegistrarUsuario(objUsuarioE);
+                idUsuario = resultado.Item1;
 
-                contador += 1;
-                idTipoUsuario = objUsuarioD.mtdRegistrarUsuario(null, IDTipo, idUsuario);
+                if (idUsuario != 0 && objUsuarioE.idTipo.Length > 0)
+                {
 
+                    int IDTipo = int.Parse(objUsuarioE.idTipo.ToString());
+                    idTipoUsuario = objUsuarioD.mtdRegistrarUsuario(null, null, IDTipo, idUsuario).Item1;
+                    contador++;
+
+                }
+
+                if (idTipoUsuario > 0)
+                {
+                    contador++;
+
+                }
 
             }
 
-            if (idTipoUsuario != 0)
-            {
-
-
-                contador += 1;
-
-            }
-
-
-            return contador == 2 ? validacion = true : validacion = false;
+            return (contador == 2 ? true : false, correoExistente, idUsuario, idTipoUsuario);
         }
 
+        public bool mtdEliminarUsuario(int idTipoUsuario, int idUsuario)
+        {
+            bool validacion = objUsuarioD.mtdEliminarUsuario(idTipoUsuario, idUsuario);
+            return validacion;
+
+        }
     }
 }

@@ -13,12 +13,12 @@ namespace HIRE
 
         protected void Application_Start(object sender, EventArgs e)
         {
-
+            Application["objDatosU"] = null;
         }
 
         protected void Session_Start(object sender, EventArgs e)
         {
-            clUsuarioE objUsuario = new clUsuarioE();
+
 
             Session["sessionActiva"] = false;
             Session["idUsuario"] = 0;
@@ -28,6 +28,8 @@ namespace HIRE
             Session["ruta"] = "";
             Session["correoEnviado"] = "false";
             Session["registro"] = "false";
+            Session["codigo"] = "";
+            
 
         }
 
@@ -57,11 +59,13 @@ namespace HIRE
             Session["ruta"] = "";
             Session["correoEnviado"] = "false";
             Session["registro"] = "false";
+            Session["codigo"] = "";
+            
         }
 
         protected void Application_End(object sender, EventArgs e)
         {
-
+            Application["objDatosU"] = null;
         }
     }
 }
