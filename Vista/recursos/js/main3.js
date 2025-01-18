@@ -18,6 +18,6 @@
 //función del formulario de recuperacion de contraseña
 function mtdMostrarSugerencias() {
 
-    alertify.alert("○ Verifica tener una conexion a internet estable para revisar tu correo. \n ○ Asegurate de no haber eliminado la cuenta de correo con la que te registraste. \n ○ Revisa la bandeja de spam o correo no deseado. \n ○ La bandeja de entrada de tu correo podría estar llena.");
+    alertify.alert("Sugerencias","➢ Verifica tener una conexion a internet estable para revisar tu correo. <br>➢ Asegurate de no haber eliminado la cuenta de correo con la que te registraste. <br>➢ Revisa la bandeja de spam o correo no deseado. <br>➢ La bandeja de entrada de tu correo podría estar llena.");
 
 }

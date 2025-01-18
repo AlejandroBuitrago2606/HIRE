@@ -46,18 +46,15 @@
                                         <h6 runat="server" id="txtMensajePrincipal">Ingresa tu correo electronico:</h6>
 
                                         <div class="form-outline mb-4">
-                                            <asp:TextBox ID="txtParametros" CssClass="form-control" TextMode="SingleLine" placeholder="usuario@example.com" runat="server"></asp:TextBox>
 
+                                                    <asp:TextBox ID="txtParametros" CssClass="form-control" TextMode="SingleLine" placeholder="usuario@example.com" runat="server"></asp:TextBox>
+                                              
                                         </div>
 
                                         <h6 style="font-size: 80%" runat="server" id="txtMensaje2"><em>Enviaremos a tu correo electronico un codigo de 4 digitos.</em></h6>
                                         <div class="text-center pt-1 mb-5 pb-1">
-                                            <asp:UpdatePanel runat="server">
-                                                <ContentTemplate>
-                                                    <asp:Button ID="btnDinamico" CssClass="btn btn-primary btn-block colorBase" OnClick="btnDinamico_Click" runat="server" Text="Enviar codigo" />
-                                                </ContentTemplate>
-                                            </asp:UpdatePanel>
-
+                                            <asp:Button ID="btnDinamico" CssClass="btn btn-primary btn-block colorBase" OnClick="btnDinamico_Click" runat="server" Text="Enviar codigo" />
+                                            
                                             <br />
 
                                             <asp:UpdatePanel runat="server">
@@ -93,9 +90,6 @@
                                             </div>
                                         </div>
                                         <%-- End Modal --%>
-
-                                            <asp:HiddenField ID="txtCodigo" runat="server" />
-
                                     </form>
 
                                 </div>

@@ -14,14 +14,23 @@ namespace HIRE.Vista
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            if (!IsPostBack) //Si se carga la pagina por primera vez.
+            {
+
+                Session["contador"] = 0;
+                Session["codigo"] = "";
+                Session["idUsuario"] = 0;
+
+            }
+            //Si es un postback normal, usar else para trabajarlo.
+        
         }
 
 
+        //Este evento del boton dinamico tiene 2 procesos diferentes, el primero es enviar un correo con un codigo de 4 digitos y el segundo es verificar el codigo ingresado por el usuario.
         protected void btnDinamico_Click(object sender, EventArgs e)
         {
             clUsuarioL objUsuarioL = new clUsuarioL();
-
-
 
             int contador = int.Parse(Session["contador"].ToString());
 
@@ -38,12 +47,13 @@ namespace HIRE.Vista
 
                         if (mtdComprobarInternet())
                         {
+                            Session["codigo"] = "";
                             clEnviarCorreoL objEnviarCorreo = new clEnviarCorreoL();
 
                             string nombreCompleto = objUsuarioE.nombre + " " + objUsuarioE.apellido;
                             Random codigo4Digitos = new Random();
                             int codigo = codigo4Digitos.Next(1000, 10000);
-                            txtCodigo.Value = codigo.ToString();
+                            Session["codigo"] = codigo.ToString();
                             clEnviarCorreoL objEnviarCodigo = new clEnviarCorreoL();
                             string asunto = "Recuperacion de contraseña, (Equipo de cuentas HIRE)";
                             string cuerpo = "Hola," + " " + nombreCompleto + " " + "Ingresa el codigo " + " *" + codigo + "* " + " en la plataforma para actualizar tu contraseña y entrar a tu cuenta";
@@ -54,14 +64,16 @@ namespace HIRE.Vista
 
                                 string alerta = @"alertify.success('Codigo enviado correctamente');";
                                 ScriptManager.RegisterStartupScript(this, GetType(), "alertify", alerta, true);
-                                Session["idUsuario"] = objUsuarioE.idUsuario;                                
-                                txtParametros.Attributes["placeholder"] = "";
+                                Session["idUsuario"] = objUsuarioE.idUsuario;
+                                txtMensajePrincipal.InnerHtml = "Ingresa el codigo de cuatro digitos enviado a (<b>" + objUsuarioE.correo + "</b>).";
+                                txtParametros.Attributes["placeholder"] = "";                                
                                 txtParametros.Text = "";
-                                txtMensajePrincipal.InnerHtml = "Ingresa el codigo de cuatro dijitos enviado a (<b>" + objUsuarioE.correo + "</b>).";
+                                
                                 txtMensaje2.Visible = false;
                                 btnDinamico.Text = "Verificar Codigo";
                                 Session["contador"] = 1;
-
+                                btnSugerencias.Visible = true;
+                                                              
                             }
 
                         }
@@ -90,15 +102,20 @@ namespace HIRE.Vista
                 }
             }
             else
-            {
-                btnSugerencias.Visible = true;
+            {                
+
+                string codigo = Session["codigo"].ToString();
 
                 //VERIFICAR CODIGO
-                if (string.IsNullOrEmpty(txtCodigo.Value))
+                if (string.IsNullOrEmpty(codigo))
                 {
-
-                    string script = "alert('Ocurrió un error. Intenta generar el código nuevamente.');";
+                    Session["contador"] = 0;
+                    Session["codigo"] = "";
+                    Session.Clear();
+                    Session.Abandon();
+                    string script = "alert('Ocurrió un error. Intenta generar el código nuevamente.'); setTimeout(function(){window.location.href = 'recuperarContraseña.aspx'}, 1000);";
                     ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+
 
                 }
                 else if (string.IsNullOrEmpty(txtParametros.Text) || txtParametros.Text.Length < 4 || txtParametros.Text.Length > 4)
@@ -109,9 +126,9 @@ namespace HIRE.Vista
                 else
                 {
 
-                    if (txtCodigo.Value == txtParametros.Text)
+                    if (codigo == txtParametros.Text)
                     {
-                        txtCodigo.Value = "";
+                        Session["codigo"] = "";
                         string alerta = @"alertify.success('Codigo verificado correctamente');";
                         ScriptManager.RegisterStartupScript(this, GetType(), "alertify", alerta, true);
 
@@ -142,17 +159,26 @@ namespace HIRE.Vista
         {
             clUsuarioL objUsuarioL = new clUsuarioL();
 
-            if (string.IsNullOrEmpty(txtContrasena.Text) || txtContrasena.Text.Length > 8 || txtContrasena.Text.Length < 8)
+            if (string.IsNullOrEmpty(txtContrasena.Text))
             {
-                string script = "alert('Ingresa una contraseña de 8 digitos');";
+                string script = "alert('La contraseña no puede estar vacia.');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+            }
+            else if (txtContrasena.Text.Length > 8)
+            {
+                string script = "alert('Ingresa una contraseña de maximo 8 digitos.');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+            }
+            else if (txtContrasena.Text.Length < 5)
+            {
+                string script = "alert('Ingresa una contraseña de minimo 5 digitos.');";
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
             }
             else
             {
-
                 string idUsuario = Session["idUsuario"].ToString();
                 string contrasenaUsuario = "";
-
+                Session["idUsuario"] = 0;
                 using (SHA256 sha256 = SHA256.Create())
                 {
 
@@ -168,26 +194,20 @@ namespace HIRE.Vista
                     {
                         sb.Append(b.ToString("x2"));  // Convierte el byte a un valor hexadecimal
                     }
+
                     contrasenaUsuario = sb.ToString();
-
                 }
-
-
-                Session["idUsuario"] = 0;
-                Session["correoUsuario"] = "";
 
                 clUsuarioE objUsuarioE = objUsuarioL.mtdRecuperarContrasena(idUsuario, null, contrasenaUsuario);
                 if (objUsuarioE.validar)
                 {
-                   Session.Clear();
-                    Response.Redirect("login.aspx");
-
+                    Session.Clear();
+                    Session.Abandon();
                     string alerta = @"alertify.success('Contraseña actualizada correctamente, Inicia Sesion!!');  
                          setTimeout(function() {
                          window.location.href = 'login.aspx';
                          }, 1000);";
                     ScriptManager.RegisterStartupScript(this, GetType(), "alertify", alerta, true);
-
                 }
                 else
                 {
