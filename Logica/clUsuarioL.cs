@@ -6,6 +6,8 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace HIRE.Logica
 {
@@ -24,7 +26,26 @@ namespace HIRE.Logica
             else
             {
 
-                objDatosUsuario = objUsuarioD.mtdValidarUsuario(objUsuario, idUsuario);
+                using (SHA256 sha256 = SHA256.Create())
+                {
+
+                    // Convertir la contraseña en bytes
+                    byte[] bytes = Encoding.UTF8.GetBytes(objUsuario.contrasena);
+
+                    // Obtener el hash de la contraseña
+                    byte[] hashBytes = sha256.ComputeHash(bytes);
+
+                    // Convertir el hash en una cadena hexadecimal
+                    StringBuilder sb = new StringBuilder();
+                    foreach (byte b in hashBytes)
+                    {
+                        sb.Append(b.ToString("x2"));  // Convierte el byte a un valor hexadecimal
+                    }
+                    objUsuario.contrasena = sb.ToString();
+
+                }
+
+                objDatosUsuario = objUsuarioD.mtdValidarUsuario(objUsuario);
 
 
             }

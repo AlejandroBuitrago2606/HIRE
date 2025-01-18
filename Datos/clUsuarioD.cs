@@ -12,7 +12,7 @@ namespace HIRE.Datos
     public class clUsuarioD
     {
         ClConexion objConexion = new ClConexion();
-        public clUsuarioE mtdValidarUsuario(clUsuarioE objUsuario, int idUsuario)
+        public clUsuarioE mtdValidarUsuario(clUsuarioE objUsuario)
         {
             clUsuarioE objDatosE = new clUsuarioE();
 
@@ -20,8 +20,8 @@ namespace HIRE.Datos
             {
 
                 SqlCommand cmd = new SqlCommand("spValidarUsuario", objConexion.MtdAbrirConexion());
-                cmd.Parameters.AddWithValue("@correo", objUsuario.correo.ToString());
-                cmd.Parameters.AddWithValue("@contrasena", objUsuario.contrasena.ToString());
+                cmd.Parameters.AddWithValue("@correo", objUsuario.correo);
+                cmd.Parameters.AddWithValue("@contrasena", objUsuario.contrasena);
                 cmd.CommandType = CommandType.StoredProcedure; //le especifico que es un SP
                 cmd.ExecuteNonQuery();//ejecutar consulta SP
 
