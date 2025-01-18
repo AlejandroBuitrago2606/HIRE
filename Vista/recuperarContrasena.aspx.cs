@@ -1,6 +1,9 @@
 ﻿using HIRE.Entidades;
 using HIRE.Logica;
 using System;
+using System.Net.NetworkInformation;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -11,240 +14,228 @@ namespace HIRE.Vista
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            string ruta = Session["ruta"].ToString();
-            string rutaA = Request.Url.AbsolutePath.ToString();
-            string nombreArchivo = System.IO.Path.GetFileName(rutaA); //obtener el nombre del archivo de la ruta
-
-            if (ruta == nombreArchivo)
+            if (!IsPostBack) //Si se carga la pagina por primera vez.
             {
-                string estadoAutenticacion = Session["autenticacion"].ToString();
-                if (estadoAutenticacion == "ComprobarCodigo")
-                {
 
-                    string correoUsuario = Session["correoUsuario"].ToString();
-                    Session["autenticacion"] = "ComprobarCodigo";
-
-                }
-                else if (estadoAutenticacion == "ActualizarContrasena")
-                {
-
-                    txtMensaje3.InnerText = "Ingresa tu nueva contraseña";
-                    string Modal = @"
-                    var myModal = new bootstrap.Modal(document.getElementById('actualizarClave'));
-                    myModal.show();
-                    ";
-
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "OpenModal", Modal, true);
-                    Session["autenticacion"] = "ActualizarContrasena";
-
-
-                }
-
-
+                Session["contador"] = 0;
+                Session["codigo"] = "";
+                Session["idUsuario"] = 0;
 
             }
-            else
-            {
-                               
-                Session["ruta"] = nombreArchivo;
-                btnEnviarCorreo.Visible = true;
-                txtMensaje2.Visible = true;
-
-            }
-
-
-
-
-
+            //Si es un postback normal, usar else para trabajarlo.
+        
         }
 
-        protected void btnEnviarCorreo_Click(object sender, EventArgs e)
+
+        //Este evento del boton dinamico tiene 2 procesos diferentes, el primero es enviar un correo con un codigo de 4 digitos y el segundo es verificar el codigo ingresado por el usuario.
+        protected void btnDinamico_Click(object sender, EventArgs e)
         {
-            Session["autenticacion"] = "EnviarCorreo";
-            string correo = txtParametros.Text;
             clUsuarioL objUsuarioL = new clUsuarioL();
-            clUsuarioE objUsuarioE = objUsuarioL.mtdRecuperarContrasena(null, correo, null);
 
-            string correoEnviado = Session["correoEnviado"].ToString();
-            if (correoEnviado == "false")
+            int contador = int.Parse(Session["contador"].ToString());
+
+            if (contador == 0)
             {
-
-                if (objUsuarioE.validar == true)
+                //ENVIAR CORREO
+                if (!string.IsNullOrEmpty(txtParametros.Text))
                 {
-                    string nombreCompleto = objUsuarioE.nombre + " " + objUsuarioE.apellido;
-                    Random codigo4Digitos = new Random();
-                    int codigo = codigo4Digitos.Next(1000, 10000);
-                    txtCodigo.Value = codigo.ToString();
-                    clEnviarCorreoL objEnviarCodigo = new clEnviarCorreoL();
-                    string asunto = "Recuperacion de contraseña, (Equipo de cuentas HIRE)";
-                    string cuerpo = "Hola," + " " + nombreCompleto + " " + "Ingresa el codigo " + " *" + codigo + "* " + " en la plataforma para actualizar tu contraseña y entrar a tu cuenta";
 
+                    clUsuarioE objUsuarioE = objUsuarioL.mtdRecuperarContrasena(null, txtParametros.Text, null);
 
-
-                    bool validacion = objEnviarCodigo.enviarCorreo(objUsuarioE.correo, nombreCompleto, asunto, cuerpo);
-                    if (validacion == true)
+                    if (objUsuarioE.validar)
                     {
-                        Session["correoEnviado"] = "true";
-                        string alerta = @"alertify.success('Codigo enviado correctamente');";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alertify", alerta, true);
-                        Session["idUsuario"] = objUsuarioE.idUsuario;
 
-                        txtParametros.Attributes["placeholder"] = "";
-                        txtParametros.Text = "";
-                        txtParametros.TextMode = TextBoxMode.SingleLine;
-                        btnEnviarCorreo.Visible = false;
-                        txtMensajePrincipal.InnerHtml = "Ingresa el codigo de cuatro dijitos enviado a (<b>" + objUsuarioE.correo + "</b>).";
-                        txtMensaje2.Visible = false;
-                        btnVerificarCodigo.Visible = true;
-                        Session["autenticacion"] = "ComprobarCodigo";
-                        Session["correoUsuario"] = objUsuarioE.correo;
+                        if (mtdComprobarInternet())
+                        {
+                            Session["codigo"] = "";
+                            clEnviarCorreoL objEnviarCorreo = new clEnviarCorreoL();
+
+                            string nombreCompleto = objUsuarioE.nombre + " " + objUsuarioE.apellido;
+                            Random codigo4Digitos = new Random();
+                            int codigo = codigo4Digitos.Next(1000, 10000);
+                            Session["codigo"] = codigo.ToString();
+                            clEnviarCorreoL objEnviarCodigo = new clEnviarCorreoL();
+                            string asunto = "Recuperacion de contraseña, (Equipo de cuentas HIRE)";
+                            string cuerpo = "Hola," + " " + nombreCompleto + " " + "Ingresa el codigo " + " *" + codigo + "* " + " en la plataforma para actualizar tu contraseña y entrar a tu cuenta";
+
+                            //Enviar correo luego de validar el correo y el internet del usuario.
+                            if (objEnviarCorreo.enviarCorreo(objUsuarioE.correo, nombreCompleto, asunto, cuerpo))
+                            {
+
+                                string alerta = @"alertify.success('Codigo enviado correctamente');";
+                                ScriptManager.RegisterStartupScript(this, GetType(), "alertify", alerta, true);
+                                Session["idUsuario"] = objUsuarioE.idUsuario;
+                                txtMensajePrincipal.InnerHtml = "Ingresa el codigo de cuatro digitos enviado a (<b>" + objUsuarioE.correo + "</b>).";
+                                txtParametros.Attributes["placeholder"] = "";                                
+                                txtParametros.Text = "";
+                                
+                                txtMensaje2.Visible = false;
+                                btnDinamico.Text = "Verificar Codigo";
+                                Session["contador"] = 1;
+                                btnSugerencias.Visible = true;
+                                                              
+                            }
+
+                        }
+                        else
+                        {
+
+                            string alerta = "alertify.error('Conectate a internet para completar el registro');";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "alertify", alerta, true);
+
+                        }
+
                     }
                     else
                     {
 
-                        string alerta = @"alertify.warning('Hubo un error al enviar el correo');";
+                        string script = "alert('Usuario no registrado');";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+                    }
+                }
+                else
+                {
+
+                    string script = "alert('Ingresa un correo electronico');";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+
+                }
+            }
+            else
+            {                
+
+                string codigo = Session["codigo"].ToString();
+
+                //VERIFICAR CODIGO
+                if (string.IsNullOrEmpty(codigo))
+                {
+                    Session["contador"] = 0;
+                    Session["codigo"] = "";
+                    Session.Clear();
+                    Session.Abandon();
+                    string script = "alert('Ocurrió un error. Intenta generar el código nuevamente.'); setTimeout(function(){window.location.href = 'recuperarContraseña.aspx'}, 1000);";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+
+
+                }
+                else if (string.IsNullOrEmpty(txtParametros.Text) || txtParametros.Text.Length < 4 || txtParametros.Text.Length > 4)
+                {
+                    string script = "alertify.error('Por favor ingresa un codigo de 4 digitos');";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alertify", script, true);
+                }
+                else
+                {
+
+                    if (codigo == txtParametros.Text)
+                    {
+                        Session["codigo"] = "";
+                        string alerta = @"alertify.success('Codigo verificado correctamente');";
                         ScriptManager.RegisterStartupScript(this, GetType(), "alertify", alerta, true);
-                        txtCodigo.Value = "";
+
+                        string Modal = @"
+                        var myModal = new bootstrap.Modal(document.getElementById('actualizarClave'));
+                        myModal.show();
+                        ";
+
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "OpenModal", Modal, true);
+
+                    }
+                    else
+                    {
+
+                        string script = "alertify.warning('Codigo incorrecto');";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alertify", script, true);
+
+
                     }
 
                 }
-                else
-                {
-
-                    string alerta = "alertify.warning('Usuario no registrado');";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alertify", alerta, true);
-
-                }
-
-
-
 
             }
-            else
-            {
-
-                string correoUsuario = Session["correoUsuario"].ToString();
-
-                txtParametros.Attributes["placeholder"] = "";
-                txtParametros.TextMode = TextBoxMode.SingleLine;
-                btnEnviarCorreo.Visible = false;
-                txtMensajePrincipal.InnerHtml = "Ingresa el codigo de 4 digitos enviado a (<b>" + correoUsuario + "</b>).";
-                txtMensaje2.Visible = false;
-                btnVerificarCodigo.Visible = true;
-                Session["autenticacion"] = "ComprobarCodigo";
-                Session["correoUsuario"] = correoUsuario;
-
-            }
-
-
-
-
-
-
-        }
-
-        protected void btnVerificarCodigo_Click(object sender, EventArgs e)
-        {
-
-            if (txtCodigo.Value == "")
-            {
-                Session["correoUsuario"] = "";
-                Session["correoEnviado"] = "false";
-                Session["autenticacion"] = "";
-                Session["ruta"] = "";
-                Response.Redirect(Request.RawUrl);//restablece todos los elementos y valores de la pagina actual, a su estado inicial.
-
-            }
-            else
-            {
-
-                string codigoRecibido = txtParametros.Text;
-                if (codigoRecibido == txtCodigo.Value)
-                {
-
-                    string alerta = @"alertify.success('Codigo verificado correctamente');";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alertify", alerta, true);
-
-
-                    txtMensaje3.InnerText = "Ingresa tu nueva contraseña";
-                    string Modal = @"
-                    var myModal = new bootstrap.Modal(document.getElementById('actualizarClave'));
-                    myModal.show();
-                    ";
-
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "OpenModal", Modal, true);
-                    Session["autenticacion"] = "ActualizarContrasena";
-
-
-                }
-                else
-                {
-                    string alerta = @"alertify.error('Codigo incorrecto');";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alertify", alerta, true);
-
-                }
-
-            }
-
-
-
-
 
         }
 
         protected void btnActualizarC_ServerClick(object sender, EventArgs e)
         {
-            txtCodigo.Value = "";
+            clUsuarioL objUsuarioL = new clUsuarioL();
 
-            string contrasenaIngresada = txtContrasena.Text;
-
-            if (contrasenaIngresada.Length < 9)
+            if (string.IsNullOrEmpty(txtContrasena.Text))
             {
-
-                clUsuarioL objUsuarioE = new clUsuarioL();
-
-
-                if (contrasenaIngresada.Length == 0)
-                {
-
-                    txtMensaje3.Attributes["style"] = "color: darkred;";
-                    txtMensaje3.InnerText = "la contraseña no puede estar vacia";
-
-                }
-                else
-                {
-                    string idUsuario = Session["idUsuario"].ToString();
-                    clUsuarioE objUsuarioValidacion = objUsuarioE.mtdRecuperarContrasena(idUsuario, null, contrasenaIngresada);
-                    if (objUsuarioValidacion.validar == true)
-                    {
-
-                        Session.Clear();
-                        Session.Abandon();
-
-
-                        string alerta = @"alertify.success('Contraseña actualizada correctamente, Inicia Sesion!!');  
-                         setTimeout(function() {
-                         window.location.href = 'login.aspx';
-                         }, 800);";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alertify", alerta, true);
-
-
-                    }
-                }
-
+                string script = "alert('La contraseña no puede estar vacia.');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+            }
+            else if (txtContrasena.Text.Length > 8)
+            {
+                string script = "alert('Ingresa una contraseña de maximo 8 digitos.');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+            }
+            else if (txtContrasena.Text.Length < 5)
+            {
+                string script = "alert('Ingresa una contraseña de minimo 5 digitos.');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
             }
             else
             {
+                string idUsuario = Session["idUsuario"].ToString();
+                string contrasenaUsuario = "";
+                Session["idUsuario"] = 0;
+                using (SHA256 sha256 = SHA256.Create())
+                {
 
-                txtMensaje3.Attributes["style"] = "color: darkred;";
-                txtMensaje3.InnerText = "la contraseña no puede ser de mas de 8 caracteres";
+                    // Convertir la contraseña en bytes
+                    byte[] bytes = Encoding.UTF8.GetBytes(txtContrasena.Text);
+
+                    // Obtener el hash de la contraseña
+                    byte[] hashBytes = sha256.ComputeHash(bytes);
+
+                    // Convertir el hash en una cadena hexadecimal
+                    StringBuilder sb = new StringBuilder();
+                    foreach (byte b in hashBytes)
+                    {
+                        sb.Append(b.ToString("x2"));  // Convierte el byte a un valor hexadecimal
+                    }
+
+                    contrasenaUsuario = sb.ToString();
+                }
+
+                clUsuarioE objUsuarioE = objUsuarioL.mtdRecuperarContrasena(idUsuario, null, contrasenaUsuario);
+                if (objUsuarioE.validar)
+                {
+                    Session.Clear();
+                    Session.Abandon();
+                    string alerta = @"alertify.success('Contraseña actualizada correctamente, Inicia Sesion!!');  
+                         setTimeout(function() {
+                         window.location.href = 'login.aspx';
+                         }, 1000);";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alertify", alerta, true);
+                }
+                else
+                {
+                    string script = "alertify.error('Ocurrio un error al actualizar tu contraseña, vuelve a intentarlo');";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alertify", script, true);
+                }
 
             }
 
-
-
-
-
         }
+
+        private bool mtdComprobarInternet()
+        {
+            try
+            {
+                // Intenta hacer ping a Google DNS (8.8.8.8)
+                using (Ping ping = new Ping())
+                {
+                    PingReply reply = ping.Send("8.8.8.8", 3000); // Timeout de 4 segundos
+                    return reply.Status == IPStatus.Success;
+                }
+            }
+            catch (PingException)
+            {
+                // Si ocurre una excepción, significa que no hay conexión.
+                return false;
+            }
+        }
+
     }
 }

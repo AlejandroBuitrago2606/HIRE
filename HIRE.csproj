@@ -192,10 +192,6 @@
     <Content Include="Vista\recursos\vendor\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="Vista\recursos\vendor\bootstrap\js\bootstrap.js" />
     <Content Include="Vista\recursos\vendor\bootstrap\js\bootstrap.min.js" />
-    <Content Include="Vista\recursos\vendor\chart.js\Chart.bundle.js" />
-    <Content Include="Vista\recursos\vendor\chart.js\Chart.bundle.min.js" />
-    <Content Include="Vista\recursos\vendor\chart.js\Chart.js" />
-    <Content Include="Vista\recursos\vendor\chart.js\Chart.min.js" />
     <Content Include="Vista\recursos\vendor\datatables\dataTables.bootstrap4.css" />
     <Content Include="Vista\recursos\vendor\datatables\dataTables.bootstrap4.js" />
     <Content Include="Vista\recursos\vendor\datatables\dataTables.bootstrap4.min.css" />

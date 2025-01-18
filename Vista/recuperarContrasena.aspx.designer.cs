@@ -24,6 +24,15 @@ namespace HIRE.Vista
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// Control scriptManager1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager scriptManager1;
+
+        /// <summary>
         /// Control txtMensajePrincipal.
         /// </summary>
         /// <remarks>
@@ -51,31 +60,22 @@ namespace HIRE.Vista
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtMensaje2;
 
         /// <summary>
-        /// Control btnEnviarCorreo.
+        /// Control btnDinamico.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEnviarCorreo;
+        protected global::System.Web.UI.WebControls.Button btnDinamico;
 
         /// <summary>
-        /// Control btnVerificarCodigo.
+        /// Control btnSugerencias.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnVerificarCodigo;
-
-        /// <summary>
-        /// Control txtCodigo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField txtCodigo;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnSugerencias;
 
         /// <summary>
         /// Control actualizarClave.
@@ -114,12 +114,12 @@ namespace HIRE.Vista
         protected global::System.Web.UI.WebControls.TextBox txtContrasena;
 
         /// <summary>
-        /// Control btnActualizarC.
+        /// Control btnActualizar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnActualizarC;
+        protected global::System.Web.UI.WebControls.Button btnActualizar;
     }
 }
