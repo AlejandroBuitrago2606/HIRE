@@ -29,7 +29,7 @@ namespace HIRE
             Session["correoEnviado"] = "false";
             Session["registro"] = "false";
             Session["codigo"] = "";
-            
+            Session["foto"] = "";
 
         }
 
