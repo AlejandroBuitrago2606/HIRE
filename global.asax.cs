@@ -24,12 +24,12 @@ namespace HIRE
             Session["idUsuario"] = 0;
             Session["sesion"] = "false";
             Session["autenticacion"] = "";
-            Session["correoUsuario"] = "";
             Session["ruta"] = "";
             Session["correoEnviado"] = "false";
             Session["registro"] = "false";
             Session["codigo"] = "";
             Session["foto"] = "";
+            Session["contador"] = 0;
 
         }
 
@@ -54,13 +54,13 @@ namespace HIRE
             Session["sessionActiva"] = false;
             Session["idUsuario"] = 0;
             Session["sesion"] = "false";
-            Session["autenticacion"] = "";
-            Session["correoUsuario"] = "";
+            Session["autenticacion"] = "";        
             Session["ruta"] = "";
             Session["correoEnviado"] = "false";
             Session["registro"] = "false";
             Session["codigo"] = "";
-            
+            Session["contador"] = 0;
+
         }
 
         protected void Application_End(object sender, EventArgs e)
