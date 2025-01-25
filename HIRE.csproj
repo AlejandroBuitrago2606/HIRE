@@ -56,6 +56,9 @@
     <Reference Include="MimeKit, Version=4.9.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
       <HintPath>packages\MimeKit.4.9.0\lib\net47\MimeKit.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Buffers, Version=4.0.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Buffers.4.6.0\lib\net462\System.Buffers.dll</HintPath>
     </Reference>
@@ -80,6 +83,7 @@
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -127,6 +131,7 @@
     <Content Include="Vista\recuperarContrasena.aspx" />
     <Content Include="Vista\recursos\css\style.css" />
     <Content Include="Vista\recursos\css\style.min.css" />
+    <Content Include="Vista\recursos\fotosEmpresa\default.png" />
     <Content Include="Vista\recursos\fotosPerfil\fotoFernando.jpg" />
     <Content Include="Vista\recursos\fotosPerfil\fotoYuber.png" />
     <Content Include="Vista\recursos\imagenes\bannerFinal.jpg" />
@@ -151,6 +156,7 @@
     <Content Include="Vista\recursos\img\carousel-1.jpg" />
     <Content Include="Vista\recursos\img\carousel-2.jpg" />
     <Content Include="Vista\recursos\img\feature.jpg" />
+    <Content Include="Vista\recursos\img\registrarEmpresa.png" />
     <Content Include="Vista\recursos\img\team-1.jpg" />
     <Content Include="Vista\recursos\img\team-2.jpg" />
     <Content Include="Vista\recursos\img\team-3.jpg" />
@@ -1854,6 +1860,7 @@
     <Content Include="Vista\recursos\vendor\jquery\jquery.slim.js" />
     <Content Include="Vista\recursos\vendor\jquery\jquery.slim.min.js" />
     <Content Include="Vista\recursos\videos\video_Login.mp4" />
+    <Content Include="Vista\registroEmpresa.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -1950,6 +1957,13 @@
     </Compile>
     <Compile Include="Vista\recuperarContrasena.aspx.designer.cs">
       <DependentUpon>recuperarContrasena.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\registroEmpresa.aspx.cs">
+      <DependentUpon>registroEmpresa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\registroEmpresa.aspx.designer.cs">
+      <DependentUpon>registroEmpresa.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

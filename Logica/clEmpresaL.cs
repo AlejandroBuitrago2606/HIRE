@@ -29,7 +29,6 @@ namespace HIRE.Entidades
 
         }
 
-
         public (clEmpresaE, List<clVacanteE>) mtdTraerEmpresa(int idEmpresa)
         {
 
@@ -40,7 +39,23 @@ namespace HIRE.Entidades
 
         }
 
+        public bool mtdRegistrarEmpresa(clEmpresaE objEmpresaE)
+        {
+            bool validacion = objEmpresaD.mtdRegistrarEmpresa(objEmpresaE);
+            return validacion;
+        }
 
+        public (List<clMunicipioE>, List<clTipoNegocioE>, List<clSectorE>) mtdListarFiltros() { 
+        
+            var filtros = objEmpresaD.mtdListarFiltros();
+            return (filtros.Item1, filtros.Item2, filtros.Item3);
+
+        }
+
+        public (int,int) mtdValidarEmpresa(string nit, string correo)
+        {
+            return (objEmpresaD.mtdValidarEmpresa(nit, null), objEmpresaD.mtdValidarEmpresa(null, correo));
+        }
 
     }
 }

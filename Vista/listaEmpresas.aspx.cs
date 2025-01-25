@@ -20,13 +20,11 @@ namespace HIRE.Vista
                 clEmpresaL objEmpresaL = new clEmpresaL();
                 List<clEmpresaE> objListaEmpresas = objEmpresaL.mtdListarEmpresas(idUsuario);
 
-
-
                 foreach (clEmpresaE empresa in objListaEmpresas)
                 {
                     if (empresa.validacion == false)
                     {
-                        txtValidar.Text = "No tienes empresas creadas";
+                        txtValidar.Text = "No tienes empresas registradas";
                         btnCrearEmpresa.Visible = true;
                     }
                     else
@@ -36,24 +34,14 @@ namespace HIRE.Vista
                     }
                 }
 
-
-
-
-
-
-
-
-
             }
-
-
-
 
         }
 
         protected void btnCrearEmpresa_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("registroEmpresa.aspx");
         }
     }
+
 }

@@ -384,6 +384,7 @@ namespace HIRE.Datos
         public (List<clMunicipioE>, ArrayList, ArrayList, List<clCargoE>) mtdListarFiltros()
         {
             SqlCommand cmd = new SqlCommand("spListarFiltros", objConexion.MtdAbrirConexion());
+            cmd.Parameters.AddWithValue("@filtros2", 0);
             cmd.CommandType = CommandType.StoredProcedure;
 
             List<clMunicipioE> municipios = new List<clMunicipioE>();
@@ -449,7 +450,6 @@ namespace HIRE.Datos
 
 
                     }
-
                     else
                     {
 
