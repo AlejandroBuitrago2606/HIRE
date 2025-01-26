@@ -30,7 +30,8 @@ namespace HIRE
             Session["codigo"] = "";
             Session["foto"] = "";
             Session["contador"] = 0;
-
+            Session["fotoEmpresa"] = "";
+            
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)
@@ -60,7 +61,8 @@ namespace HIRE
             Session["registro"] = "false";
             Session["codigo"] = "";
             Session["contador"] = 0;
-
+            Session["fotoEmpresa"] = "";
+            
         }
 
         protected void Application_End(object sender, EventArgs e)

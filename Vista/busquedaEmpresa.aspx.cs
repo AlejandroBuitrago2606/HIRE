@@ -110,7 +110,7 @@ namespace HIRE.Vista
                 txtDescripcionEmpresa.InnerText = objDatosEmpresa.descripcion;
                 txtNumeroEmpleados.InnerText = ": " +  objDatosEmpresa.numeroEmpleados;
                 txtUbicacion.InnerText = ": " +  objDatosEmpresa.direccion + ", " + objDatosEmpresa.municipio;
-                txtTelefono.InnerText = " " +  objDatosEmpresa.telefono;
+                txtTelefono.InnerText = " " +  objDatosEmpresa.telefono1;
                 txtCorreo.InnerText = " " + objDatosEmpresa.correo;
                 Web.InnerText = " " + objDatosEmpresa.url;
                 Web.HRef = ResolveUrl(objDatosEmpresa.url);

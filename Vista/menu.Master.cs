@@ -38,13 +38,11 @@ namespace HIRE.Vista
 
                     clUsuarioL objTraerDatosUsuario = new clUsuarioL();
                     int idUsuario = int.Parse(Session["idUsuario"].ToString());
-                    clUsuarioE objDatosEnvio = new clUsuarioE();
-                    clUsuarioE objUsuarioE = new clUsuarioE();
-                    objUsuarioE = objTraerDatosUsuario.mtdValidarUsuario(objDatosEnvio = null, idUsuario);
-
+                    clUsuarioE objUsuarioE = objTraerDatosUsuario.mtdValidarUsuario(null, idUsuario);
 
                     if (objUsuarioE != null)
                     {
+                        
                         txtNombreUsuario.InnerText = objUsuarioE.nombre + " " + objUsuarioE.apellido;
 
                         // Verifica si la foto es null o vacía

@@ -15,7 +15,9 @@ namespace HIRE.Entidades
         public string descripcion { get; set; }
         public string fechaConstitucion { get; set; }
         public string direccion { get; set; }
-        public string telefono { get; set; }
+        public string ubicacion { get; set; }
+        public string telefono1 { get; set; }
+        public string telefono2 { get; set; }
         public string url { get; set; }
         public string foto { get; set; }
         public string tipoNegocio { get; set; }
@@ -23,7 +25,10 @@ namespace HIRE.Entidades
         public string totalVacantes { get; set; }
         public string correo { get; set; }
         public string numeroEmpleados { get; set; }
-
+        public int idTipoNegocio { get; set; }
+        public int idUsuario { get; set; }
+        public int idMunicipio { get; set; }
+        public int idSector { get; set; }
         public bool validacion { get; set; }
     }
 

@@ -33,4 +33,18 @@ namespace HIRE.Entidades
         public string nombre { get; set; }
     }
 
+    public class clSectorE
+    {
+
+        public int idSector { get; set; }
+        public string sector { get; set; }
+    }
+
+    public class clTipoNegocioE
+    {
+
+        public int idTipoNegocio { get; set; }
+        public string tipoNegocio { get; set; }
+    }   
+
 }

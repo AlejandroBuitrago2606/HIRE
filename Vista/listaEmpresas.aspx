@@ -15,7 +15,7 @@
                 <asp:Label ID="txtValidar" runat="server" Text=""></asp:Label>
                 <br />
                 <div class=" d-flex justify-content-center">
-                    <asp:Button ID="btnCrearEmpresa" OnClick="btnCrearEmpresa_Click" CssClass="btn btn-success" runat="server" Text="Crear Empresa" Visible="false" />
+                    <asp:Button ID="btnCrearEmpresa" OnClick="btnCrearEmpresa_Click" CssClass="btn btn-success" runat="server" Text="Registrar Empresa" Visible="false" />
                 </div>
 
             </div>
