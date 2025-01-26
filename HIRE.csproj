@@ -156,6 +156,7 @@
     <Content Include="Vista\recursos\img\carousel-1.jpg" />
     <Content Include="Vista\recursos\img\carousel-2.jpg" />
     <Content Include="Vista\recursos\img\feature.jpg" />
+    <Content Include="Vista\recursos\img\oficinista.png" />
     <Content Include="Vista\recursos\img\registrarEmpresa.png" />
     <Content Include="Vista\recursos\img\team-1.jpg" />
     <Content Include="Vista\recursos\img\team-2.jpg" />
