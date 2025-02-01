@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
+using System.Web.UI;
 
 namespace HIRE
 {
@@ -14,6 +15,14 @@ namespace HIRE
         protected void Application_Start(object sender, EventArgs e)
         {
             Application["objDatosU"] = null;
+
+            ScriptManager.ScriptResourceMapping.AddDefinition("jquery",
+            new ScriptResourceDefinition
+            {
+                Path = "https://code.jquery.com/jquery-3.6.0.min.js",
+                DebugPath = "https://code.jquery.com/jquery-3.6.0.js"
+            });
+
         }
 
         protected void Session_Start(object sender, EventArgs e)
@@ -31,7 +40,7 @@ namespace HIRE
             Session["foto"] = "";
             Session["contador"] = 0;
             Session["fotoEmpresa"] = "";
-            
+
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)
@@ -55,14 +64,14 @@ namespace HIRE
             Session["sessionActiva"] = false;
             Session["idUsuario"] = 0;
             Session["sesion"] = "false";
-            Session["autenticacion"] = "";        
+            Session["autenticacion"] = "";
             Session["ruta"] = "";
             Session["correoEnviado"] = "false";
             Session["registro"] = "false";
             Session["codigo"] = "";
             Session["contador"] = 0;
             Session["fotoEmpresa"] = "";
-            
+
         }
 
         protected void Application_End(object sender, EventArgs e)

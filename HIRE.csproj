@@ -128,6 +128,7 @@
     <Content Include="Vista\index.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Vista\listaEmpresas.aspx" />
+    <Content Include="Vista\perfilUsuario.aspx" />
     <Content Include="Vista\recuperarContrasena.aspx" />
     <Content Include="Vista\recursos\css\style.css" />
     <Content Include="Vista\recursos\css\style.min.css" />
@@ -174,6 +175,7 @@
     <Content Include="Vista\recursos\js\main3.js" />
     <Content Include="Vista\recursos\js\main.js" />
     <Content Include="Vista\recursos\js\main2.js" />
+    <Content Include="Vista\recursos\js\main4.js" />
     <Content Include="Vista\recursos\js\sb-admin-2.js" />
     <Content Include="Vista\recursos\js\sb-admin-2.min.js" />
     <Content Include="Vista\recursos\lib\easing\easing.js" />
@@ -1951,6 +1953,13 @@
     </Compile>
     <Compile Include="Vista\perfilCV.aspx.designer.cs">
       <DependentUpon>perfilCV.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\perfilUsuario.aspx.cs">
+      <DependentUpon>perfilUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\perfilUsuario.aspx.designer.cs">
+      <DependentUpon>perfilUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\recuperarContrasena.aspx.cs">
       <DependentUpon>recuperarContrasena.aspx</DependentUpon>

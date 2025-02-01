@@ -107,5 +107,15 @@ namespace HIRE.Logica
             return validacion;
 
         }
+
+        public bool mtdActualizarUsuario(clUsuarioE objUsuarioE)
+        {
+
+            return (objUsuarioD.mtdActualizarUsuario(objUsuarioE));
+
+        }
+
     }
+
 }
+
