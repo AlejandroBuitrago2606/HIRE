@@ -86,8 +86,18 @@ namespace HIRE.Datos
                         objDatosE.idUsuario = int.Parse(fila["idUsuario"].ToString());
                         objDatosE.nombre = fila["nombre"].ToString();
                         objDatosE.apellido = fila["apellido"].ToString();
+                        objDatosE.documento = fila["documento"].ToString();
+                        objDatosE.fechaNacimiento = fila["fechaNacimiento"].ToString();
+                        objDatosE.estadoCivil = fila["estadoCivil"].ToString();
+                        objDatosE.numeroHijos = fila["numeroHijos"].ToString();
+                        objDatosE.correo = fila["correo"].ToString();
+                        objDatosE.telefono = fila["telefono"].ToString();
+                        objDatosE.direccion = fila["direccion"].ToString();
+                        objDatosE.ubicacion = fila["ubicacion"].ToString() ?? "";                        
                         objDatosE.foto = fila["foto"].ToString();
-                        //Agregar mas campos
+                        objDatosE.idMunicipio = fila["idMunicipio"].ToString();
+                        objDatosE.idTipo = fila["idTipo"].ToString();
+                        objDatosE.validar = true;
 
                     }
 
@@ -107,6 +117,44 @@ namespace HIRE.Datos
             }
 
             return objDatosE;
+        }
+
+        public bool mtdActualizarUsuario(clUsuarioE objDatosUsuarioE)
+        {
+
+            bool validar = false;
+
+            try
+            {
+
+                SqlCommand cmd = new SqlCommand("spActualizarUsuario", objConexion.MtdAbrirConexion());
+                cmd.Parameters.AddWithValue("@idUsuario", objDatosUsuarioE.idUsuario);
+                cmd.Parameters.AddWithValue("@nombre", objDatosUsuarioE.nombre);
+                cmd.Parameters.AddWithValue("@apellido", objDatosUsuarioE.apellido);
+                cmd.Parameters.AddWithValue("@documento", objDatosUsuarioE.documento);
+                cmd.Parameters.AddWithValue("@fechaNacimiento", objDatosUsuarioE.fechaNacimiento);
+                cmd.Parameters.AddWithValue("@estadoCivil", objDatosUsuarioE.estadoCivil);
+                cmd.Parameters.AddWithValue("@numeroHijos", objDatosUsuarioE.numeroHijos);
+                cmd.Parameters.AddWithValue("@correo", objDatosUsuarioE.correo);
+                cmd.Parameters.AddWithValue("@telefono", objDatosUsuarioE.telefono);
+                cmd.Parameters.AddWithValue("@direccion", objDatosUsuarioE.direccion);
+                cmd.Parameters.AddWithValue("@ubicacion", objDatosUsuarioE.ubicacion);
+                cmd.Parameters.AddWithValue("@foto", objDatosUsuarioE.foto);
+                cmd.Parameters.AddWithValue("@clave", objDatosUsuarioE.contrasena);
+                cmd.Parameters.AddWithValue("@idMunicipio", int.Parse(objDatosUsuarioE.idMunicipio));
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.ExecuteNonQuery();
+                objConexion.MtdCerrarConexion();
+                validar = true;
+                
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return validar;
+
         }
 
         public clUsuarioE mtdRecuperarContrasena(string idUsuario = null, string correo = null, string contrasena = null)

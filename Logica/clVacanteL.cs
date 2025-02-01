@@ -40,7 +40,6 @@ namespace HIRE.Logica
 
 
             ArrayList estadoCivil = new ArrayList();
-            estadoCivil.Add("");            
             estadoCivil.Add("Soltero");
             estadoCivil.Add("Casado");
             estadoCivil.Add("Union Libre");

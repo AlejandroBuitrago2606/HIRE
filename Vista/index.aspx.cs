@@ -32,15 +32,15 @@ namespace HIRE.Vista
 
                     if (horaActual >= dia && horaActual < tarde)
                     {
-                        msgBienvenida.InnerHtml = "Buenos dias" + " " + "<b>" + objDatosUsuario.nombre + "<b>";
+                        msgBienvenida.InnerHtml = "Buenos dias" + " " + "<b>" + objDatosUsuario.nombre + "</b>";
                     }
                     else if (horaActual >= tarde && horaActual < noche)
                     {
-                        msgBienvenida.InnerHtml = "Buenas tardes" + " " + "<b>" + objDatosUsuario.nombre + "<b>";
+                        msgBienvenida.InnerHtml = "Buenas tardes" + " " + "<b>" + objDatosUsuario.nombre + "</b>";
                     }
                     else if (horaActual >= noche || horaActual < dia)
                     {
-                        msgBienvenida.InnerHtml = "Buenas noches" + " " + "<b>" + objDatosUsuario.nombre + "<b>";
+                        msgBienvenida.InnerHtml = "Buenas noches" + " " + "<b>" + objDatosUsuario.nombre + "</b>";
                     }
 
                 }
