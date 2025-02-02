@@ -392,7 +392,7 @@ namespace HIRE.Vista
                     telefono = txtTelefono.Text,
                     direccion = txtDireccion.Text,
                     idMunicipio = dpMunicipios.SelectedValue,
-                    ubicacion = hfCoordenadas.Value.ToString(),
+                    ubicacion = Session["coordenadas"].ToString(),
                     contrasena = claveUsuario,
                     foto = rutaImagen
 
