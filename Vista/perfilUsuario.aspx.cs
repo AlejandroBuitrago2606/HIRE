@@ -48,7 +48,7 @@ namespace HIRE.Vista
             }
 
             Session["coordenadas"] = hfCoordenadas.Value;
-            mtdTraerUsuario(1);            
+            mtdTraerUsuario(1);
 
         }
 
@@ -110,10 +110,7 @@ namespace HIRE.Vista
                         if (CommandArgument == "Si")
                         {
 
-                            string obtenerUbicacion = @"obtenerUbicacion();
-                            setTimeout(function(){
-                            let coordenadas = document.getElementById('Content_Body_hfCoordenadas').value;
-                            alert('Las coordenadas obtenidas son:' + ' ' + coordenadas); }, 2000);";
+                            string obtenerUbicacion = @"obtenerUbicacion();";
                             ScriptManager.RegisterStartupScript(this, GetType(), "obtenerUbicacion", obtenerUbicacion, true);
 
                         }
@@ -317,23 +314,31 @@ namespace HIRE.Vista
                 if (!string.IsNullOrEmpty(txtConfirmarClave.Text))
                 {
 
-                    using (SHA256 sha256 = SHA256.Create())
+                    try
+                    {
+                        using (SHA256 sha256 = SHA256.Create())
+                        {
+
+                            // Convertir la contraseña en bytes
+                            byte[] bytes = Encoding.UTF8.GetBytes(txtConfirmarClave.Text);
+
+                            // Obtener el hash de la contraseña
+                            byte[] hashBytes = sha256.ComputeHash(bytes);
+
+                            // Convertir el hash en una cadena hexadecimal
+                            StringBuilder sb = new StringBuilder();
+                            foreach (byte b in hashBytes)
+                            {
+                                sb.Append(b.ToString("x2"));  // Convierte el byte a un valor hexadecimal
+                            }
+                            claveUsuario = sb.ToString();
+
+                        }
+                    }
+                    catch (Exception exception)
                     {
 
-                        // Convertir la contraseña en bytes
-                        byte[] bytes = Encoding.UTF8.GetBytes(txtConfirmarClave.Text);
-
-                        // Obtener el hash de la contraseña
-                        byte[] hashBytes = sha256.ComputeHash(bytes);
-
-                        // Convertir el hash en una cadena hexadecimal
-                        StringBuilder sb = new StringBuilder();
-                        foreach (byte b in hashBytes)
-                        {
-                            sb.Append(b.ToString("x2"));  // Convierte el byte a un valor hexadecimal
-                        }
-                        claveUsuario = sb.ToString();
-
+                        Console.WriteLine(exception.Message);
                     }
 
                 }
@@ -348,26 +353,61 @@ namespace HIRE.Vista
 
                 if (!string.IsNullOrEmpty(hfFtUsuario.Value))
                 {
-                    if (hfFtUsuario.Value == "~/Vista/recursos/imagenes/perfil.png" || System.IO.File.Exists(hfFtUsuario.Value))
+
+                    if (!EsImagenBase64(hfFtUsuario.Value) && System.IO.File.Exists(Server.MapPath(hfFtUsuario.Value)))
                     {
-                        rutaImagen = hfFtUsuario.Value;
+                        if (hfFtUsuario.Value == "~/Vista/recursos/imagenes/perfil.png")
+                        {
+                            if (hfFotoUsuarioDefault.Value == "~/Vista/recursos/imagenes/perfil.png")
+                            {
+                                rutaImagen = hfFtUsuario.Value;
+                            }
+                            else
+                            {
+                                string rutaCompletaFotoDefault = Server.MapPath(hfFotoUsuarioDefault.Value);
+                                System.IO.File.Delete(rutaCompletaFotoDefault);
+                                rutaImagen = hfFtUsuario.Value;
+                            }
+
+
+                        }
+                        else
+                        {
+                            rutaImagen = hfFtUsuario.Value;
+                        }
+
                     }
                     else
                     {
 
-                        byte[] imageBytes = Convert.FromBase64String(hfFtUsuario.Value);
+                        try
+                        {
+                            if (hfFotoUsuarioDefault.Value != "~/Vista/recursos/imagenes/perfil.png")
+                            {
+                                string rutaCompletaFotoDefault = Server.MapPath(hfFotoUsuarioDefault.Value);
+                                System.IO.File.Delete(rutaCompletaFotoDefault);
+                            }
 
-                        // Genera un nombre aleatorio para el archivo
-                        Random idFinalAleatorio = new Random();
-                        string fileName = "imgUsuario" + idFinalAleatorio.Next(1000, 9999).ToString() + ".png";
 
-                        // Define la ruta relativa y completa
-                        string rutaRelativa = "~/Vista/recursos/fotosPerfil/" + fileName;
-                        string rutaCompleta = Server.MapPath(rutaRelativa);
+                            byte[] imageBytes = Convert.FromBase64String(hfFtUsuario.Value);
 
-                        // Guarda los bytes como un archivo de imagen en la ruta completa
-                        System.IO.File.WriteAllBytes(rutaCompleta, imageBytes);
-                        rutaImagen = rutaRelativa;
+                            // Genera un nombre aleatorio para el archivo
+                            Random idFinalAleatorio = new Random();
+                            string fileName = "imgUsuario" + idFinalAleatorio.Next(1000, 9999).ToString() + ".png";
+
+                            // Define la ruta relativa y completa
+                            string rutaRelativa = "~/Vista/recursos/fotosPerfil/" + fileName;
+                            string rutaCompleta = Server.MapPath(rutaRelativa);
+
+                            // Guarda los bytes como un archivo de imagen en la ruta completa
+                            System.IO.File.WriteAllBytes(rutaCompleta, imageBytes);
+                            rutaImagen = rutaRelativa;
+                        }
+                        catch (Exception ex)
+                        {
+
+                            Console.WriteLine(ex.Message);
+                        }
 
                     }
 
@@ -404,12 +444,12 @@ namespace HIRE.Vista
                 {
                     string modificacionExistosa = @"alertify.success('Información actualizada correctamente');";
                     ScriptManager.RegisterStartupScript(this, GetType(), "modificacionExistosa", modificacionExistosa, true);
-                    
+
                 }
                 else
                 {
                     string modificacionFallida = @"alert('Ocurrio un error al actualizar tu informacion, intenta nuevamente.');";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "modificacionFallida", modificacionFallida, true);                    
+                    ScriptManager.RegisterStartupScript(this, GetType(), "modificacionFallida", modificacionFallida, true);
 
                 }
 
@@ -417,6 +457,33 @@ namespace HIRE.Vista
 
         }
 
+        private bool EsImagenBase64(string base64String)
+        {
+            if (string.IsNullOrEmpty(base64String))
+                return false;
+
+            try
+            {
+                // Verificar si es una cadena Base64 válida
+                byte[] imageBytes = Convert.FromBase64String(base64String);
+
+                // Intentar convertir los bytes en una imagen
+                using (MemoryStream ms = new MemoryStream(imageBytes))
+                {
+                    using (Image img = Image.FromStream(ms))
+                    {
+                        // Si no lanza una excepción, es una imagen válida
+                        return true;
+                    }
+                }
+            }
+            catch
+            {
+                return false; // Si hay una excepción, no es una imagen válida
+            }
+        }
+
     }
+
 
 }
