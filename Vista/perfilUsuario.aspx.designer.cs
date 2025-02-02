@@ -474,15 +474,6 @@ namespace HIRE.Vista
         protected global::System.Web.UI.WebControls.TextBox txtConfirmarClave;
 
         /// <summary>
-        /// Control hfClaveUsuario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hfClaveUsuario;
-
-        /// <summary>
         /// Control cvContrasena.
         /// </summary>
         /// <remarks>
@@ -510,6 +501,15 @@ namespace HIRE.Vista
         protected global::System.Web.UI.WebControls.Button btnActualizar;
 
         /// <summary>
+        /// Control hfFtUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hfFtUsuario;
+
+        /// <summary>
         /// Control hfCoordenadas.
         /// </summary>
         /// <remarks>
@@ -519,15 +519,6 @@ namespace HIRE.Vista
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hfCoordenadas;
 
         /// <summary>
-        /// Control hfFotoUsuario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hfFotoUsuario;
-
-        /// <summary>
         /// Control hfFotoUsuarioDefault.
         /// </summary>
         /// <remarks>
@@ -535,5 +526,14 @@ namespace HIRE.Vista
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hfFotoUsuarioDefault;
+
+        /// <summary>
+        /// Control hfClaveUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hfClaveUsuario;
     }
 }

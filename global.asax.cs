@@ -40,6 +40,7 @@ namespace HIRE
             Session["foto"] = "";
             Session["contador"] = 0;
             Session["fotoEmpresa"] = "";
+            Session["coordenadas"] = "";
 
         }
 
@@ -71,6 +72,7 @@ namespace HIRE
             Session["codigo"] = "";
             Session["contador"] = 0;
             Session["fotoEmpresa"] = "";
+            Session["coordenadas"] = "";
 
         }
 
