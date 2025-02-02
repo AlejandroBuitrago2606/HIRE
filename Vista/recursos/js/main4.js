@@ -57,8 +57,9 @@ function obtenerUbicacion() {
 
 
 document.getElementById('Content_Body_imgCargarFoto').addEventListener('change', function (event) {
+
     const file = event.target.files[0];
-    const hfFotoUsuario = document.getElementById("Content_Body_hfFotoUsuario");
+    const hfFotoUsuario = document.getElementById("Content_Body_hfFtUsuario");
     const imgFotoUsuario = document.getElementById("Content_Body_imgFotoUsuario");
 
     if (file) {
@@ -112,3 +113,12 @@ document.getElementById("Content_Body_txtFechaNacimiento").addEventListener("cha
         this.value = ""; // Limpia el campo si la fecha no es válida
     }
 });
+
+function actualizacionSi() {
+    alertify.success('Información actualizada correctamente');
+    setTimeout(function () { window.location.reload();}, 2000);
+}
+function actualizacionNo() {
+    alert('Ocurrio un error al actualizar tu informacion, intenta nuevamente.');
+    setTimeout(function () { window.location.reload(); }, 2000);
+}

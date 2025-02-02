@@ -3,6 +3,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="Content_Head" runat="server">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="/Content/alertifyjs/alertify.css" />
+    <link rel="stylesheet" href="/Content/alertifyjs/themes/default.css" />
+    <script src="/Scripts/alertify.js"></script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Content_Body" runat="server">
@@ -12,20 +15,16 @@
 
     <div class="container">
 
-        <h5 style="text-align: center">Informacion de tu cuenta.</h5>
+        <h3 style="text-align: center">Informacion de tu cuenta.</h3>
 
-        <div class="row container-fluid" style="margin-top: 50px;">
+        <div class="row container-fluid" style="margin-top: 30px;">
             <br />
             <div class="col-4">
 
                 <asp:UpdatePanel runat="server">
                     <ContentTemplate>
                         <div class="d-flex justify-content-center">
-                            <asp:UpdatePanel runat="server">
-                                <ContentTemplate>
-                                    <img id="imgFotoUsuario" src="#" width="180" height="180" alt="error" runat="server" class="img-profile rounded-circle mb-3">
-                                </ContentTemplate>
-                            </asp:UpdatePanel>
+                            <img id="imgFotoUsuario" src="#" width="180" height="180" alt="error" runat="server" class="img-profile rounded-circle mb-3">
                         </div>
                         <div id="domAccionesFoto" runat="server" visible="false" class="input-group mb-5 d-flex justify-content-center">
 
@@ -40,6 +39,8 @@
                         </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>
+
+
 
                 <div id="domActualizarFoto" visible="false" runat="server">
                     <h6 class="mb-0" runat="server"><b>Foto de perfil</b></h6>
@@ -82,7 +83,7 @@
 
                     <div id="domDocumento" runat="server" visible="false">
                         <h6 runat="server" class="mb-0"><b>N° de documento</b></h6>
-                        <asp:TextBox ID="txtDocumento" Max="30" Style="width: 50vh" TextMode="Number" class="form-control" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtDocumento" Style="width: 50vh" TextMode="Number" class="form-control" runat="server"></asp:TextBox>
                     </div>
                 </div>
 
@@ -178,7 +179,7 @@
                         <h6 class="mb-0"><b>Telefono de contacto</b></h6>
                         <div class="input-group" style="width: 50vh">
                             <p class="mt-2">+57</p>
-                            <asp:TextBox CssClass="ml-2 form-control" MaxLength="20" ID="txtTelefono" TextMode="Number" runat="server"></asp:TextBox>
+                            <asp:TextBox CssClass="ml-2 form-control" ID="txtTelefono" TextMode="Number" runat="server"></asp:TextBox>
                         </div>
                     </div>
                 </div>
@@ -200,11 +201,12 @@
 
 
 
-                <label id="lblMunicipio" class="mb-3" runat="server"></label>
+
 
                 <%-- Municipio --%>
                 <div class="mt-3">
 
+                    <label id="lblMunicipio" class="mb-3" runat="server"></label>
                     <div id="domMunicipio" visible="false" runat="server">
                         <label class="mb-0" for="dpMunicipios"><b>Municipio de residencia</b></label>
                         <div class="input-group" style="width: 50vh">
@@ -223,7 +225,7 @@
 
 
                 <%-- Ubicación --%>
-                <div class="mt-3">
+                <div class="mt-2">
 
                     <div id="lblUbicacion" runat="server" class="mb-3">
                         <h6><b>Ubicación:</b></h6>
@@ -256,7 +258,7 @@
                         <h6 runat="server" class="mb-0"><b>Confirmar contraseña</b></h6>
                         <asp:TextBox ID="txtConfirmarClave" TextMode="Password" class="form-control" runat="server"></asp:TextBox>
                     </div>
-                    <input type="hidden" runat="server" id="hfClaveUsuario" />
+
 
                 </div>
 
@@ -274,6 +276,7 @@
 
 
 
+
                 <%-- Botones de actualización --%>
                 <div id="domBtnActualizar" visible="false" class="mt-5 mb-4" runat="server">
 
@@ -287,7 +290,7 @@
 
                         <asp:UpdatePanel runat="server">
                             <ContentTemplate>
-                                <asp:Button ID="btnActualizar" Text="Actualizar" CssClass="btn btn-outline-warning" Style="margin-left: 30px;" CausesValidation="true" runat="server" />
+                                <asp:Button ID="btnActualizar" Text="Actualizar" CssClass="btn btn-outline-warning" OnClick="btnActualizar_Click" Style="margin-left: 30px;" CausesValidation="true" runat="server" />
                             </ContentTemplate>
                         </asp:UpdatePanel>
                     </div>
@@ -296,10 +299,16 @@
                 </div>
 
 
+                <asp:UpdatePanel runat="server">
+                    <ContentTemplate>
+                        <input type="hidden" runat="server" id="hfFtUsuario" />
+                        <input type="hidden" runat="server" id="hfCoordenadas" />
+                    </ContentTemplate>
+                </asp:UpdatePanel>
 
-                <input type="hidden" runat="server" id="hfCoordenadas" />
-                <input type="hidden" runat="server" id="hfFotoUsuario" />
+
                 <input type="hidden" runat="server" id="hfFotoUsuarioDefault" />
+                <input type="hidden" runat="server" id="hfClaveUsuario" />
 
             </div>
         </div>

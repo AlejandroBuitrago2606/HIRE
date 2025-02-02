@@ -2,12 +2,20 @@
 using HIRE.Logica;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Security.Policy;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using System.Drawing;
+using Image = System.Drawing.Image;
+using Org.BouncyCastle.Crypto.Generators;
+
+
 
 namespace HIRE.Vista
 {
@@ -16,7 +24,7 @@ namespace HIRE.Vista
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            mtdTraerUsuario(1);
+
 
             if (!IsPostBack)
             {
@@ -35,9 +43,12 @@ namespace HIRE.Vista
 
                 dpEstadoCivil.DataSource = filtros.Item5;
                 dpEstadoCivil.DataBind();
-
+                Session["coordenadas"] = "";
 
             }
+
+            Session["coordenadas"] = hfCoordenadas.Value;
+            mtdTraerUsuario(1);            
 
         }
 
@@ -163,14 +174,17 @@ namespace HIRE.Vista
             {
 
                 case "btnEliminarFoto":
+                    hfFtUsuario.Value = "";
+                    hfFtUsuario.Value = "~/Vista/recursos/imagenes/perfil.png";
                     imgFotoUsuario.Src = ResolveUrl("~/Vista/recursos/imagenes/perfil.png");
-                    hfFotoUsuario.Value = "~/Vista/recursos/imagenes/perfil.png";
+
                     ScriptManager.RegisterStartupScript(this, GetType(), "clearFileUpload", "document.getElementById('Content_Body_imgCargarFoto').value = '';", true);
                     break;
 
                 case "btnRestaurarFoto":
+                    hfFtUsuario.Value = "";
+                    hfFtUsuario.Value = hfFotoUsuarioDefault.Value;
                     imgFotoUsuario.Src = ResolveUrl(hfFotoUsuarioDefault.Value);
-                    hfFotoUsuario.Value = hfFotoUsuarioDefault.Value;
                     ScriptManager.RegisterStartupScript(this, GetType(), "clearFileUpload", "document.getElementById('Content_Body_imgCargarFoto').value = '';", true);
                     break;
 
@@ -212,14 +226,14 @@ namespace HIRE.Vista
 
                         if (datosUsuario.idMunicipio == item.Value)
                         {
-                            lblMunicipio.InnerText = "<b>Municipio:</b>" + " " + item.Text + ", Boyacá";
+                            lblMunicipio.InnerHtml = "<b>Municipio:</b>" + " " + item.Text + ", Boyaca";
                             break;
                         }
 
                     }
-                    
 
                     hfCoordenadas.Value = datosUsuario.ubicacion.ToString();
+
                     string script = "mostrarUbicacion()";
                     ScriptManager.RegisterStartupScript(this, GetType(), "mostrarUbicacion", script, true);
 
@@ -234,7 +248,7 @@ namespace HIRE.Vista
                         }
                     }
 
-                    hfClaveUsuario.Value = datosUsuario.contrasena;
+                    hfClaveUsuario.Value = datosUsuario.contrasena.ToString();
                     hfFotoUsuarioDefault.Value = datosUsuario.foto;
 
                     break;
@@ -285,5 +299,124 @@ namespace HIRE.Vista
             }
 
         }
+
+        protected void btnActualizar_Click(object sender, EventArgs e)
+        {
+
+            if (!string.IsNullOrEmpty(txtNuevaClave.Text) && string.IsNullOrEmpty(txtConfirmarClave.Text))
+            {
+                string validacionClave = "alert('Confirma tu nueva contraseña.');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "validacionClave", validacionClave, true);
+
+            }
+            else
+            {
+                string coordenadas = Session["coordenadas"].ToString();
+                string claveUsuario = "";
+
+                if (!string.IsNullOrEmpty(txtConfirmarClave.Text))
+                {
+
+                    using (SHA256 sha256 = SHA256.Create())
+                    {
+
+                        // Convertir la contraseña en bytes
+                        byte[] bytes = Encoding.UTF8.GetBytes(txtConfirmarClave.Text);
+
+                        // Obtener el hash de la contraseña
+                        byte[] hashBytes = sha256.ComputeHash(bytes);
+
+                        // Convertir el hash en una cadena hexadecimal
+                        StringBuilder sb = new StringBuilder();
+                        foreach (byte b in hashBytes)
+                        {
+                            sb.Append(b.ToString("x2"));  // Convierte el byte a un valor hexadecimal
+                        }
+                        claveUsuario = sb.ToString();
+
+                    }
+
+                }
+                else
+                {
+                    claveUsuario = hfClaveUsuario.Value.ToString();
+
+                }
+
+
+                string rutaImagen = "";
+
+                if (!string.IsNullOrEmpty(hfFtUsuario.Value))
+                {
+                    if (hfFtUsuario.Value == "~/Vista/recursos/imagenes/perfil.png" || System.IO.File.Exists(hfFtUsuario.Value))
+                    {
+                        rutaImagen = hfFtUsuario.Value;
+                    }
+                    else
+                    {
+
+                        byte[] imageBytes = Convert.FromBase64String(hfFtUsuario.Value);
+
+                        // Genera un nombre aleatorio para el archivo
+                        Random idFinalAleatorio = new Random();
+                        string fileName = "imgUsuario" + idFinalAleatorio.Next(1000, 9999).ToString() + ".png";
+
+                        // Define la ruta relativa y completa
+                        string rutaRelativa = "~/Vista/recursos/fotosPerfil/" + fileName;
+                        string rutaCompleta = Server.MapPath(rutaRelativa);
+
+                        // Guarda los bytes como un archivo de imagen en la ruta completa
+                        System.IO.File.WriteAllBytes(rutaCompleta, imageBytes);
+                        rutaImagen = rutaRelativa;
+
+                    }
+
+                }
+                else
+                {
+                    rutaImagen = hfFotoUsuarioDefault.Value;
+                }
+
+
+                clUsuarioE objDatosUsuario = new clUsuarioE
+                {
+                    idUsuario = int.Parse(Session["idUsuario"].ToString()),
+                    nombre = txtNombre.Text,
+                    apellido = txtApellido.Text,
+                    documento = txtDocumento.Text,
+                    fechaNacimiento = DateTime.Parse(txtFechaNacimiento.Text).ToString("yyyy-MM-dd"),
+                    estadoCivil = dpEstadoCivil.SelectedItem.Text,
+                    numeroHijos = txtNumeroHijos.Text,
+                    idTipo = dpCargo.SelectedValue,
+                    correo = txtCorreo.Text,
+                    telefono = txtTelefono.Text,
+                    direccion = txtDireccion.Text,
+                    idMunicipio = dpMunicipios.SelectedValue,
+                    ubicacion = hfCoordenadas.Value.ToString(),
+                    contrasena = claveUsuario,
+                    foto = rutaImagen
+
+                };
+
+                //Envio los datos al metodo para actualizar el usuario
+                clUsuarioL objUsuarioL = new clUsuarioL();
+                if (objUsuarioL.mtdActualizarUsuario(objDatosUsuario))
+                {
+                    string modificacionExistosa = @"alertify.success('Información actualizada correctamente');";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "modificacionExistosa", modificacionExistosa, true);
+                    
+                }
+                else
+                {
+                    string modificacionFallida = @"alert('Ocurrio un error al actualizar tu informacion, intenta nuevamente.');";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "modificacionFallida", modificacionFallida, true);                    
+
+                }
+
+            }
+
+        }
+
     }
+
 }

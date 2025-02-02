@@ -97,6 +97,7 @@ namespace HIRE.Datos
                         objDatosE.foto = fila["foto"].ToString();
                         objDatosE.idMunicipio = fila["idMunicipio"].ToString();
                         objDatosE.idTipo = fila["idTipo"].ToString();
+                        objDatosE.contrasena = fila["contrasena"].ToString();
                         objDatosE.validar = true;
 
                     }
@@ -142,6 +143,7 @@ namespace HIRE.Datos
                 cmd.Parameters.AddWithValue("@foto", objDatosUsuarioE.foto);
                 cmd.Parameters.AddWithValue("@clave", objDatosUsuarioE.contrasena);
                 cmd.Parameters.AddWithValue("@idMunicipio", int.Parse(objDatosUsuarioE.idMunicipio));
+                cmd.Parameters.AddWithValue("@idTipo", int.Parse(objDatosUsuarioE.idTipo));
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.ExecuteNonQuery();
                 objConexion.MtdCerrarConexion();
