@@ -130,16 +130,26 @@
     <Content Include="Vista\listaEmpresas.aspx" />
     <Content Include="Vista\perfilUsuario.aspx" />
     <Content Include="Vista\recuperarContrasena.aspx" />
+    <Content Include="Vista\recursos\css\index.css" />
+    <Content Include="Vista\recursos\css\nicepage.css" />
     <Content Include="Vista\recursos\css\style.css" />
     <Content Include="Vista\recursos\css\style.min.css" />
     <Content Include="Vista\recursos\fotosEmpresa\default.png" />
     <Content Include="Vista\recursos\fotosPerfil\fotoFernando.jpg" />
     <Content Include="Vista\recursos\fotosPerfil\fotoYuber.png" />
+    <Content Include="Vista\recursos\imagenes\3002249.png" />
+    <Content Include="Vista\recursos\imagenes\347803.png" />
+    <Content Include="Vista\recursos\imagenes\50056fb9.svg" />
+    <Content Include="Vista\recursos\imagenes\535188.png" />
+    <Content Include="Vista\recursos\imagenes\561103.png" />
+    <Content Include="Vista\recursos\imagenes\7a2bf1a28924bf88e84a734a10a832788a08fef2.png" />
+    <Content Include="Vista\recursos\imagenes\88653.png" />
     <Content Include="Vista\recursos\imagenes\bannerFinal.jpg" />
     <Content Include="Vista\recursos\imagenes\carrusel1.jpg" />
     <Content Include="Vista\recursos\imagenes\carrusel2.jpg" />
     <Content Include="Vista\recursos\imagenes\carrusel3.jpg" />
     <Content Include="Vista\recursos\imagenes\carrusel4.jpg" />
+    <Content Include="Vista\recursos\imagenes\default-logo.png" />
     <Content Include="Vista\recursos\imagenes\fondoBusqueda.jpg" />
     <Content Include="Vista\recursos\imagenes\fondoRecuperarC.jpg" />
     <Content Include="Vista\recursos\imagenes\perfil.png" />
@@ -172,10 +182,13 @@
     <Content Include="Vista\recursos\js\demo\chart-bar-demo.js" />
     <Content Include="Vista\recursos\js\demo\chart-pie-demo.js" />
     <Content Include="Vista\recursos\js\demo\datatables-demo.js" />
+    <Content Include="Vista\recursos\js\jquery.js" />
     <Content Include="Vista\recursos\js\main3.js" />
     <Content Include="Vista\recursos\js\main.js" />
     <Content Include="Vista\recursos\js\main2.js" />
     <Content Include="Vista\recursos\js\main4.js" />
+    <Content Include="Vista\recursos\js\main5.js" />
+    <Content Include="Vista\recursos\js\nicepage.js" />
     <Content Include="Vista\recursos\js\sb-admin-2.js" />
     <Content Include="Vista\recursos\js\sb-admin-2.min.js" />
     <Content Include="Vista\recursos\lib\easing\easing.js" />
@@ -2235,7 +2248,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Vista\recursos\hv-PDF\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

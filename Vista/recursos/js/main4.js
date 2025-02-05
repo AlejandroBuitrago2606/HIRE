@@ -122,3 +122,4 @@ function actualizacionNo() {
     alert('Ocurrio un error al actualizar tu informacion, intenta nuevamente.');
     setTimeout(function () { window.location.reload(); }, 2000);
 }
+

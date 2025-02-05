@@ -81,8 +81,7 @@ namespace HIRE.Datos
                 {
                     foreach (DataRow fila in tblDatos.Rows)
                     {
-
-                        objDatosE.validar = true;
+                                                
                         objDatosE.idUsuario = int.Parse(fila["idUsuario"].ToString());
                         objDatosE.nombre = fila["nombre"].ToString();
                         objDatosE.apellido = fila["apellido"].ToString();

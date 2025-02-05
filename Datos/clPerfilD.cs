@@ -63,7 +63,6 @@ namespace HIRE.Datos
                                     idCategoria = int.Parse(fila["idCategoria"].ToString()),
                                     nombreCategoria = fila["nombreCategoria"].ToString()
 
-
                                 });
 
 
@@ -199,9 +198,8 @@ namespace HIRE.Datos
                     }
                     else
                     {
-                        objPerfilCV.perfilProfesional = "Agrega información a tu perfil profesional";                      
+                        objPerfilCV.perfilProfesional = "Agrega información a tu perfil profesional";
                     }
-
 
 
                     fila.Close();
@@ -231,14 +229,135 @@ namespace HIRE.Datos
         }
 
 
+        public bool mtdRegistrarCvD(int opcion, clDetallesPerfilCV objDatosCV, int idCV = 0)
+        {
+
+            bool validar = false;
+
+            try
+            {
+                SqlCommand cmd = new SqlCommand("spRegistrarDetallesCV", objConexion.MtdAbrirConexion());
+
+                switch (opcion)
+                {
 
 
+                    case 1:
+
+                        cmd.Parameters.AddWithValue("@descripcion", objDatosCV.DatosCV.perfilProfesional);
+                        cmd.Parameters.AddWithValue("@urlArchivo", objDatosCV.DatosCV.hojaVida);
+                        cmd.Parameters.AddWithValue("@idUsuario", objDatosCV.DatosCV.idUsuario);
+                        cmd.Parameters.AddWithValue("@opcion", opcion);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.ExecuteNonQuery();
+                        validar = true;
+
+                        break;
+
+                    case 2:
 
 
+                        cmd.Parameters.AddWithValue("@idCV", idCV);
+                        cmd.Parameters.AddWithValue("@idCompetencia", objDatosCV.CompetenciaCV.idCompetencia);
+                        cmd.Parameters.AddWithValue("@opcion", opcion);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.ExecuteNonQuery();
+                        validar = true;
+
+                        break;
+                    case 3:
+
+                        cmd.Parameters.AddWithValue("@descripcion", objDatosCV.certificacionCV.descripcionCertificacion);
+                        cmd.Parameters.AddWithValue("@nombreEntidad", objDatosCV.certificacionCV.nombreInstitucion);
+                        cmd.Parameters.AddWithValue("@fecha", objDatosCV.certificacionCV.fechaObtencion);
+                        cmd.Parameters.AddWithValue("@idCV", idCV);
+                        cmd.Parameters.AddWithValue("@opcion", opcion);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.ExecuteNonQuery();
+                        validar = true;
+
+                        break;
+                    case 4:
+
+                        cmd.Parameters.AddWithValue("@titulo", objDatosCV.proyectoDesarrolloCV.titulo);
+                        cmd.Parameters.AddWithValue("@descripcion", objDatosCV.proyectoDesarrolloCV.descripcion);
+                        cmd.Parameters.AddWithValue("@idCV", idCV);
+                        cmd.Parameters.AddWithValue("@opcion", opcion);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.ExecuteNonQuery();
+                        validar = true;
+
+                        break;
+                    case 5:
+
+                        cmd.Parameters.AddWithValue("@nombre", objDatosCV.referenciaCV.nombreReferencia);
+                        cmd.Parameters.AddWithValue("@cargo", objDatosCV.referenciaCV.cargo);
+                        cmd.Parameters.AddWithValue("@nombreEntidad", objDatosCV.referenciaCV.nombreEmpresa);
+                        cmd.Parameters.AddWithValue("@telefono", objDatosCV.referenciaCV.telefono);
+                        cmd.Parameters.AddWithValue("@correo", objDatosCV.referenciaCV.correo);
+                        cmd.Parameters.AddWithValue("@tipoReferencia", objDatosCV.referenciaCV.tipoReferencia);
+                        cmd.Parameters.AddWithValue("@relacionProfesional", objDatosCV.referenciaCV.relacionProfesional);
+                        cmd.Parameters.AddWithValue("@idCV", idCV);
+                        cmd.Parameters.AddWithValue("@opcion", opcion);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.ExecuteNonQuery();
+                        validar = true;
+
+                        break;
+                    case 6:
+
+                        cmd.Parameters.AddWithValue("@nombre", objDatosCV.idiomaCV.nombre);
+                        cmd.Parameters.AddWithValue("@nivel", objDatosCV.idiomaCV.nivel);
+                        cmd.Parameters.AddWithValue("@idCV", idCV);
+                        cmd.Parameters.AddWithValue("@opcion", opcion);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.ExecuteNonQuery();
+                        validar = true;
+
+                        break;
+                    case 7:
+
+                        cmd.Parameters.AddWithValue("@titulo", objDatosCV.ExperienciaCV.titulo);
+                        cmd.Parameters.AddWithValue("@descripcion", objDatosCV.ExperienciaCV.descripcion);
+                        cmd.Parameters.AddWithValue("@urlArchivo", objDatosCV.ExperienciaCV.soporte);
+                        cmd.Parameters.AddWithValue("@idCV", idCV);
+                        cmd.Parameters.AddWithValue("@opcion", opcion);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.ExecuteNonQuery();
+                        validar = true;
+
+                        break;
+                    case 8:
+
+                        cmd.Parameters.AddWithValue("@titulo", objDatosCV.logroAcademicoCV.tituloLogroAcademico);
+                        cmd.Parameters.AddWithValue("@nombreEntidad", objDatosCV.logroAcademicoCV.nombreInstitucion);
+                        cmd.Parameters.AddWithValue("@periodo", objDatosCV.logroAcademicoCV.periodoTiempo);
+                        cmd.Parameters.AddWithValue("@ubicacion", objDatosCV.logroAcademicoCV.ubicacion);
+                        cmd.Parameters.AddWithValue("@fecha", objDatosCV.logroAcademicoCV.fechaEntrega);
+                        cmd.Parameters.AddWithValue("@idNivelAcademico", objDatosCV.logroAcademicoCV.idNivelAcademico);
+                        cmd.Parameters.AddWithValue("@idCV", idCV);
+                        cmd.Parameters.AddWithValue("@opcion", opcion);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.ExecuteNonQuery();
+                        validar = true;
+
+                        break;
 
 
+                }
+
+                objConexion.MtdCerrarConexion();
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e.Message);
+            }
 
 
+            return validar;
+        }
 
     }
+
 }

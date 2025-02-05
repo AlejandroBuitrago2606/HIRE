@@ -13,6 +13,7 @@ namespace HIRE.Entidades
         public int idCurriculumVitae { get; set; }
         public string perfilProfesional { get; set; }
         public string hojaVida { get; set; }
+        public int idUsuario { get; set; }
 
     }
 
@@ -90,6 +91,7 @@ namespace HIRE.Entidades
         public string ubicacion { get; set; }
         public string fechaEntrega{ get; set; }
         public string nivel { get; set; }
+        public int idNivelAcademico { get; set; }
 
 
     }
@@ -106,6 +108,19 @@ namespace HIRE.Entidades
         public List<clProyectoDesarrolloE> objProyectoDesarrolloCV { get; set; }
         public List<clIdiomaE> objIdiomaCV { get; set; }
         public List<clLogroAcademicoE> objLogroAcademicoCV { get; set; }
+
+    }
+
+    public class clDetallesPerfilCV
+    {
+        public clPerfilE DatosCV { get; set; }
+        public clCompetenciaE CompetenciaCV { get; set; }
+        public clExperienciaE ExperienciaCV { get; set; }
+        public clReferenciaE referenciaCV { get; set; }
+        public clCertificacionE certificacionCV { get; set; }
+        public clProyectoDesarrolloE proyectoDesarrolloCV { get; set; }
+        public clIdiomaE idiomaCV { get; set; }
+        public clLogroAcademicoE logroAcademicoCV { get; set; }
 
     }
 

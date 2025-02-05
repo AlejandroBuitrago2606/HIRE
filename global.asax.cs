@@ -35,12 +35,13 @@ namespace HIRE
             Session["autenticacion"] = "";
             Session["ruta"] = "";
             Session["correoEnviado"] = "false";
-            Session["registro"] = "false";
+            Session["registro"] = false;
             Session["codigo"] = "";
             Session["foto"] = "";
             Session["contador"] = 0;
             Session["fotoEmpresa"] = "";
             Session["coordenadas"] = "";
+            Session["idCV"] = "";
 
         }
 
@@ -68,11 +69,12 @@ namespace HIRE
             Session["autenticacion"] = "";
             Session["ruta"] = "";
             Session["correoEnviado"] = "false";
-            Session["registro"] = "false";
+            Session["registro"] = false;
             Session["codigo"] = "";
             Session["contador"] = 0;
             Session["fotoEmpresa"] = "";
             Session["coordenadas"] = "";
+            Session["idCV"] = "";
 
         }
 

@@ -54,6 +54,7 @@ namespace HIRE.Vista
                         {
                             imgFotoPerfil.Src = ResolveUrl(objUsuarioE.foto.ToString()); // Ya no se necesita .ToString()
                         }
+
                     }
 
                 }
