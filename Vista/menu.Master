@@ -356,7 +356,7 @@
                         </div>
                         <div class="modal-body">Cerraras sesion en tu dispositivo actual.</div>
                         <div class="modal-footer">
-                            <asp:Button ID="btnCerrarSesion" OnClick="btnCerrarSesion_Click" CssClass="btn btn-danger" Style="color: white" runat="server" Text="Cerrar sesion" />
+                            <asp:Button ID="btnCerrarSesion" CausesValidation="false" OnClick="btnCerrarSesion_Click" CssClass="btn btn-danger" Style="color: white" runat="server" Text="Cerrar sesion" />
 
                         </div>
                     </div>

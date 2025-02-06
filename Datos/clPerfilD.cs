@@ -1,5 +1,6 @@
 ﻿using HIRE.Entidades;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -228,7 +229,6 @@ namespace HIRE.Datos
             return objPerfilDatos;
         }
 
-
         public bool mtdRegistrarCvD(int opcion, clDetallesPerfilCV objDatosCV, int idCV = 0)
         {
 
@@ -258,7 +258,7 @@ namespace HIRE.Datos
 
 
                         cmd.Parameters.AddWithValue("@idCV", idCV);
-                        cmd.Parameters.AddWithValue("@idCompetencia", objDatosCV.CompetenciaCV.idCompetencia);
+                        cmd.Parameters.AddWithValue("@idCompetencia", int.Parse(objDatosCV.CompetenciaCV.idCompetencia.ToString()));
                         cmd.Parameters.AddWithValue("@opcion", opcion);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.ExecuteNonQuery();
@@ -356,6 +356,80 @@ namespace HIRE.Datos
 
 
             return validar;
+        }
+
+        public (List<clCompetenciaE>, List<clNivelAcademicoE>) mtdListarFiltros()
+        {
+            List<clNivelAcademicoE> objNivelAcademico = new List<clNivelAcademicoE>();
+            List<clCompetenciaE> objCompetencia = new List<clCompetenciaE>();
+            //List<List<clCompetenciaE>> objFiltros = new List<List<clCompetenciaE>>();
+            try
+            {
+
+                SqlCommand cmd = new SqlCommand("spListarFiltros", objConexion.MtdAbrirConexion());
+                cmd.Parameters.AddWithValue("@filtros2", 2);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                using (SqlDataReader resultado = cmd.ExecuteReader())
+                {
+
+
+                    if (resultado.HasRows)
+                    {
+
+                        while (resultado.Read())
+                        {
+
+                            objNivelAcademico.Add(new clNivelAcademicoE
+                            {
+
+                                idVacanteNivelAcademico = int.Parse(resultado["idNivelAcademico"].ToString()),
+                                nivelAcademico = resultado["nivel"].ToString()
+
+
+                            });
+
+
+
+                        }
+
+
+                    }
+                    if (resultado.NextResult() && resultado.HasRows)
+                    {
+                        while (resultado.Read())
+                        {
+                            objCompetencia.Add(new clCompetenciaE
+                            {
+
+                                idCompetencia = int.Parse(resultado["idCompetencia"].ToString()),
+                                nombre = resultado["nombre"].ToString(),
+                                descripcion = resultado["descripcion"].ToString()
+
+                            });
+
+                        }
+
+                    }
+                    else
+                    {
+                        objNivelAcademico = null;
+                        objCompetencia = null;
+                    }
+                    resultado.Close();
+                    
+
+                }
+                objConexion.MtdCerrarConexion();
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e.Message);
+            }
+
+            return (objCompetencia,objNivelAcademico);
+
         }
 
     }

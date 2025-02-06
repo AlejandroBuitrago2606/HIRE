@@ -1,0 +1,41 @@
+﻿.modal-bodyO {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+.pdf-containerO {
+    display: inline-block; /* Ajusta el tamaño del contenedor al contenido */
+    width: fit-content; /* El contenedor ajusta su ancho al del canvas */
+    height: fit-content; /* El contenedor ajusta su altura al del canvas */
+}
+
+#pdf-canvasO {
+    width: auto; /* Mantén el ancho del canvas según su contenido */
+    height: auto; /* Mantén la altura del canvas según su contenido */
+    max-width: 100%;
+}
+
+#pdf-canvas2 {
+    width: auto; /* Mantén el ancho del canvas según su contenido */
+    height: auto; /* Mantén la altura del canvas según su contenido */
+    max-width: 100%;
+}
+
+
+.modal-header {
+    display: flex;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente (opcional) */
+    width: 100%;
+}
+
+.modal-title {
+    text-align: center; /* Asegura que el texto del <h4> esté centrado */
+    margin: 0; /* Elimina márgenes para centrarlo completamente */
+    flex-grow: 1; /* Hace que el <h4> ocupe todo el espacio disponible y se centre */
+}

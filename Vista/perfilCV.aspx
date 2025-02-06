@@ -12,8 +12,10 @@
         href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
     <link rel="stylesheet" href="/Content/alertifyjs/alertify.css" />
     <link rel="stylesheet" href="/Content/alertifyjs/themes/default.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
     <script src="/Scripts/alertify.js"></script>
     <title>Perfil CV</title>
+    <link rel="stylesheet" href="recursos/css/main2.css" />
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content_Body" runat="server">
@@ -23,7 +25,7 @@
                 <div class="u-container-style u-custom-color-2 u-expanded-width u-group u-group-1">
                     <div class="u-container-layout u-container-layout-1">
                         <h4 id="txtNombreUsuario" runat="server" class="u-align-center-xs u-text u-text-default u-text-1"></h4>
-                        <h5 id="txtCargo" runat="server" class="u-text u-text-2 d-flex justify-content-center"></h5>
+                        <h5 id="txtCargo" runat="server" class="u-text-2 d-flex justify-content-center"></h5>
                     </div>
                 </div>
                 <img class="u-image u-image-circle u-image-1" id="imgFotoPerfil" runat="server" src="#" alt="" data-image-width="400"
@@ -35,11 +37,10 @@
                                 <div class="u-container-layout u-container-layout-2">
                                     <img class="u-image u-image-default u-image-2" src="recursos/imagenes/7a2bf1a28924bf88e84a734a10a832788a08fef2.png"
                                         alt="" data-image-width="1024" data-image-height="1024">
-                                    <a href="#"
-                                        class="u-align-center u-border-2 u-border-grey-75 u-btn u-btn-round u-button-style u-custom-color-3 u-radius u-btn-1">
+                                    <button type="button" id="btnMostrarHojaVida" runat="server" data-bs-toggle="modal" data-bs-target="#modal2" onclick="mostrarPDF();" class="u-align-center u-border-2 u-border-grey-75 u-btn u-btn-round u-button-style u-custom-color-3 u-radius u-btn-1">
                                         <span class="u-file-icon u-icon u-icon-1">
                                             <img src="recursos/imagenes/88653.png" alt=""></span>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                             <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-2">
@@ -129,7 +130,7 @@
 
 
                                         <div class="mt-2 p-3 border rounded shadow-sm bg-light" style="overflow-y: auto; max-height: 40vh;">
-                                            <asp:Repeater ID="rpExperiencia" runat="server">
+                                            <asp:Repeater ID="rpExperiencia" runat="server" OnItemCommand="rpExperiencia_ItemCommand">
                                                 <ItemTemplate>
                                                     <hr class="my-4 w-100 mx-auto" style="background-color: #10317A; height: 2px; border: none;">
                                                     <div class="mb-3">
@@ -138,8 +139,10 @@
                                                         <p><%# Eval("descripcion") %></p>
 
                                                         <p>Soporte</p>
-                                                        <a class="btn btn-warning">Ver Soporte</a>
-                                                        <input id="hfSoporteExp" type="hidden" value="<%# Eval("soporte") %>" />
+
+
+                                                        <asp:Button ID="btnVerSoporte" CommandName="abrirSoporte" CssClass="btn btn-warning" runat="server" Text="Ver soporte" />
+                                                        <asp:HiddenField ID="hfRutaSoporte" Value='<%# Eval("soporte") %>' runat="server" />
                                                     </div>
                                                 </ItemTemplate>
                                             </asp:Repeater>
@@ -346,13 +349,6 @@
                         <h6><b>Describe brevemente tu perfil profesional</b></h6>
                         <h6 class="mb-0">Resalta tu experiencia, habilidades y logros en pocas palabras.</h6>
                         <asp:TextBox ID="txtNuevaDescripcion" CssClass="form-control" TextMode="SingleLine" MaxLength="3000" runat="server"></asp:TextBox>
-                        <asp:RequiredFieldValidator
-                            ID="rfvNombre"
-                            runat="server"
-                            ControlToValidate="txtNuevaDescripcion"
-                            ErrorMessage="Este campo es obligatorio."
-                            ForeColor="Red"
-                            Display="Dynamic" />
 
                         <br />
                         <br />
@@ -366,7 +362,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <asp:Button ID="btnAnadirCV" CausesValidation="true" OnClick="btnAgregarCV_ServerClick" CssClass="btn btn-success" runat="server" Text="Agregar" />
+                        <asp:Button ID="btnAnadirCV" CausesValidation="true" OnClick="btnAgregarCV_ServerClick" OnClientClick="validarFormulario()" CssClass="btn btn-success" runat="server" Text="Agregar" />
                     </div>
                 </div>
             </div>
@@ -416,20 +412,20 @@
                                     <div class="col-3"></div>
                                     <div class="col-6">
                                         <h5 class="mb-0">Titulo</h5>
-                                        <asp:TextBox ID="txtTituloExp" CssClass="form-control" MaxLength="80" TextMode="SingleLine" runat="server" required></asp:TextBox>
+                                        <asp:TextBox ID="txtTituloExp" CssClass="form-control" MaxLength="80" TextMode="SingleLine" runat="server"></asp:TextBox>
                                         <br />
                                         <br />
                                         <h5 class="mb-0">Descripción</h5>
-                                        <asp:TextBox ID="txtDescripExp" CssClass="form-control" MaxLength="400" TextMode="SingleLine" runat="server" required></asp:TextBox>
+                                        <asp:TextBox ID="txtDescripExp" CssClass="form-control" MaxLength="400" TextMode="SingleLine" runat="server"></asp:TextBox>
                                         <br />
                                         <br />
-                                        <h5 class="mb-0">Soporte</h5>
+                                        <h5 class="mb-0">Soporte <b>(.pdf, .doc, .docx)</b></h5>
                                         <asp:FileUpload ID="fuSoporteExp" CssClass="form-control" runat="server" />
                                     </div>
                                     <div class="col-3"></div>
                                 </div>
                                 <div class="mb-5 mt-5 d-flex justify-content-center">
-                                    <button id="Button1" runat="server" type="submit" class="btn btn-success">Agregar</button>
+                                    <asp:Button ID="btnAgregarExp" runat="server" OnClick="btnAgregarDetalles_ServerClick" CssClass="btn btn-success" Text="Agregar" />
                                 </div>
 
                             </div>
@@ -441,16 +437,16 @@
                                     <div class="col-3"></div>
                                     <div class="col-6">
                                         <h5 class="mb-0">Titulo</h5>
-                                        <asp:TextBox ID="txtTituloProD" CssClass="form-control" MaxLength="80" TextMode="SingleLine" runat="server" required></asp:TextBox>
+                                        <asp:TextBox ID="txtTituloProD" CssClass="form-control" MaxLength="80" TextMode="SingleLine" runat="server"></asp:TextBox>
                                         <br />
                                         <br />
                                         <h5 class="mb-0">Descripción</h5>
-                                        <asp:TextBox ID="txtDescripcionProD" CssClass="form-control" MaxLength="400" TextMode="SingleLine" runat="server" required></asp:TextBox>
+                                        <asp:TextBox ID="txtDescripcionProD" CssClass="form-control" MaxLength="400" TextMode="SingleLine" runat="server"></asp:TextBox>
                                     </div>
                                     <div class="col-3"></div>
                                 </div>
                                 <div class="mb-5 mt-5 d-flex justify-content-center">
-                                    <button id="btnAgregarProD" runat="server" type="submit" class="btn btn-success">Agregar</button>
+                                    <asp:Button ID="btnAgregarProD" runat="server" OnClick="btnAgregarDetalles_ServerClick" CssClass="btn btn-success" Text="Agregar" />
                                 </div>
 
 
@@ -465,32 +461,34 @@
                                     <div class="col-3"></div>
                                     <div class="col-6">
                                         <h5 class="mb-0">Logro academico obtenido</h5>
-                                        <asp:TextBox ID="txtTituloLogro" CssClass="form-control" MaxLength="50" TextMode="SingleLine" runat="server" required></asp:TextBox>
+                                        <asp:TextBox ID="txtTituloLogro" CssClass="form-control" MaxLength="50" TextMode="SingleLine" runat="server"></asp:TextBox>
                                         <br />
                                         <br />
                                         <h5 class="mb-0">Institucion</h5>
-                                        <asp:TextBox ID="txtInstitucion" CssClass="form-control" MaxLength="50" TextMode="SingleLine" runat="server" required></asp:TextBox>
+                                        <asp:TextBox ID="txtInstitucion" CssClass="form-control" MaxLength="50" TextMode="SingleLine" runat="server"></asp:TextBox>
                                         <br />
                                         <br />
                                         <h5 class="mb-0">Periodo</h5>
-                                        <asp:TextBox ID="txtPeriodoLogro" placeholder="Ej: '2004 - 2022')" CssClass="form-control" MaxLength="20" TextMode="SingleLine" runat="server" required></asp:TextBox>
+                                        <asp:TextBox ID="txtPeriodoLogro" placeholder="Ej: '2004 - 2022')" CssClass="form-control" MaxLength="20" TextMode="SingleLine" runat="server"></asp:TextBox>
                                         <br />
                                         <br />
                                         <h5 class="mb-0">Lugar de entrega</h5>
-                                        <asp:TextBox ID="txtUbicacionlogro" CssClass="form-control" MaxLength="50" TextMode="SingleLine" runat="server" required></asp:TextBox>
+                                        <asp:TextBox ID="txtUbicacionlogro" CssClass="form-control" MaxLength="50" TextMode="SingleLine" runat="server"></asp:TextBox>
                                         <br />
                                         <br />
                                         <h5 class="mb-0">Fecha de entrega</h5>
-                                        <asp:TextBox ID="txtFechaEntregaLogro" CssClass="form-control" TextMode="Date" runat="server" required></asp:TextBox>
+                                        <asp:TextBox ID="txtFechaEntregaLogro" CssClass="form-control" TextMode="Date" runat="server"></asp:TextBox>
                                         <br />
                                         <br />
                                         <h5 class="mb-0">Nivel academico alcanzado</h5>
-                                        <asp:DropDownList ID="dpNivelAcademico" CssClass="form-control" runat="server"></asp:DropDownList>
+                                        <asp:DropDownList ID="dpNivelAcademico" CssClass="form-control" runat="server">
+                                            <asp:ListItem Value=""></asp:ListItem>
+                                        </asp:DropDownList>
                                     </div>
                                     <div class="col-3"></div>
                                 </div>
                                 <div class="mb-5 mt-5 d-flex justify-content-center">
-                                    <button id="btnAgregarLogroA" runat="server" type="submit" class="btn btn-success">Agregar</button>
+                                    <asp:Button ID="btnAgregarLogroA" runat="server" OnClick="btnAgregarDetalles_ServerClick" CssClass="btn btn-success" Text="Agregar" />
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="certf-tab-pane" role="tabpanel" aria-labelledby="certificacion-tab" tabindex="0">
@@ -501,20 +499,20 @@
                                     <div class="col-3"></div>
                                     <div class="col-6">
                                         <h5 class="mb-0">Titulo de la certificación</h5>
-                                        <asp:TextBox ID="txtTituloCertf" CssClass="form-control" MaxLength="80" TextMode="SingleLine" runat="server" required></asp:TextBox>
+                                        <asp:TextBox ID="txtTituloCertf" CssClass="form-control" MaxLength="80" TextMode="SingleLine" runat="server"></asp:TextBox>
                                         <br />
                                         <br />
                                         <h5 class="mb-0">Instituto</h5>
-                                        <asp:TextBox ID="txtInstitutoCertf" CssClass="form-control" MaxLength="400" TextMode="SingleLine" runat="server" required></asp:TextBox>
+                                        <asp:TextBox ID="txtInstitutoCertf" CssClass="form-control" MaxLength="400" TextMode="SingleLine" runat="server"></asp:TextBox>
                                         <br />
                                         <br />
                                         <h5 class="mb-0">Fecha de obtencion</h5>
-                                        <asp:TextBox ID="txtFechaObtencion" CssClass="form-control" MaxLength="400" TextMode="Date" runat="server" required></asp:TextBox>
+                                        <asp:TextBox ID="txtFechaObtencion" CssClass="form-control" MaxLength="400" TextMode="Date" runat="server"></asp:TextBox>
                                     </div>
                                     <div class="col-3"></div>
                                 </div>
                                 <div class="mb-5 mt-5 d-flex justify-content-center">
-                                    <button id="btnAgregarCertf" runat="server" type="submit" class="btn btn-success">Agregar</button>
+                                    <asp:Button ID="btnAgregarCertf" runat="server" OnClick="btnAgregarDetalles_ServerClick" CssClass="btn btn-success" Text="Agregar" />
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="compt-tab-pane" role="tabpanel" aria-labelledby="competencia-tab" tabindex="0">
@@ -525,54 +523,69 @@
                                     <div class="col-3"></div>
                                     <div class="col-6 h-auto">
                                         <h5 class="mb-0">Elige tus habilidades</h5>
-                                        <asp:DropDownList ID="dpCompetencia" Height="110%" CssClass="form-control" runat="server"></asp:DropDownList>
+                                        <asp:DropDownList ID="dpCompetencia" Height="110%" CssClass="form-control" runat="server">
+                                            <asp:ListItem Value=""></asp:ListItem>
+                                        </asp:DropDownList>
                                     </div>
                                     <div class="col-3"></div>
                                 </div>
                                 <br />
                                 <div class="mb-5 mt-5 d-flex justify-content-center">
-                                    <button id="btnAgregarCompt" runat="server" class="btn btn-success">Agregar</button>
+                                    <asp:Button ID="btnAgregarCompt" runat="server" OnClick="btnAgregarDetalles_ServerClick" CssClass="btn btn-success" Text="Agregar" />
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="ref-tab-pane" role="tabpanel" aria-labelledby="referencia-tab" tabindex="0">
                                 <div class="mb-3 d-flex justify-content-center">
-                                    <h3 class="fs-3">Referencia profesional</h3>
+                                    <h3 class="fs-3">Referencia laboral</h3>
                                 </div>
                                 <div class="row col-12">
                                     <div class="col-3"></div>
                                     <div class="col-6">
                                         <h5 class="mb-0">Persona de referencia <b>(nombre)</b></h5>
-                                        <asp:TextBox ID="txtNombreRef" CssClass="form-control" MaxLength="80" TextMode="SingleLine" runat="server" required></asp:TextBox>
+                                        <asp:TextBox ID="txtNombreRef" CssClass="form-control" MaxLength="80" TextMode="SingleLine" runat="server"></asp:TextBox>
                                         <br />
                                         <br />
                                         <h5 class="mb-0">Cargo laboral</h5>
-                                        <asp:TextBox ID="txtCargoRef" CssClass="form-control" MaxLength="400" TextMode="SingleLine" runat="server" required></asp:TextBox>
+                                        <asp:TextBox ID="txtCargoRef" CssClass="form-control" MaxLength="400" TextMode="SingleLine" runat="server"></asp:TextBox>
                                         <br />
                                         <br />
                                         <h5 class="mb-0">Nombre de la empresa o negocio</h5>
-                                        <asp:TextBox ID="txtNombreEmpresaRef" CssClass="form-control" MaxLength="400" TextMode="SingleLine" runat="server" required></asp:TextBox>
+                                        <asp:TextBox ID="txtNombreEmpresaRef" CssClass="form-control" MaxLength="400" TextMode="SingleLine" runat="server"></asp:TextBox>
                                         <br />
                                         <br />
                                         <h5 class="mb-0">Telefono de contacto</h5>
-                                        <asp:TextBox ID="txtTelefonoRef" CssClass="form-control" MaxLength="400" TextMode="SingleLine" runat="server" required></asp:TextBox>
+                                        <asp:TextBox ID="txtTelefonoRef" CssClass="form-control" MaxLength="400" TextMode="SingleLine" runat="server"></asp:TextBox>
                                         <br />
                                         <br />
                                         <h5 class="mb-0">Correo electronico</h5>
-                                        <asp:TextBox ID="txtCorreoRef" CssClass="form-control" MaxLength="400" TextMode="Email" runat="server" required></asp:TextBox>
+                                        <asp:TextBox ID="txtCorreoRef" CssClass="form-control" MaxLength="400" TextMode="Email" runat="server"></asp:TextBox>
                                         <br />
                                         <br />
                                         <h5 class="mb-0">Tipo de referencia</h5>
-                                        <asp:TextBox ID="txtTipoRef" CssClass="form-control" MaxLength="400" TextMode="SingleLine" runat="server" required></asp:TextBox>
+                                        <asp:DropDownList ID="dpTipoRef" runat="server" CssClass="form-control">
+                                            <asp:ListItem Text="Selecciona el tipo de referencia" Value="" />
+                                            <asp:ListItem Text="Referencia Laboral" Value="Referencia Laboral" />
+                                            <asp:ListItem Text="Referencia Académica" Value="Referencia Académica" />
+                                            <asp:ListItem Text="Referencia Personal" Value="Referencia Personal" />
+                                        </asp:DropDownList>
                                         <br />
                                         <br />
                                         <h5 class="mb-0">Relacion profesional</h5>
-                                        <asp:TextBox ID="txtRelacionProfRef" CssClass="form-control" MaxLength="400" TextMode="SingleLine" runat="server" required></asp:TextBox>
+                                        <asp:DropDownList ID="dpRelacionProRef" runat="server" CssClass="form-control">
+                                            <asp:ListItem Text="Selecciona la relación con el referente" Value="" />
+                                            <asp:ListItem Text="Supervisor Directo" Value="Supervisor" />
+                                            <asp:ListItem Text="Compañero de Trabajo" Value="Compañero" />
+                                            <asp:ListItem Text="Subordinado" Value="Subordinado" />
+                                            <asp:ListItem Text="Cliente o Socio" Value="Cliente" />
+                                            <asp:ListItem Text="Profesor o Mentor" Value="Profesor" />
+                                            <asp:ListItem Text="Amigo o Conocido" Value="Amigo" />
+                                        </asp:DropDownList>
 
                                     </div>
                                     <div class="col-3"></div>
                                 </div>
                                 <div class="mb-5 mt-5 d-flex justify-content-center">
-                                    <button id="btnAgregarRef" runat="server" type="submit" class="btn btn-success">Agregar</button>
+                                    <asp:Button ID="btnAgregarRef" runat="server" OnClick="btnAgregarDetalles_ServerClick" CssClass="btn btn-success" Text="Agregar" />
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="idioma-tab-pane" role="tabpanel" aria-labelledby="idioma-tab" tabindex="0">
@@ -583,16 +596,18 @@
                                     <div class="col-3"></div>
                                     <div class="col-6">
                                         <h5 class="mb-0">Nombre del idioma</h5>
-                                        <asp:DropDownList ID="dpIdiomas" CssClass="form-control" runat="server"></asp:DropDownList>
+                                        <asp:DropDownList ID="dpIdiomas" CssClass="form-control" runat="server">
+                                            <asp:ListItem Value=""></asp:ListItem>
+                                        </asp:DropDownList>
                                         <br />
                                         <br />
                                         <h5 class="mb-0">Nivel</h5>
-                                        <asp:TextBox ID="txtNivelIdi" CssClass="form-control" MaxLength="400" TextMode="SingleLine" runat="server" required></asp:TextBox>
+                                        <asp:TextBox ID="txtNivelIdi" CssClass="form-control" MaxLength="400" TextMode="SingleLine" runat="server"></asp:TextBox>
                                     </div>
                                     <div class="col-3"></div>
                                 </div>
                                 <div class="mb-5 mt-5 d-flex justify-content-center">
-                                    <button id="btnAgregarIdi" runat="server" type="submit" class="btn btn-success">Agregar</button>
+                                    <asp:Button ID="btnAgregarIdi" runat="server" OnClick="btnAgregarDetalles_ServerClick" CssClass="btn btn-success" Text="Agregar" />
                                 </div>
                             </div>
                         </div>
@@ -603,11 +618,91 @@
         </div>
 
 
+        <!-- Modal visualizar PDF-->
+        <div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="TituloModal2" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header h-auto">
+
+                        <h4 class="modal-title fs-5" runat="server" style="text-align: center;" id="TituloModal2"></h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body modal-bodyO d-flex justify-content-center">
+                        <h6 runat="server" id="txtMensaje" visible="false"></h6>
+
+                        <div class="col-12 d-flex justify-content-between align-items-center">
+                            <div class="col-2">
+                                <button type="button" id="prev-page" class="btn btn-facebook btn-circle">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                        <path fill="#fff" d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1 1 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1 1 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23a1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <div class="col-8 pdf-containerO">
+                                <canvas id="pdf-canvasO"></canvas>
+                            </div>
+
+                            <div class="col-2">
+                                <button type="button" id="next-page" class="btn btn-facebook btn-circle">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                        <path fill="#fff" d="M13.47 8.53a.75.75 0 0 1 1.06-1.06l4 4a.75.75 0 0 1 0 1.06l-4 4a.75.75 0 1 1-1.06-1.06l2.72-2.72H6.5a.75.75 0 0 1 0-1.5h9.69z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal visualizar Soporte-->
+        <div class="modal fade" id="modal3" tabindex="-1" aria-labelledby="TituloModal3" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">                                                
+                        <h4 class="modal-title fs-5">Soporte</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body modal-bodyO d-flex justify-content-center">
+
+                        <div class="col-12 d-flex justify-content-between align-items-center">
+                            <div class="col-2">
+                                <button type="button" id="prev-page2" class="btn btn-facebook btn-circle">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                        <path fill="#fff" d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1 1 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1 1 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23a1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="col-8 pdf-containerO">
+                                <canvas id="pdf-canvas2"></canvas>
+
+                            </div>
+                            <div class="col-2">
+                                <button type="button" id="next-page2" class="btn btn-facebook btn-circle">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                        <path fill="#fff" d="M13.47 8.53a.75.75 0 0 1 1.06-1.06l4 4a.75.75 0 0 1 0 1.06l-4 4a.75.75 0 1 1-1.06-1.06l2.72-2.72H6.5a.75.75 0 0 1 0-1.5h9.69z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
 
 
 
 
-        <asp:ValidationSummary ID="vsErrores" runat="server" ForeColor="Red" />
+                        <div class="d-flex justify-content-center">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <asp:HiddenField ID="hfHojaVida" runat="server" />
+        <asp:HiddenField ID="hfSoporte" EnableViewState="false" runat="server" />
         <script src="recursos/js/main5.js"></script>
 
     </div>

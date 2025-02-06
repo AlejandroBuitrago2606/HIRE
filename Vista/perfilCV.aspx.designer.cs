@@ -42,6 +42,15 @@ namespace HIRE.Vista
         protected global::System.Web.UI.HtmlControls.HtmlImage imgFotoPerfil;
 
         /// <summary>
+        /// Control btnMostrarHojaVida.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnMostrarHojaVida;
+
+        /// <summary>
         /// Control txtTelefono.
         /// </summary>
         /// <remarks>
@@ -168,15 +177,6 @@ namespace HIRE.Vista
         protected global::System.Web.UI.WebControls.TextBox txtNuevaDescripcion;
 
         /// <summary>
-        /// Control rfvNombre.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvNombre;
-
-        /// <summary>
         /// Control cargarDocPDF.
         /// </summary>
         /// <remarks>
@@ -222,13 +222,13 @@ namespace HIRE.Vista
         protected global::System.Web.UI.WebControls.FileUpload fuSoporteExp;
 
         /// <summary>
-        /// Control Button1.
+        /// Control btnAgregarExp.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton Button1;
+        protected global::System.Web.UI.WebControls.Button btnAgregarExp;
 
         /// <summary>
         /// Control txtTituloProD.
@@ -255,7 +255,7 @@ namespace HIRE.Vista
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnAgregarProD;
+        protected global::System.Web.UI.WebControls.Button btnAgregarProD;
 
         /// <summary>
         /// Control txtTituloLogro.
@@ -318,7 +318,7 @@ namespace HIRE.Vista
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnAgregarLogroA;
+        protected global::System.Web.UI.WebControls.Button btnAgregarLogroA;
 
         /// <summary>
         /// Control txtTituloCertf.
@@ -354,7 +354,7 @@ namespace HIRE.Vista
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnAgregarCertf;
+        protected global::System.Web.UI.WebControls.Button btnAgregarCertf;
 
         /// <summary>
         /// Control dpCompetencia.
@@ -372,7 +372,7 @@ namespace HIRE.Vista
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnAgregarCompt;
+        protected global::System.Web.UI.WebControls.Button btnAgregarCompt;
 
         /// <summary>
         /// Control txtNombreRef.
@@ -420,22 +420,22 @@ namespace HIRE.Vista
         protected global::System.Web.UI.WebControls.TextBox txtCorreoRef;
 
         /// <summary>
-        /// Control txtTipoRef.
+        /// Control dpTipoRef.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTipoRef;
+        protected global::System.Web.UI.WebControls.DropDownList dpTipoRef;
 
         /// <summary>
-        /// Control txtRelacionProfRef.
+        /// Control dpRelacionProRef.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRelacionProfRef;
+        protected global::System.Web.UI.WebControls.DropDownList dpRelacionProRef;
 
         /// <summary>
         /// Control btnAgregarRef.
@@ -444,7 +444,7 @@ namespace HIRE.Vista
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnAgregarRef;
+        protected global::System.Web.UI.WebControls.Button btnAgregarRef;
 
         /// <summary>
         /// Control dpIdiomas.
@@ -471,15 +471,42 @@ namespace HIRE.Vista
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnAgregarIdi;
+        protected global::System.Web.UI.WebControls.Button btnAgregarIdi;
 
         /// <summary>
-        /// Control vsErrores.
+        /// Control TituloModal2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ValidationSummary vsErrores;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TituloModal2;
+
+        /// <summary>
+        /// Control txtMensaje.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtMensaje;
+
+        /// <summary>
+        /// Control hfHojaVida.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfHojaVida;
+
+        /// <summary>
+        /// Control hfSoporte.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfSoporte;
     }
 }

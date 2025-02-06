@@ -131,6 +131,7 @@
     <Content Include="Vista\perfilUsuario.aspx" />
     <Content Include="Vista\recuperarContrasena.aspx" />
     <Content Include="Vista\recursos\css\index.css" />
+    <Content Include="Vista\recursos\css\main2.css" />
     <Content Include="Vista\recursos\css\nicepage.css" />
     <Content Include="Vista\recursos\css\style.css" />
     <Content Include="Vista\recursos\css\style.min.css" />
@@ -2250,6 +2251,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Vista\recursos\hv-PDF\" />
+    <Folder Include="Vista\recursos\soportesExp\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

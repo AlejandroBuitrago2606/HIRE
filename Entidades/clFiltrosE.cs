@@ -9,11 +9,6 @@ namespace HIRE.Entidades
     {
 
 
-
-
-
-
-
     }
 
     public class clCargoE {
