@@ -39,3 +39,11 @@
     margin: 0; /* Elimina márgenes para centrarlo completamente */
     flex-grow: 1; /* Hace que el <h4> ocupe todo el espacio disponible y se centre */
 }
+
+
+#txtActualizarDescripcion {
+    width: auto; /* Ancho fijo */
+    height: auto; /* Altura automática inicialmente */
+    overflow: auto; /* Muestra una barra de desplazamiento si el contenido excede el área visible */
+    resize: vertical; /* Permite al usuario cambiar la altura, pero no el ancho */
+}

@@ -14,16 +14,12 @@ namespace HIRE.Logica
         clPerfilD objDatosD = new clPerfilD();
         public clTraerPerfilCV mtdListarCV(int idUsuario)
         {
-
-            clTraerPerfilCV objPerfilCV = objDatosD.mtdListarPerfil(idUsuario);
-
-            return objPerfilCV;
-
+            return objDatosD.mtdListarPerfil(idUsuario);
         }
 
         public bool mtdRegistrarCvL(int opcion, clDetallesPerfilCV objDatosCV, int idCV = 0)
         {
-            return (objDatosD.mtdRegistrarCvD(opcion, objDatosCV, idCV));
+            return objDatosD.mtdRegistrarCvD(opcion, objDatosCV, idCV);
         }
 
         public (List<clCompetenciaE>, List<clNivelAcademicoE>, ArrayList) mtdListarFiltros()
@@ -58,7 +54,18 @@ namespace HIRE.Logica
 
 
 
-            return (objCompetencia,objNivelAcademico, Idiomas);
+            return (objCompetencia, objNivelAcademico, Idiomas);
         }
+
+        public bool mtdActualizarCV(int opcion, clDetallesPerfilCV objDatosCV, int idCV = 0)
+        {
+            return objDatosD.mtdActualizarCV(opcion, objDatosCV, idCV);
+        }
+
+        public clDetallesPerfilCV mtdTraerDetalle(int opcion, int idDetalle2)
+        {
+            return objDatosD.mtdTraerDetalle(opcion, idDetalle2);
+        }
+
     }
 }

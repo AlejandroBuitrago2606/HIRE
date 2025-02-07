@@ -83,9 +83,6 @@
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Perfil profesional</button>
                         </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Actualizar CV</button>
-                        </li>
                     </ul>
 
 
@@ -100,13 +97,24 @@
 
                                 <%-- Descripcion CV --%>
                                 <div class="form-group" style="margin-bottom: 10%; margin-top: 0;">
+
                                     <div class="u-container-style mt-0 u-custom-color-2 u-group u-radius u-shape-round u-group-3">
                                         <div class="u-container-layout">
                                             <h4 class="u-hover-feature u-text u-text-default u-text-white u-text-8">PERFIL PROFESIONAL</h4>
                                         </div>
                                     </div>
 
-                                    <p id="txtDescripcionCV" runat="server"></p>
+
+
+                                    <p class="mt-3" id="txtDescripcionCV" runat="server"></p>
+                                    <button type="submit" id="btnAbrirModalActualizarCV" onserverclick="btnAbrirModalActualizarCV_ServerClick" class="btn btn-circle mt-0" runat="server">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24">
+                                            <path fill="#595959" d="M5 19h1.425L16.2 9.225L14.775 7.8L5 17.575zm-1 2q-.425 0-.712-.288T3 20v-2.425q0-.4.15-.763t.425-.637L16.2 3.575q.3-.275.663-.425t.762-.15t.775.15t.65.45L20.425 5q.3.275.437.65T21 6.4q0 .4-.138.763t-.437.662l-12.6 12.6q-.275.275-.638.425t-.762.15zM19 6.4L17.6 5zm-3.525 2.125l-.7-.725L16.2 9.225z" />
+                                        </svg>
+                                    </button>
+
+
+
                                     <button type="button" runat="server" visible="false" id="btnAgregarCV" class="btn ml-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="border: 1px solid; border-radius: 50px; width: 50px; height: 50px;">
                                         <span>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -138,7 +146,7 @@
                                                         <p><b><%# Eval("titulo") %></b></p>
                                                         <p><%# Eval("descripcion") %></p>
 
-                                                        <p>Soporte</p>
+                                                        <p class="mb-0">Soporte</p>
 
 
                                                         <asp:Button ID="btnVerSoporte" CommandName="abrirSoporte" CssClass="btn btn-warning" runat="server" Text="Ver soporte" />
@@ -316,14 +324,6 @@
                             </div>
 
                         </div>
-                        <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-                            <div class=" d-flex justify-content-center">
-                                <h4>Modificar Datos CV</h4>
-                            </div>
-
-
-                        </div>
-
                     </div>
 
                     <%-- aaaaa --%>
@@ -663,7 +663,7 @@
         <div class="modal fade" id="modal3" tabindex="-1" aria-labelledby="TituloModal3" aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
-                    <div class="modal-header">                                                
+                    <div class="modal-header">
                         <h4 class="modal-title fs-5">Soporte</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -689,17 +689,140 @@
                                 </button>
                             </div>
                         </div>
-
-
-
-
-                        <div class="d-flex justify-content-center">
-                        </div>
-
                     </div>
                 </div>
             </div>
         </div>
+
+        <%-- Modal Actualizar Detalles CV --%>
+        <div class="modal fade" id="modalActualizarDetalles" tabindex="-1" aria-labelledby="modalProDTitle" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title fs-5" runat="server" id="modalTitleDynamic"></h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <!-- Perfil Profesional -->
+                        <div id="divPerfilProfesional" runat="server" visible="false">                            
+                            <textarea id="txtActualizarDescripcion" class="form-control" runat="server" cols="20" rows="2"></textarea>
+                        </div>
+
+                        <!-- Hoja de Vida -->
+                        <div id="divHojadeVida" runat="server" visible="false">
+                            <h5 class="mb-0" id="h5UrlArchivo" runat="server">Sube tu hoja de vida</h5>
+                            <asp:FileUpload ID="fuUrlArchivo" CssClass="form-control" runat="server" accept=".pdf" />
+                        </div>
+
+                        <!-- Actualizar Competencia -->
+                        <div id="divRegistroCompetencia" runat="server" visible="false">
+                            <h5 class="mb-0" id="h5Competencia" runat="server">Competencia</h5>
+                            <asp:DropDownList ID="dpActualizarCompetencia" CssClass="form-control" runat="server"></asp:DropDownList>
+                        </div>
+
+                        <!-- Certificación -->
+                        <div id="divCertificacion" runat="server" visible="false">
+                            <h5 class="mb-0" id="h5DescripcionCertificacion" runat="server">Descripción</h5>
+                            <textarea id="txtActualizarDescripcionCertificacion" class="form-control" runat="server" cols="20" rows="2"></textarea>
+                            <br />
+                            <h5 class="mb-0" id="h5Entidad" runat="server">Entidad</h5>
+                            <asp:TextBox ID="txtActualizarEntidad" CssClass="form-control" TextMode="SingleLine" runat="server"></asp:TextBox>
+                            <br />
+                            <h5 class="mb-0" id="h5FechaCertificacion" runat="server">Fecha</h5>
+                            <asp:TextBox ID="txtActualizarFecha" CssClass="form-control" TextMode="Date" runat="server"></asp:TextBox>
+                        </div>
+
+                        <!-- Proyecto de Desarrollo -->
+                        <div id="divProyectoDesarrollo" runat="server" visible="false">
+                            <h5 class="mb-0" id="h5TituloProyecto" runat="server">Título</h5>
+                            <asp:TextBox ID="txtActualizarTitulo" CssClass="form-control" TextMode="SingleLine" runat="server"></asp:TextBox>
+                            <br />
+                            <h5 class="mb-0" id="h5DescripcionProyecto" runat="server">Descripción</h5>
+                            <textarea id="txtActualizarDescripcionProyecto" class="form-control" runat="server" cols="20" rows="2"></textarea>
+                        </div>
+
+                        <!-- Referencia -->
+                        <div id="divReferencia" runat="server" visible="false">
+                            <h5 class="mb-0" id="h5Nombre" runat="server">Nombre</h5>
+                            <asp:TextBox ID="txtActualizarNombre" CssClass="form-control" TextMode="SingleLine" runat="server"></asp:TextBox>
+                            <br />
+                            <h5 class="mb-0" id="h5Cargo" runat="server">Cargo</h5>
+                            <asp:TextBox ID="txtActualizarCargo" CssClass="form-control" TextMode="SingleLine" runat="server"></asp:TextBox>
+                            <br />
+                            <h5 class="mb-0" id="h5Telefono" runat="server">Teléfono</h5>
+                            <asp:TextBox ID="txtActualizarTelefono" CssClass="form-control" TextMode="Phone" runat="server"></asp:TextBox>
+                            <br />
+                            <h5 class="mb-0" id="h5Correo" runat="server">Correo Electrónico</h5>
+                            <asp:TextBox ID="txtActualizarCorreo" CssClass="form-control" TextMode="Email" runat="server"></asp:TextBox>
+                            <br />
+                            <h5 class="mb-0" id="h5TipoRef" runat="server">Tipo de Referencia</h5>
+                            <asp:DropDownList ID="dpActualizarTipoRef" CssClass="form-control" runat="server">
+                            </asp:DropDownList>
+                            <br />
+                            <h5 class="mb-0" id="h5RelacionPro" runat="server">Relación Profesional</h5>
+                            <asp:DropDownList ID="dpActualizarRelacionPro" CssClass="form-control" runat="server"></asp:DropDownList>
+                        </div>
+
+                        <!-- Idioma -->
+                        <div id="divIdioma" runat="server" visible="false">
+                            <h5 class="mb-0" id="h5Idioma" runat="server">Idioma</h5>
+                            <asp:DropDownList ID="dpActualizarIdioma" CssClass="form-control" runat="server"></asp:DropDownList>
+                            <br />
+                            <h5 class="mb-0" id="h5NivelIdioma" runat="server">Nivel</h5>
+                            <asp:TextBox ID="txtActualizarNivel" CssClass="form-control" TextMode="SingleLine" runat="server"></asp:TextBox>
+                        </div>
+
+                        <!-- Experiencia -->
+                        <div id="divExperiencia" runat="server" visible="false">
+                            <h5 class="mb-0" id="h5TituloExperiencia" runat="server">Título</h5>
+                            <asp:TextBox ID="txtActualizarTituloExperiencia" CssClass="form-control" TextMode="SingleLine" runat="server"></asp:TextBox>
+                            <br />
+                            <h5 class="mb-0" id="h5DescripcionExperiencia" runat="server">Descripción</h5>
+                            <textarea id="txtActualizarDescripcionExperiencia" class="form-control" runat="server" cols="20" rows="2"></textarea>
+                            <br />
+                            <h5 class="mb-0" id="h5UrlArchivoExperiencia" runat="server">Archivo de Soporte</h5>
+                            <asp:FileUpload ID="fuUrlArchivoExperiencia" CssClass="form-control" runat="server" accept=".pdf" />
+                        </div>
+
+                        <!-- Logro Académico -->
+                        <div id="divLogroAcademico" runat="server" visible="false">
+                            <h5 class="mb-0" id="h5TituloLogro" runat="server">Título</h5>
+                            <asp:TextBox ID="txtActualizarTituloLogro" CssClass="form-control" TextMode="SingleLine" runat="server"></asp:TextBox>
+                            <br />
+                            <h5 class="mb-0" id="h5EntidadLogro" runat="server">Entidad</h5>
+                            <asp:TextBox ID="txtActualizarEntidadLogro" CssClass="form-control" TextMode="SingleLine" runat="server"></asp:TextBox>
+                            <br />
+                            <h5 class="mb-0" id="h5PeriodoLogro" runat="server">Período</h5>
+                            <asp:TextBox ID="txtActualizarPeriodoLogro" CssClass="form-control" TextMode="SingleLine" runat="server"></asp:TextBox>
+                            <br />
+                            <h5 class="mb-0" id="h5UbicacionLogro" runat="server">Ubicación</h5>
+                            <asp:TextBox ID="txtActualizarUbicacionLogro" CssClass="form-control" TextMode="SingleLine" runat="server"></asp:TextBox>
+                            <br />
+                            <h5 class="mb-0" id="h5FechaLogro" runat="server">Fecha</h5>
+                            <asp:TextBox ID="txtActualizarFechaLogro" CssClass="form-control" TextMode="Date" runat="server"></asp:TextBox>
+                            <br />
+                            <h5 class="mb-0" id="h5NivelAcademico" runat="server">Nivel Académico</h5>
+                            <asp:DropDownList ID="dpActualizarNivelAcademico" CssClass="form-control" runat="server"></asp:DropDownList>
+                        </div>
+                        <asp:HiddenField ID="hfIdDetalle" runat="server" />
+
+                    </div>
+                    <div class="modal-footer">
+                        <asp:Button ID="d11" CssClass="btn btn-warning" OnClick="btnActualizarDetalles_ServerClick" Visible="false" runat="server" Text="Guardar Cambios" />
+                        <asp:Button ID="d12" CssClass="btn btn-warning" OnClick="btnActualizarDetalles_ServerClick" Visible="false" runat="server" Text="Guardar Cambios" />
+                        <asp:Button ID="d2" CssClass="btn btn-warning" OnClick="btnActualizarDetalles_ServerClick" Visible="false" runat="server" Text="Guardar Cambios" />
+                        <asp:Button ID="d3" CssClass="btn btn-warning" OnClick="btnActualizarDetalles_ServerClick" Visible="false" runat="server" Text="Guardar Cambios" />
+                        <asp:Button ID="d4" CssClass="btn btn-warning" OnClick="btnActualizarDetalles_ServerClick" Visible="false" runat="server" Text="Guardar Cambios" />
+                        <asp:Button ID="d5" CssClass="btn btn-warning" OnClick="btnActualizarDetalles_ServerClick" Visible="false" runat="server" Text="Guardar Cambios" />
+                        <asp:Button ID="d6" CssClass="btn btn-warning" OnClick="btnActualizarDetalles_ServerClick" Visible="false" runat="server" Text="Guardar Cambios" />
+                        <asp:Button ID="d7" CssClass="btn btn-warning" OnClick="btnActualizarDetalles_ServerClick" Visible="false" runat="server" Text="Guardar Cambios" />
+                        <asp:Button ID="d8" CssClass="btn btn-warning" OnClick="btnActualizarDetalles_ServerClick" Visible="false" runat="server" Text="Guardar Cambios" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <asp:HiddenField ID="hfHojaVida" runat="server" />
         <asp:HiddenField ID="hfSoporte" EnableViewState="false" runat="server" />

@@ -506,5 +506,84 @@ namespace HIRE.Vista
 
         }
 
+        protected void btnActualizarDetalles_ServerClick(object sender, EventArgs e)
+        {
+
+            Button botonSeleccionado = (Button)sender;
+            int idCV = int.Parse(Session["idCV"].ToString());
+            int accionAejecutar = int.Parse(botonSeleccionado.ID.Replace("d", ""));
+
+            clPerfilL objPerfilL = new clPerfilL();
+            clDetallesPerfilCV objDetallesPerfil = new clDetallesPerfilCV();
+
+            switch (accionAejecutar)
+            {
+
+                case 11:
+                    clPerfilE objDatosPerfil = new clPerfilE { perfilProfesional = txtActualizarDescripcion.Value};
+                    objDetallesPerfil.DatosCV = objDatosPerfil;
+                    if (objPerfilL.mtdActualizarCV(accionAejecutar, objDetallesPerfil, idCV))
+                    {
+
+                        string actualizacionDetallesExitoso = "alertify.success('Perfil Actualizado'); setTimeout(function(){ window.location.href = 'perfilCV.aspx'; }, 2000);";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "actualizacionDetallesExitoso", actualizacionDetallesExitoso, true);
+
+                    }
+                    else
+                    {
+                        string detallesCVFallido = "alertify.error('Ocurrio un error, verifica la informacion ingresada.');";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "detallesCVFallido", detallesCVFallido, true);
+                    }
+
+                    break;
+
+                case 12:
+                    break;
+
+                case 2:
+                    break;
+
+                case 3:
+                    break;
+
+                case 4:
+                    break;
+
+                case 5:
+                    break;
+
+                case 6:
+                    break;
+
+                case 7:
+                    break;
+
+                case 8:
+                    break;
+            
+            }
+
+
+
+        }
+
+        protected void btnAbrirModalActualizarCV_ServerClick(object sender, EventArgs e)
+        {
+            hfIdDetalle.Value = "";
+            int idCV = int.Parse(Session["idCV"].ToString());
+            clPerfilL objPErfilL = new clPerfilL();
+            clDetallesPerfilCV objDetalles = objPErfilL.mtdTraerDetalle(1, idCV);
+
+            txtActualizarDescripcion.Value = objDetalles.DatosCV.perfilProfesional;
+            hfIdDetalle.Value = idCV.ToString();
+            divPerfilProfesional.Visible = true;
+            d11.Visible = true;
+            modalTitleDynamic.InnerText = "Actualizar descripción";
+
+            string mostrarModal = @"const modal = new bootstrap.Modal(document.getElementById('modalActualizarDetalles'));
+            modal.show();";
+            ScriptManager.RegisterStartupScript(this, GetType(), "mostrarModal", mostrarModal, true);
+
+        }
     }
 }
