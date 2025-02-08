@@ -36,8 +36,7 @@ namespace HIRE
             Session["ruta"] = "";
             Session["correoEnviado"] = "false";
             Session["registro"] = false;
-            Session["codigo"] = "";
-            Session["foto"] = "";
+            Session["codigo"] = "";            
             Session["contador"] = 0;
             Session["fotoEmpresa"] = "";
             Session["coordenadas"] = "";
@@ -73,7 +72,7 @@ namespace HIRE
             Session["codigo"] = "";
             Session["contador"] = 0;
             Session["fotoEmpresa"] = "";
-            Session["coordenadas"] = "";
+            Session["coordenadas"] = "";            
             Session["idCV"] = "";
 
         }

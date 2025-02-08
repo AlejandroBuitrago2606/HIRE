@@ -649,7 +649,7 @@ namespace HIRE.Datos
                             {
                                 while (fila.Read())
                                 {
-                                    objCertf.idCertificacion = int.Parse(fila[""].ToString());
+                                    objCertf.idCertificacion = int.Parse(fila["idCertificacion"].ToString());
                                     objCertf.descripcionCertificacion = fila["descripcion"].ToString();
                                     objCertf.nombreInstitucion = fila["nombreInstitucion"].ToString();
                                     objCertf.fechaObtencion = fila["fechaObtencion"].ToString();

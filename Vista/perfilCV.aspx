@@ -35,12 +35,21 @@
                         <div class="u-layout-col">
                             <div class="u-container-style u-layout-cell u-shape-rectangle u-size-30 u-layout-cell-1">
                                 <div class="u-container-layout u-container-layout-2">
+
                                     <img class="u-image u-image-default u-image-2" src="recursos/imagenes/7a2bf1a28924bf88e84a734a10a832788a08fef2.png"
                                         alt="" data-image-width="1024" data-image-height="1024">
-                                    <button type="button" id="btnMostrarHojaVida" runat="server" data-bs-toggle="modal" data-bs-target="#modal2" onclick="mostrarPDF();" class="u-align-center u-border-2 u-border-grey-75 u-btn u-btn-round u-button-style u-custom-color-3 u-radius u-btn-1">
-                                        <span class="u-file-icon u-icon u-icon-1">
-                                            <img src="recursos/imagenes/88653.png" alt=""></span>
-                                    </button>
+
+                                    <div class="input-group mt-3 m-0 d-flex justify-content-center">
+                                        <button type="button" id="btnMostrarHojaVida" class="btn btn-success" runat="server" data-bs-toggle="modal" data-bs-target="#modal2" onclick="mostrarPDF();">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                                <g fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                                    <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0-4 0" />
+                                                    <path d="M21 12q-3.6 6-9 6t-9-6q3.6-6 9-6t9 6" />
+                                                </g></svg>
+                                        </button>
+                                        <asp:Button ID="a9" OnClick="btnAbrirModalActualizarCV_ServerClick" Style="border: 1px solid;" CssClass="btn" Text="✏️" runat="server" />
+
+                                    </div>
                                 </div>
                             </div>
                             <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-2">
@@ -107,12 +116,7 @@
 
 
                                     <p class="mt-3" id="txtDescripcionCV" runat="server"></p>
-                                    <button type="submit" id="btnAbrirModalActualizarCV" onserverclick="btnAbrirModalActualizarCV_ServerClick" class="btn btn-circle mt-0" runat="server">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24">
-                                            <path fill="#595959" d="M5 19h1.425L16.2 9.225L14.775 7.8L5 17.575zm-1 2q-.425 0-.712-.288T3 20v-2.425q0-.4.15-.763t.425-.637L16.2 3.575q.3-.275.663-.425t.762-.15t.775.15t.65.45L20.425 5q.3.275.437.65T21 6.4q0 .4-.138.763t-.437.662l-12.6 12.6q-.275.275-.638.425t-.762.15zM19 6.4L17.6 5zm-3.525 2.125l-.7-.725L16.2 9.225z" />
-                                        </svg>
-                                    </button>
-
+                                    <asp:Button ID="a1" OnClick="btnAbrirModalActualizarCV_ServerClick" CssClass="btn btn-circle mt-0" runat="server" Text="✏️" />
 
 
                                     <button type="button" runat="server" visible="false" id="btnAgregarCV" class="btn ml-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="border: 1px solid; border-radius: 50px; width: 50px; height: 50px;">
@@ -142,13 +146,14 @@
                                                 <ItemTemplate>
                                                     <hr class="my-4 w-100 mx-auto" style="background-color: #10317A; height: 2px; border: none;">
                                                     <div class="mb-3">
-
-                                                        <p><b><%# Eval("titulo") %></b></p>
+                                                        <div class="input-group">
+                                                            <p><b><%# Eval("titulo") %></b></p>
+                                                            <asp:Button ID="a7" OnClick="btnAbrirModalActualizarCV_ServerClick" CssClass="btn" runat="server" Text="✏️" />
+                                                        </div>
                                                         <p><%# Eval("descripcion") %></p>
 
                                                         <p class="mb-0">Soporte</p>
-
-
+                                                        <asp:HiddenField ID="hfIDExperiencia" Value='<%# Eval("idExperiencia") %>' runat="server" />
                                                         <asp:Button ID="btnVerSoporte" CommandName="abrirSoporte" CssClass="btn btn-warning" runat="server" Text="Ver soporte" />
                                                         <asp:HiddenField ID="hfRutaSoporte" Value='<%# Eval("soporte") %>' runat="server" />
                                                     </div>
@@ -171,10 +176,12 @@
                                                     <hr class="my-4 w-auto mx-auto" style="background-color: #10317A">
                                                     <div class="mb-3">
 
-                                                        <p><b><%# Eval("titulo") %></b></p>
-
+                                                        <div class="input-group">
+                                                            <p><b><%# Eval("titulo") %></b></p>
+                                                            <asp:Button ID="a4" OnClick="btnAbrirModalActualizarCV_ServerClick" CssClass="btn" runat="server" Text="✏️" />
+                                                        </div>
                                                         <p><%# Eval("descripcion") %></p>
-
+                                                        <asp:HiddenField ID="hfIDProD" Value='<%# Eval("idProyectoDesarrollo") %>' runat="server" />
                                                     </div>
 
                                                 </ItemTemplate>
@@ -196,13 +203,16 @@
                                                     <hr class="my-4 w-auto mx-auto" style="background-color: #10317A">
                                                     <div style="margin-bottom: 12px">
 
-                                                        <p><b>Titulo:</b><%# " " + Eval("tituloLogroAcademico") %></p>
+                                                        <div class="input-group">
+                                                            <p><b>Titulo:</b><%# " " + Eval("tituloLogroAcademico") %></p>
+                                                            <asp:Button ID="a8" OnClick="btnAbrirModalActualizarCV_ServerClick" CssClass="btn" runat="server" Text="✏️" />
+                                                        </div>
                                                         <p><b>Institución:</b><%# " " + Eval("nombreInstitucion") %></p>
                                                         <p><b>Periodo:</b><%# " " + Eval("periodoTiempo") %></p>
                                                         <p><b>Ubicacion:</b><%# " " + Eval("ubicacion") %></p>
                                                         <p><b>Fecha:</b> <%# " " + Convert.ToDateTime(Eval("fechaEntrega")).ToString("yyyy-MM-dd") %></p>
                                                         <p><b>Nivel academico:</b><%# " " + Eval("nivel") %></p>
-
+                                                        <asp:HiddenField ID="hfIDlogroAcademico" Value='<%# Eval("idLogroAcademico") %>' runat="server" />
 
                                                     </div>
 
@@ -223,13 +233,13 @@
                                                 <ItemTemplate>
                                                     <hr class="my-4 w-auto mx-auto" style="background-color: #10317A">
                                                     <div class="mb-3">
-
-                                                        <p><b><%# Eval("descripcionCertificacion") %></b></p>
-
+                                                        <div class="input-group">
+                                                            <p><b><%# Eval("descripcionCertificacion") %></b></p>
+                                                            <asp:Button ID="a3" OnClick="btnAbrirModalActualizarCV_ServerClick" CssClass="btn" runat="server" Text="✏️" />
+                                                        </div>
                                                         <p><b>Instituto:</b><%# " " + Eval("nombreInstitucion") %></p>
-
                                                         <p><b>Fecha:</b><%# " " + Convert.ToDateTime(Eval("fechaObtencion")).ToString("yyyy-MM-dd") %></p>
-
+                                                        <asp:HiddenField ID="hfIDCertificacion" Value='<%# Eval("idCertificacion") %>' runat="server" />
                                                     </div>
 
                                                 </ItemTemplate>
@@ -250,10 +260,13 @@
                                                     <hr class="my-4 w-auto mx-auto" style="background-color: #10317A">
                                                     <div class="mb-3">
 
-                                                        <p><b><%# Eval("nombre") %></b></p>
+                                                        <div class="input-group">
+                                                            <p><b><%# Eval("nombre") %></b></p>
+                                                            <asp:Button ID="a2" OnClick="btnAbrirModalActualizarCV_ServerClick" CssClass="btn" runat="server" Text="✏️" />
+                                                        </div>
                                                         <p>(<%# Eval("nombreCategoria") %>)</p>
                                                         <p><%# Eval("descripcion") %></p>
-
+                                                        <asp:HiddenField ID="hfIDcvc" Value='<%# Eval("idCurriculumVitaeCompetencia") %>' runat="server" />
                                                     </div>
 
                                                 </ItemTemplate>
@@ -274,7 +287,12 @@
                                                     <hr class="my-4 w-auto mx-auto" style="background-color: #10317A">
                                                     <div class="mb-3">
 
-                                                        <p><b>Persona de referencia:</b><%# " " + Eval("nombreReferencia") %></p>
+                                                        <div class="input-group" style="height: auto">
+                                                            <p><b>Persona de referencia:</b><%# " " + Eval("nombreReferencia") %></p>
+                                                            <asp:Button ID="a5" OnClick="btnAbrirModalActualizarCV_ServerClick" CssClass="btn" runat="server" Text="✏️" />
+                                                        </div>
+
+
 
                                                         <p><b>Cargo:</b><%# " " +  Eval("cargo") %></p>
 
@@ -287,6 +305,8 @@
                                                         <p><b>Tipo de referencia:</b><%# " " +  Eval("tipoReferencia") %></p>
 
                                                         <p><b>Relacion profesional:</b><%# " " +  Eval("relacionProfesional") %></p>
+
+                                                        <asp:HiddenField ID="hfIDReferencia" Value='<%# Eval("idReferencia") %>' runat="server" />
 
                                                     </div>
 
@@ -307,10 +327,12 @@
                                                 <ItemTemplate>
                                                     <hr class="my-4 w-auto mx-auto" style="background-color: #10317A">
                                                     <div class="mb-3">
-
-                                                        <p><b>Idioma:</b><%# " " + Eval("nombre") %></p>
+                                                        <div class="input-group">
+                                                            <p><b>Idioma:</b><%# " " + Eval("nombre") %></p>
+                                                            <asp:Button ID="a6" OnClick="btnAbrirModalActualizarCV_ServerClick" CssClass="btn" runat="server" Text="✏️" />
+                                                        </div>
                                                         <p><b>Nivel:</b><%# " " + Eval("nivel") %></p>
-
+                                                        <asp:HiddenField ID="hfIDidioma" Value='<%# Eval("idIdioma") %>' runat="server" />
                                                     </div>
 
                                                 </ItemTemplate>
@@ -624,8 +646,9 @@
                 <div class="modal-content">
                     <div class="modal-header h-auto">
 
-                        <h4 class="modal-title fs-5" runat="server" style="text-align: center;" id="TituloModal2"></h4>
+                        <h4 class="modal-title fs-5" runat="server" style="text-align: center;">Hoja de vida</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
                     </div>
                     <div class="modal-body modal-bodyO d-flex justify-content-center">
                         <h6 runat="server" id="txtMensaje" visible="false"></h6>
@@ -705,24 +728,23 @@
                     <div class="modal-body">
 
                         <!-- Perfil Profesional -->
-                        <div id="divPerfilProfesional" runat="server" visible="false">                            
+                        <div id="divPerfilProfesional" class="mt-3" runat="server" visible="false">
                             <textarea id="txtActualizarDescripcion" class="form-control" runat="server" cols="20" rows="2"></textarea>
                         </div>
 
                         <!-- Hoja de Vida -->
-                        <div id="divHojadeVida" runat="server" visible="false">
-                            <h5 class="mb-0" id="h5UrlArchivo" runat="server">Sube tu hoja de vida</h5>
+                        <div id="divHojadeVida" class="mt-3" runat="server" visible="false">
+                            <h5 class="mb-0" id="h5UrlArchivo" runat="server">Sube tu hoja de vida <b>(Unicamente PDF)</b></h5>
                             <asp:FileUpload ID="fuUrlArchivo" CssClass="form-control" runat="server" accept=".pdf" />
                         </div>
 
                         <!-- Actualizar Competencia -->
-                        <div id="divRegistroCompetencia" runat="server" visible="false">
-                            <h5 class="mb-0" id="h5Competencia" runat="server">Competencia</h5>
+                        <div id="divRegistroCompetencia" class="mt-3" runat="server" visible="false">                            
                             <asp:DropDownList ID="dpActualizarCompetencia" CssClass="form-control" runat="server"></asp:DropDownList>
                         </div>
 
                         <!-- Certificación -->
-                        <div id="divCertificacion" runat="server" visible="false">
+                        <div id="divCertificacion" class="mt-3" runat="server" visible="false">
                             <h5 class="mb-0" id="h5DescripcionCertificacion" runat="server">Descripción</h5>
                             <textarea id="txtActualizarDescripcionCertificacion" class="form-control" runat="server" cols="20" rows="2"></textarea>
                             <br />
@@ -734,7 +756,7 @@
                         </div>
 
                         <!-- Proyecto de Desarrollo -->
-                        <div id="divProyectoDesarrollo" runat="server" visible="false">
+                        <div id="divProyectoDesarrollo" class="mt-3" runat="server" visible="false">
                             <h5 class="mb-0" id="h5TituloProyecto" runat="server">Título</h5>
                             <asp:TextBox ID="txtActualizarTitulo" CssClass="form-control" TextMode="SingleLine" runat="server"></asp:TextBox>
                             <br />
@@ -743,7 +765,7 @@
                         </div>
 
                         <!-- Referencia -->
-                        <div id="divReferencia" runat="server" visible="false">
+                        <div id="divReferencia" runat="server" class="mt-3" visible="false">
                             <h5 class="mb-0" id="h5Nombre" runat="server">Nombre</h5>
                             <asp:TextBox ID="txtActualizarNombre" CssClass="form-control" TextMode="SingleLine" runat="server"></asp:TextBox>
                             <br />
@@ -758,14 +780,26 @@
                             <br />
                             <h5 class="mb-0" id="h5TipoRef" runat="server">Tipo de Referencia</h5>
                             <asp:DropDownList ID="dpActualizarTipoRef" CssClass="form-control" runat="server">
+                                <asp:ListItem Text="Selecciona el tipo de referencia" Value="" />
+                                <asp:ListItem Text="Referencia Laboral" Value="Referencia Laboral" />
+                                <asp:ListItem Text="Referencia Académica" Value="Referencia Académica" />
+                                <asp:ListItem Text="Referencia Personal" Value="Referencia Personal" />
                             </asp:DropDownList>
                             <br />
                             <h5 class="mb-0" id="h5RelacionPro" runat="server">Relación Profesional</h5>
-                            <asp:DropDownList ID="dpActualizarRelacionPro" CssClass="form-control" runat="server"></asp:DropDownList>
+                            <asp:DropDownList ID="dpActualizarRelacionPro" CssClass="form-control" runat="server">
+                                <asp:ListItem Text="Selecciona la relación con el referente" Value="" />
+                                <asp:ListItem Text="Supervisor Directo" Value="Supervisor" />
+                                <asp:ListItem Text="Compañero de Trabajo" Value="Compañero" />
+                                <asp:ListItem Text="Subordinado" Value="Subordinado" />
+                                <asp:ListItem Text="Cliente o Socio" Value="Cliente" />
+                                <asp:ListItem Text="Profesor o Mentor" Value="Profesor" />
+                                <asp:ListItem Text="Amigo o Conocido" Value="Amigo" />
+                            </asp:DropDownList>
                         </div>
 
                         <!-- Idioma -->
-                        <div id="divIdioma" runat="server" visible="false">
+                        <div id="divIdioma" runat="server" class="mt-3" visible="false">
                             <h5 class="mb-0" id="h5Idioma" runat="server">Idioma</h5>
                             <asp:DropDownList ID="dpActualizarIdioma" CssClass="form-control" runat="server"></asp:DropDownList>
                             <br />
@@ -774,7 +808,7 @@
                         </div>
 
                         <!-- Experiencia -->
-                        <div id="divExperiencia" runat="server" visible="false">
+                        <div id="divExperiencia" runat="server" class="mt-3" visible="false">
                             <h5 class="mb-0" id="h5TituloExperiencia" runat="server">Título</h5>
                             <asp:TextBox ID="txtActualizarTituloExperiencia" CssClass="form-control" TextMode="SingleLine" runat="server"></asp:TextBox>
                             <br />
@@ -786,7 +820,7 @@
                         </div>
 
                         <!-- Logro Académico -->
-                        <div id="divLogroAcademico" runat="server" visible="false">
+                        <div id="divLogroAcademico" class="mt-3" runat="server" visible="false">
                             <h5 class="mb-0" id="h5TituloLogro" runat="server">Título</h5>
                             <asp:TextBox ID="txtActualizarTituloLogro" CssClass="form-control" TextMode="SingleLine" runat="server"></asp:TextBox>
                             <br />
@@ -825,7 +859,7 @@
 
 
         <asp:HiddenField ID="hfHojaVida" runat="server" />
-        <asp:HiddenField ID="hfSoporte" EnableViewState="false" runat="server" />
+        <asp:HiddenField ID="hfSoporte" runat="server" />
         <script src="recursos/js/main5.js"></script>
 
     </div>

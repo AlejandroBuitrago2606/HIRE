@@ -51,6 +51,15 @@ namespace HIRE.Vista
         protected global::System.Web.UI.HtmlControls.HtmlButton btnMostrarHojaVida;
 
         /// <summary>
+        /// Control a9.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button a9;
+
+        /// <summary>
         /// Control txtTelefono.
         /// </summary>
         /// <remarks>
@@ -87,13 +96,13 @@ namespace HIRE.Vista
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtDescripcionCV;
 
         /// <summary>
-        /// Control btnAbrirModalActualizarCV.
+        /// Control a1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnAbrirModalActualizarCV;
+        protected global::System.Web.UI.WebControls.Button a1;
 
         /// <summary>
         /// Control btnAgregarCV.
@@ -483,15 +492,6 @@ namespace HIRE.Vista
         protected global::System.Web.UI.WebControls.Button btnAgregarIdi;
 
         /// <summary>
-        /// Control TituloModal2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TituloModal2;
-
-        /// <summary>
         /// Control txtMensaje.
         /// </summary>
         /// <remarks>
@@ -562,15 +562,6 @@ namespace HIRE.Vista
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divRegistroCompetencia;
-
-        /// <summary>
-        /// Control h5Competencia.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl h5Competencia;
 
         /// <summary>
         /// Control dpActualizarCompetencia.
