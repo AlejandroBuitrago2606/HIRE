@@ -28,8 +28,7 @@
 </asp:Content>
 <asp:Content ID="Content2" style="" ContentPlaceHolderID="Content_Body" runat="server">
 
-    <asp:ScriptManager runat="server"></asp:ScriptManager>
-    <div style="background-image: url('../Vista/recursos/imagenes/fondoModerno3.jpg'); background-repeat: no-repeat; background-position: top right;">
+    <asp:ScriptManager runat="server"></asp:ScriptManager>    
         <div class="container">
 
             <div class="row">
@@ -211,7 +210,7 @@
 
             </div>
         </div>
-    </div>
+    
 
 
     <script src="recursos/js/main3.js"></script>
