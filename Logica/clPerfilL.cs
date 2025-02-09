@@ -59,12 +59,12 @@ namespace HIRE.Logica
 
         public bool mtdActualizarCV(int opcion, clDetallesPerfilCV objDatosCV, int idCV = 0)
         {
-            return objDatosD.mtdActualizarCV(opcion, objDatosCV, idCV);
+            return (objDatosD.mtdActualizarCV(opcion, objDatosCV, idCV));
         }
 
         public clDetallesPerfilCV mtdTraerDetalle(int opcion, int idDetalle2)
         {
-            return objDatosD.mtdTraerDetalle(opcion, idDetalle2);
+            return (objDatosD.mtdTraerDetalle(opcion, idDetalle2));
         }
 
     }

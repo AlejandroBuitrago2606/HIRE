@@ -368,14 +368,7 @@ span.fr-img-caption.fr-view {
   pointer-events: none!important;
 }
 /*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */
-html {
-  font-family: sans-serif;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-}
-body {
-  margin: 0;
-}
+
 article,
 aside,
 details,
@@ -18362,13 +18355,7 @@ div.u-video,
 .u-flip-horizontal.u-flip-vertical {
   transform: scaleX(-1) scaleY(-1);
 }
-html {
-  font-size: 16px;
-}
-.u-body {
-  font-size: 1rem;
-  line-height: 1.6;
-}
+
 .u-body h1,
 .u-body h2,
 .u-body h3,
@@ -44495,13 +44482,6 @@ a.u-link.u-text-hover-grey-90:hover {
         margin-bottom: 20px;
         line-height: 1.6;
         }
-        ul:not(.u-unstyled)
-        {
-        font-size: 1.125rem;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        line-height: 1.6;
-        }
         ol
         {
         font-size: 1.125rem;
@@ -44837,7 +44817,3 @@ a.u-link.u-text-hover-grey-90:hover {
     width: 340px;
   }
 }
-
- /*begin-variables base-font-size*/ 
- html { font-size: 16px; }
- /*end-variables base-font-size*/

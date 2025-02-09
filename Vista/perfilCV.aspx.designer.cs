@@ -726,6 +726,24 @@ namespace HIRE.Vista
         protected global::System.Web.UI.WebControls.TextBox txtActualizarCargo;
 
         /// <summary>
+        /// Control h1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl h1;
+
+        /// <summary>
+        /// Control txtActualizarEmpresaRef.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtActualizarEmpresaRef;
+
+        /// <summary>
         /// Control h5Telefono.
         /// </summary>
         /// <remarks>

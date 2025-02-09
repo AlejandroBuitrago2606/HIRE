@@ -47,3 +47,10 @@
     overflow: auto; /* Muestra una barra de desplazamiento si el contenido excede el área visible */
     resize: vertical; /* Permite al usuario cambiar la altura, pero no el ancho */
 }
+
+
+.fondo {
+    background-image: url('https://img.freepik.com/vector-premium/fondo-abstracto-degradado-azul-blanco-fondo-lineas-cuadro-rectangulo-geometrico-abstracto-azul-moderno-diseno-presentacion-folleto-banner-tarjeta-visita_181182-30693.jpg?w=1060');
+    background-repeat: no-repeat; 
+
+}

@@ -1,0 +1,63 @@
+﻿.cardSombra {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.sombra {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    transition: transform 0.3s ease-in-out;
+}
+
+    .sombra:hover {
+        transform: scale(1.1);
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+
+
+.sombra1 {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    transition: transform 0.3s ease-in-out;
+}
+
+    .sombra1:hover {
+        transform: scale(1.1);
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+
+
+.sombra2 {
+    background-color: #fff;
+    border: 6px solid #ddd;
+    transition: transform 0.3s ease-in-out;
+}
+
+    .sombra2:hover {
+        transform: scale(1.1);
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+
+.rating {
+    direction: rtl; /* Para que las estrellas se alineen a la derecha */
+    display: inline-block;
+}
+
+    .rating span {
+        font-size: 20px; /* Tamaño de las estrellas */
+        color: #ccc; /* Color de las estrellas no seleccionadas */
+    }
+
+        .rating span.checked {
+            color: #ffcc00; /* Color de las estrellas seleccionadas (amarillo) */
+        }
+
+
+
+
+
+
+

@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Content_Head" runat="server">
     <title>Empresas</title>
+    <link href="recursos/css/main3.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content_Body" runat="server">
     <div class="content-body-scrollable">
@@ -35,7 +36,7 @@
                         <ItemTemplate>
 
 
-                            <div class="card mb-4 shadow-sm">
+                            <div class="card sombra1 mb-4 shadow-sm">
                                 <div class="card-body" style="margin-top: 0">
 
                                     <div class="row">

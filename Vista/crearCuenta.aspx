@@ -51,7 +51,7 @@
        }
    </script>
 
-    <form id="form1" runat="server">
+    <form id="form1" style="background-image: url('../Vista/recursos/imagenes/fondoModerno.png'); background-size:cover; background-repeat: no-repeat;" runat="server">
         <div class="container">
 
             <asp:ScriptManager ID="scriptManager1" runat="server"></asp:ScriptManager>
@@ -291,8 +291,6 @@
         </div>
 
 
-
-
         <!-- Modal -->
         <div class="modal fade" id="modalRegistro" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -346,9 +344,6 @@
 
 
     </form>
-
-
-
 
 </body>
 </html>

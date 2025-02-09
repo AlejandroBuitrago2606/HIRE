@@ -23,7 +23,7 @@ namespace HIRE.Vista
             if (!IsPostBack)
             {
                 txtNuevaDescripcion.Text = "";
-                Session["registro"] = false;              
+                Session["registro"] = false;
 
                 clPerfilL objFiltrosL = new clPerfilL();
                 var resultado = objFiltrosL.mtdListarFiltros();
@@ -114,12 +114,16 @@ namespace HIRE.Vista
                 domDetallesCV.Visible = false;
                 btnAgregarCV.Visible = true;
                 btnMostrarHojaVida.Visible = false;
+                a1.Visible = false;
+                a9.Visible = false;
             }
             else
             {
                 txtDescripcionCV.InnerText = objDatosCV.objDatosCV.perfilProfesional;
                 btnAgregarCV.Visible = false;
                 domDetallesCV.Visible = true;
+                a1.Visible = true;
+                a9.Visible = true;
             }
 
             if (!string.IsNullOrEmpty(objDatosCV.objDatosCV.hojaVida))
@@ -483,14 +487,14 @@ namespace HIRE.Vista
         protected void rpExperiencia_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
 
-                if (e.CommandName == "abrirSoporte")
-                {
-                    HiddenField hfSeleccionado = (HiddenField)e.Item.FindControl("hfRutaSoporte");
-                    hfSoporte.Value = hfSeleccionado.Value;
+            if (e.CommandName == "abrirSoporte")
+            {
+                HiddenField hfSeleccionado = (HiddenField)e.Item.FindControl("hfRutaSoporte");
+                hfSoporte.Value = hfSeleccionado.Value;
 
-                    string mostrarPDF = @"mostrarSoportePDF();";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "mostrarPDF", mostrarPDF, true);
-                }            
+                string mostrarPDF = @"mostrarSoportePDF();";
+                ScriptManager.RegisterStartupScript(this, GetType(), "mostrarPDF", mostrarPDF, true);
+            }
 
         }
 
@@ -689,10 +693,11 @@ namespace HIRE.Vista
                         idReferencia = int.Parse(hfIdDetalle.Value),
                         nombreReferencia = txtActualizarNombre.Text,
                         cargo = txtActualizarCargo.Text,
+                        nombreEmpresa = txtActualizarEmpresaRef.Text,
                         telefono = txtActualizarTelefono.Text,
                         correo = txtActualizarCorreo.Text,
-                        tipoReferencia = dpActualizarTipoRef.SelectedItem.Text,
-                        relacionProfesional = dpActualizarRelacionPro.SelectedItem.Text
+                        tipoReferencia = dpActualizarTipoRef.SelectedValue,
+                        relacionProfesional = dpActualizarRelacionPro.SelectedValue
 
                     };
                     objDetallesPerfil.referenciaCV = objRef;
@@ -776,7 +781,7 @@ namespace HIRE.Vista
                         {
                             rutaArchivo = hfSoporte.Value;
                         }
-                        
+
                     }
 
                     clExperienciaE objExperiencia = new clExperienciaE
@@ -789,9 +794,9 @@ namespace HIRE.Vista
                     objDetallesPerfil.ExperienciaCV = objExperiencia;
 
                     if (objPerfilL.mtdActualizarCV(accionAejecutar, objDetallesPerfil))
-                    {                        
+                    {
                         string actualizacionDetallesExitoso = "alertify.success('Perfil Actualizado'); setTimeout(function(){ window.location.href = 'perfilCV.aspx'; }, 1000);";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "actualizacionDetallesExitoso", actualizacionDetallesExitoso, true);                        
+                        ScriptManager.RegisterStartupScript(this, GetType(), "actualizacionDetallesExitoso", actualizacionDetallesExitoso, true);
                     }
                     else
                     {
@@ -837,7 +842,7 @@ namespace HIRE.Vista
         {
 
             hfIdDetalle.Value = "";
-            hfSoporte.Value = "";      
+            hfSoporte.Value = "";
             mtdRestaurarDivs();
             int idCV = int.Parse(Session["idCV"].ToString());
             clPerfilL objPErfilL = new clPerfilL();
@@ -946,6 +951,7 @@ namespace HIRE.Vista
                             hfIdDetalle.Value = hfIDRef.Value;
                             txtActualizarNombre.Text = objDetalles.referenciaCV.nombreReferencia;
                             txtActualizarCargo.Text = objDetalles.referenciaCV.cargo;
+                            txtActualizarEmpresaRef.Text = objDetalles.referenciaCV.nombreEmpresa;
                             txtActualizarTelefono.Text = objDetalles.referenciaCV.telefono;
                             txtActualizarCorreo.Text = objDetalles.referenciaCV.correo;
                             dpActualizarTipoRef.SelectedValue = objDetalles.referenciaCV.tipoReferencia;
@@ -993,7 +999,7 @@ namespace HIRE.Vista
                             modalTitleDynamic.InnerText = "Actualizar experiencia";
                             d7.Visible = true;
                             divExperiencia.Visible = true;
-                            
+
                             mostrarModal = @"const modal = new bootstrap.Modal(document.getElementById('modalActualizarDetalles'));
                             modal.show();";
                             ScriptManager.RegisterStartupScript(this, GetType(), "mostrarModal", mostrarModal, true);

@@ -39,12 +39,12 @@
 
 
                                     <div class="row mb-3">
-                                        <h5><a href="#">Modificar información de mi CV.</a></h5>
+                                        <h5><a href="perfilCV.aspx">Modificar información de mi CV.</a></h5>
                                     </div>
 
 
                                     <div class="row mb-3">
-                                        <h5><a href="#">Editar cuenta de usuario.</a></h5>
+                                        <h5><a href="perfilUsuario.aspx">Editar cuenta de usuario.</a></h5>
                                     </div>
 
 
@@ -85,7 +85,7 @@
 
 
                                     <div class="row mb-3">
-                                        <h6><a href="#">
+                                        <h6><a href="perfilCV.aspx">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                                 <path fill="none" stroke="#4e73df" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-6 6l6-6m-6-6l6 6" />
                                             </svg></a></h6>
@@ -93,7 +93,7 @@
 
 
                                     <div class="row mb-3">
-                                        <h6><a href="#">
+                                        <h6><a href="perfilUsuario.aspx">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                                 <path fill="none" stroke="#4e73df" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-6 6l6-6m-6-6l6 6" />
                                             </svg></a></h6>
