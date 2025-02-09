@@ -13,6 +13,7 @@
         rel="stylesheet">
     <link href="recursos/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="recursos/css/main.css" rel="stylesheet" />
+    <link rel="icon" href="../Vista/recursos/imagenes/iPestana.jpg" type="image/png">
     <title></title>
 
     <asp:ContentPlaceHolder ID="Content_Head" runat="server">
@@ -33,11 +34,12 @@
                     <!-- Sidebar - Brand -->
                     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.aspx">
                         <div class="sidebar-brand-icon">
-                            <img src="recursos/imagenes/logo-ProyectoHIRE-Login.png" width="110" height="110" />
+                            <img src="../Vista/recursos/imagenes/logoWeb-white.png" width="230" height="80" />
                         </div>
 
                     </a>
-
+                    <br />
+                    <br />
 
                     <!-- Nav Item - Dashboard -->
 
@@ -130,25 +132,10 @@
                         <!-- Topbar -->
                         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" runat="server" id="menuSuperior">
 
-                            <!-- Topbar Search -->
-
-                            <!--                            <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                                <div class="input-group">
-                                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                        aria-label="Search" aria-describedby="basic-addon2">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary" type="button">
-                                            <i class="fas fa-search fa-sm"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>-->
-
-
-                            <ul class="navbar-nav ml-auto" id="ftLogo" runat="server" visible="true">
+                            <ul class="navbar-nav" id="ftLogo" runat="server" visible="true">
 
                                 <asp:HyperLink ID="HyperLink1" NavigateUrl="~/Default.aspx" runat="server">
-                                        <img src="../Vista/recursos/imagenes/logo-ProyectoHIRE-Login.png" width="80" height="80" />
+                                        <img src="../Vista/recursos/imagenes/logoWeb-dark.png" width="240" height="60" />
                                 </asp:HyperLink>
                             </ul>
 

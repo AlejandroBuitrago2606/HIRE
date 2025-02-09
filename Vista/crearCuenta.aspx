@@ -14,44 +14,44 @@
     <link rel="stylesheet" href="/Content/alertifyjs/themes/default.css" />
     <script src="/Scripts/alertify.js"></script>
     <script src="recursos/js/main3.js"></script>
-    
+
 
 </head>
 <body>
-   <script>
-       function obtenerUbicacion() {
+    <script>
+        function obtenerUbicacion() {
 
-           if (!navigator.geolocation) {
-               console.error("La geolocalización no está soportada por este navegador.");
-               return;
-           }
+            if (!navigator.geolocation) {
+                console.error("La geolocalización no está soportada por este navegador.");
+                return;
+            }
 
-           const opciones = {
-               enableHighAccuracy: true,
-               timeout: 10000,
-               maximumAge: 0
-           };
+            const opciones = {
+                enableHighAccuracy: true,
+                timeout: 10000,
+                maximumAge: 0
+            };
 
-           navigator.geolocation.getCurrentPosition(
-               (position) => {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
 
-                   const latitud = position.coords.latitude;
-                   const longitud = position.coords.longitude;
+                    const latitud = position.coords.latitude;
+                    const longitud = position.coords.longitude;
 
-                   // Crear el objeto coordenadas
-                   const coordenadas = { lat: latitud, lng: longitud };
-                   document.getElementById("hfCoordenadas").value = JSON.stringify(coordenadas); // Guarda como string
+                    // Crear el objeto coordenadas
+                    const coordenadas = { lat: latitud, lng: longitud };
+                    document.getElementById("hfCoordenadas").value = JSON.stringify(coordenadas); // Guarda como string
 
-               },
-               (error) => {
-                   alert("Error al obtener la ubicación: " + error.message);
-               },
-               opciones
-           );
-       }
-   </script>
+                },
+                (error) => {
+                    alert("Error al obtener la ubicación: " + error.message);
+                },
+                opciones
+            );
+        }
+    </script>
 
-    <form id="form1" style="background-image: url('../Vista/recursos/imagenes/fondoModerno.png'); background-size:cover; background-repeat: no-repeat;" runat="server">
+    <form id="form1" style="background-image: url('../Vista/recursos/imagenes/fondoModerno.png'); background-size: cover; background-repeat: no-repeat;" runat="server">
         <div class="container">
 
             <asp:ScriptManager ID="scriptManager1" runat="server"></asp:ScriptManager>
@@ -59,7 +59,20 @@
             <br />
 
             <div class="row">
-                <h2 style="text-align: center"><b>Crear cuenta</b></h2>
+                <div class="col-2">
+                </div>
+                <div class="col-8 d-flex justify-content-center">
+
+                    <h2>
+
+                        <a href="../Default.aspx" class="btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 1024 1024">
+                                <path fill="#000" d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 0 0 0 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281l360-281.1c3.8-3 6.1-7.7 6.1-12.6" />
+                            </svg>
+                        </a><b>Crear cuenta</b></h2>
+                </div>
+                <div class="col-2"></div>
+
             </div>
 
             <div class="row" style="margin-top: 3%">
@@ -253,27 +266,21 @@
                     <br />
 
                     <div class="row">
+                        <div class="d-flex justify-content-center">
 
-                        <div class="col-md-12">
-                            <div style="text-align: right">
+                            <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+                                <ContentTemplate>
+                                    <button type="button" id="btnRegistrarse" onserverclick="btnRegistrarse_ServerClick" class="btn btn-success" style="width: 200px;" runat="server">Registrarse</button>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
 
-                                <asp:UpdatePanel ID="UpdatePanel3" runat="server">
-                                    <ContentTemplate>
-                                        <button type="button" id="btnRegistrarse" onserverclick="btnRegistrarse_ServerClick" class="btn btn-success" runat="server">Registrarse</button>
-                                    </ContentTemplate>
-                                </asp:UpdatePanel>
+                            <br />
+                            <br />
 
-                                <br />
-                                <br />
-
-                            </div>
                         </div>
 
-
                     </div>
-
                 </div>
-
             </div>
 
 

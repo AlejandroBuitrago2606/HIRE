@@ -27,11 +27,12 @@
                                 <div class="card-body p-md-5 mx-md-4">
 
                                     <div class="text-center">
-                                        <img src="recursos/imagenes/logo-ProyectoHIRE-Login.png"
-                                            style="width: 185px;" alt="logo">
-                                        <h4 class="mt-1 mb-5 pb-1">Conecta tu talento con nuevas oportunidades.</h4>
+                                        <div class=" d-flex justify-content-center">
+                                            <img src="../Vista/recursos/imagenes/logoWeb-dark.png" width="600" height="120" alt="logo">
+                                        </div>
+                                        <h5 class="mt-1 mb-3 pb-1">Conecta tu talento con nuevas oportunidades.</h5>
                                     </div>
-
+                                    <br>
                                     <form id="form1" runat="server">
                                         <h3 style="text-align: center">Inicia sesion</h3>
 
@@ -53,8 +54,8 @@
                                         <div class="d-flex align-items-center justify-content-center pb-4">
                                             <p class="mb-0 me-2">No tienes una cuenta?</p>
                                             <a class="btn btn-outline-primary" href="crearCuenta.aspx">Crea una aqui</a>
-                                            
-                                            
+
+
                                         </div>
 
                                     </form>

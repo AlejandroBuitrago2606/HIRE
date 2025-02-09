@@ -158,6 +158,9 @@
     <Content Include="Vista\recursos\imagenes\fondoModerno3.jpg" />
     <Content Include="Vista\recursos\imagenes\fondoRecuperarC.jpg" />
     <Content Include="Vista\recursos\imagenes\iconoCV.png" />
+    <Content Include="Vista\recursos\imagenes\iPestana.jpg" />
+    <Content Include="Vista\recursos\imagenes\logoWeb-dark.png" />
+    <Content Include="Vista\recursos\imagenes\logoWeb-white.png" />
     <Content Include="Vista\recursos\imagenes\perfil.png" />
     <Content Include="Vista\perfilCV.aspx" />
     <Content Include="Vista\recursos\css\main.css" />
