@@ -11,11 +11,13 @@ namespace HIRE.Vista
 {
     public partial class busqueda : System.Web.UI.Page
     {
+
         protected void Page_Load(object sender, EventArgs e)
         {
             clVacanteL objVacanteL = new clVacanteL();
             if (!IsPostBack)
             {
+                Session["idVacante"] = 0;
 
                 List<clMunicipioE> listaMunicipios = objVacanteL.mtdListarFiltros().Item1;
 
@@ -103,10 +105,7 @@ namespace HIRE.Vista
             if (objVacantes.Count.ToString() != "0")
             {
                 txtTotalVacantes.InnerText = "N° de vacantes disponibles: " + objVacantes.Count.ToString();
-
-
-
-
+            
             }
             else
             {
@@ -118,14 +117,14 @@ namespace HIRE.Vista
             rpVacantes.DataSource = objVacantes;
             rpVacantes.DataBind();
 
-
-
         }
 
         protected void btnVerVacante_Click(object sender, CommandEventArgs e)
         {
+            Session["idVacante"] = 0;
 
             int idVacante = int.Parse(e.CommandArgument.ToString());
+            Session["idVacante"] = idVacante.ToString();
 
             if (e.CommandName == "enviarIDVacante")
             {
@@ -158,11 +157,6 @@ namespace HIRE.Vista
                 txtFechaLimite.InnerHtml = ": " + fechaLimite;
                 txtFechaPublicacion.InnerHtml = ": " + fechaPublicacion;
 
-
-
-
-
-
                 List<clNivelAcademicoE> objNivelAcademico = objDatosVacante.objNivelAcademico;
                 rpNivelAcademico.DataSource = objNivelAcademico;
                 rpNivelAcademico.DataBind();
@@ -192,7 +186,55 @@ namespace HIRE.Vista
 
 
         }
+
+        protected void btnPostularse_ServerClick(object sender, EventArgs e)
+        {
+
+            int idUsuario = int.Parse(Session["idUsuario"].ToString());
+            int idVacante = int.Parse(Session["idVacante"].ToString());
+            int idCV = int.Parse(Session["idCV"].ToString());
+            string fechaEnvio = DateTime.Now.ToString("yyy-MM-dd");
+            
+            clVacanteL objvacante = new clVacanteL();
+            if (objvacante.mtdRegistrarSolicitud(idUsuario, idCV, idVacante, fechaEnvio))
+            {
+                string SolicitudEnviada = @"alert('Solicitud Enviada'); setTimeout(function(){ window.location.href = 'busquedaVacante.aspx';}, 1000);";
+                ScriptManager.RegisterStartupScript(this, GetType(), "SolicitudEnviada", SolicitudEnviada, true);
+
+            }
+            else
+            {
+                string SolicitudEnviada = @"alert('Ocurrio un error intenta nuevamente.');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "SolicitudEnviada", SolicitudEnviada, true);
+
+            }
+
+        }
+
+        protected void btnPostulacion_Click(object sender, EventArgs e)
+        {
+            if (int.Parse(Session["idUsuario"].ToString()) > 0 && int.Parse(Session["idCV"].ToString()) > 0)
+            {
+
+                string abrirModal = @"
+                  $(document).ready(function () {
+                  $('#modalPostularse').modal('show');
+                  });";
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "OpenModal", abrirModal, true);
+
+            }
+            else
+            {
+                string alerta = "alert('Inicia Sesion primero');" +
+                " setTimeout(function(){window.location='../Vista/login.aspx'}, 1000);";
+                ClientScript.RegisterStartupScript(this.GetType(), "alertRedirect", alerta, true);
+            }
+
+        }
+
     }
+
 }
 
 

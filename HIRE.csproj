@@ -1892,6 +1892,7 @@
     <Content Include="Vista\recursos\videos\vBannerFinal.mp4" />
     <Content Include="Vista\recursos\videos\video_Login.mp4" />
     <Content Include="Vista\registroEmpresa.aspx" />
+    <Content Include="Vista\solicitudesUsuario.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -1904,6 +1905,7 @@
     <Compile Include="Entidades\clFiltrosE.cs" />
     <Compile Include="Entidades\clPerfilE.cs" />
     <Compile Include="Entidades\clVacanteE.cs" />
+    <Compile Include="Entidades\clSolicitudE.cs" />
     <Compile Include="Logica\clEmpresaL.cs" />
     <Compile Include="Entidades\clUsuarioE.cs" />
     <Compile Include="Logica\clEnviarCorreoL.cs" />
@@ -1989,6 +1991,13 @@
     <Compile Include="Vista\panelEmpresa.Master.designer.cs">
       <DependentUpon>panelEmpresa.Master</DependentUpon>
     </Compile>
+    <Compile Include="Vista\panelTrabajador.Master.cs">
+      <DependentUpon>panelTrabajador.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\panelTrabajador.Master.designer.cs">
+      <DependentUpon>panelTrabajador.Master</DependentUpon>
+    </Compile>
     <Compile Include="Vista\perfilCV.aspx.cs">
       <DependentUpon>perfilCV.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2023,6 +2032,13 @@
     </Compile>
     <Compile Include="Vista\registroEmpresa.aspx.designer.cs">
       <DependentUpon>registroEmpresa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\solicitudesUsuario.aspx.cs">
+      <DependentUpon>solicitudesUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\solicitudesUsuario.aspx.designer.cs">
+      <DependentUpon>solicitudesUsuario.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -2278,6 +2294,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Content Include="Vista\panelEmpresa.Master" />
+    <Content Include="Vista\panelTrabajador.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

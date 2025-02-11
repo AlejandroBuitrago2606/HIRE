@@ -42,6 +42,8 @@ namespace HIRE
             Session["coordenadas"] = "";
             Session["idCV"] = "";
             Session["idEmpresa"] = 0;
+            Session["idTipoUsuario"] = 0;
+            Session["idVacante"] = 0;
 
         }
 
@@ -76,6 +78,8 @@ namespace HIRE
             Session["coordenadas"] = "";            
             Session["idCV"] = "";
             Session["idEmpresa"] = 0;
+            Session["idTipoUsuario"] = 0;
+            Session["idVacante"] = 0;
 
         }
 

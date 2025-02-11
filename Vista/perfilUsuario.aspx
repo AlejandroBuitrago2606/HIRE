@@ -47,11 +47,16 @@
                     <asp:FileUpload runat="server" ID="imgCargarFoto" CssClass="form-control mb-3" />
                 </div>
                 <h6 id="lblNombreFoto" runat="server" class="d-flex justify-content-center mb-3"></h6>
-
-                <div id="domBtnSolicitudA" runat="server" class="mt-5 d-flex justify-content-center">
-
-                    <asp:Button ID="btnSolicitudA" OnClick="btnSolicitudA_Click" Text="Modificar Datos" CssClass="btn btn-success" runat="server" />
+                <h6 runat="server" id="txtEstado" class="text-center"></h6>
+                <div class="d-flex flex-column min-vh-80">
+                    <div id="domBtnSolicitudA" runat="server" class="mt-5 d-flex justify-content-center">
+                        <asp:Button ID="btnSolicitudA" OnClick="btnSolicitudA_Click" Text="Modificar Datos" CssClass="btn btn-success" runat="server" />
+                    </div>
+                    <div class="mt-auto d-flex justify-content-center">
+                        <asp:Button ID="btnEliminarCuenta" OnClick="btnEliminarCuenta_Click" runat="server" CssClass="btn btn-danger" Text="Eliminar cuenta" />
+                    </div>
                 </div>
+
 
 
 

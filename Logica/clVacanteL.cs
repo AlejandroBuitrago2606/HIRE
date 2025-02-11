@@ -47,11 +47,29 @@ namespace HIRE.Logica
             estadoCivil.Add("Divorciado");
             estadoCivil.Add("Viudo");
             estadoCivil.Add("Prefiero no decirlo");
-            
+
 
             return (objMunicipios, tipoContrato, tipoEmpleo, cargo, estadoCivil);
         }
 
+
+        public bool mtdRegistrarSolicitud(int idUsuario, int idCV, int idVacante, string fechaEnvio)
+        {
+            return (objVacanteD.mtdRegistrarSolicitud(idUsuario, idCV, idVacante, fechaEnvio));
+        }
+
+        public (List<clSolicitudE>, List<clVacanteE>) mtdListarSolicitudes(int idUsuario)
+        {
+            var objListadoSolicitudes = objVacanteD.mtdListarSolicitudes(idUsuario);
+
+            return (objListadoSolicitudes.Item1, objListadoSolicitudes.Item2);
+        }
+
+
+        public List<clSolicitudE> mtdBuscarSolicitud(int idUsuario, string parametro)
+        {
+            return (objVacanteD.mtdBuscarSolicitud(idUsuario, parametro));
+        }
 
     }
 }

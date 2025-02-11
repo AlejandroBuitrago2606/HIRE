@@ -18,6 +18,7 @@ namespace HIRE.Entidades
         public string idiomaRequerido { get; set; }
         public string fechaInicio { get; set; }
         public string fechaLimite { get; set; }
+        public int idEmpresa { get; set; }
         public string fechaPublicacion { get; set; }
         public string tipoEmpleo { get; set; }
         public string tipoContrato { get; set; }

@@ -95,6 +95,7 @@ namespace HIRE.Datos
                         objDatosE.ubicacion = fila["ubicacion"].ToString() ?? "";                        
                         objDatosE.foto = fila["foto"].ToString();
                         objDatosE.idMunicipio = fila["idMunicipio"].ToString();
+                        objDatosE.estado = fila["estado"].ToString();
                         objDatosE.idTipo = fila["idTipo"].ToString();
                         objDatosE.contrasena = fila["contrasena"].ToString();
                         objDatosE.validar = true;
@@ -155,6 +156,7 @@ namespace HIRE.Datos
             }
 
             return validar;
+
 
         }
 

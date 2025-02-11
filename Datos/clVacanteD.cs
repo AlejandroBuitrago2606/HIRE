@@ -474,6 +474,222 @@ namespace HIRE.Datos
 
         }
 
+        public bool mtdRegistrarSolicitud(int idUsuario, int idCV, int idVacante, string fechaEnvio)
+        {
+
+            bool validar = false;
+
+            try
+            {
+                SqlCommand cmd = new SqlCommand("spRegistrarSolicitud", objConexion.MtdAbrirConexion());
+                cmd.Parameters.AddWithValue("@idVacante", idVacante);
+                cmd.Parameters.AddWithValue("@fechaEnvio", fechaEnvio);
+                cmd.Parameters.AddWithValue("@idCV", idCV);
+                cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.ExecuteNonQuery();
+                validar = true;
+
+                objConexion.MtdCerrarConexion();
+                
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e.Message);
+
+            }
+
+
+            return validar;
+
+        }
+
+        public (List<clSolicitudE>, List<clVacanteE>) mtdListarSolicitudes(int idUsuario)
+        {
+
+
+            List<clSolicitudE> objSolicitudes = new List<clSolicitudE>();
+            List<clVacanteE> objVacantes = new List<clVacanteE>();
+            try
+            {
+
+
+                SqlCommand cmd = new SqlCommand("spListarSolicitudes", objConexion.MtdAbrirConexion());
+                cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                using (SqlDataReader filas = cmd.ExecuteReader())
+                {
+                    if (filas.HasRows)
+                    {
+                        while (filas.Read())
+                        {
+                            objSolicitudes.Add(new clSolicitudE
+                            {
+
+                                idSolicitud = int.Parse(filas["idSolicitud"].ToString()),
+                                idCurriculumVitae = int.Parse(filas["idCurriculumVitae"].ToString()),
+                                fechaEnvio = filas["fechaEnvio"].ToString(),
+                                idUsuario = int.Parse(filas["idUsuario"].ToString()),
+                                idVacante = int.Parse(filas["idVacante"].ToString())
+
+                            });
+
+                        }
+
+                    }
+                    if (filas.NextResult())
+                    {
+                        if (filas.HasRows)
+                        {
+                            while (filas.Read())
+                            {
+
+                                objVacantes.Add(new clVacanteE
+                                {
+
+                                    idVacante = int.Parse(filas["idVacante"].ToString()),
+                                    titulo = filas["titulo"].ToString(),
+                                    fechaInicio = filas["fechaInicio"].ToString(),
+                                    fechaLimite = filas["fechaLimite"].ToString(),
+
+                                });
+
+                            }
+
+                        }
+
+                    }
+
+                    filas.Close();
+                    objConexion.MtdCerrarConexion();
+
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return (objSolicitudes, objVacantes);
+
+        }
+
+        public List<clSolicitudE> mtdBuscarSolicitud (int idUsuario, string parametro)
+        {
+            List<clSolicitudE> objSolicitudes = new List<clSolicitudE>();
+            try
+            {
+                SqlCommand cmd = new SqlCommand("spBuscarSolicitud", objConexion.MtdAbrirConexion());
+                cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
+                cmd.Parameters.AddWithValue("@parametro", parametro);
+                cmd.CommandType = CommandType.StoredProcedure;
+                
+
+
+                using (SqlDataReader fila = cmd.ExecuteReader())
+                {
+                    if (fila.HasRows)
+                    {
+
+                        while (fila.Read())
+                        {
+                            objSolicitudes.Add(new clSolicitudE
+                            {
+
+                                idSolicitud = int.Parse(fila["idSolicitud"].ToString()),
+                                idCurriculumVitae = int.Parse(fila["idCurriculumVitae"].ToString()),
+                                idUsuario = int.Parse(fila["idUsuario"].ToString()),
+                                idVacante = int.Parse(fila["idVacante"].ToString())
+
+                            });
+
+                        }
+
+                    }
+                    fila.Close();
+
+
+                }
+
+                objConexion.MtdCerrarConexion();
+               
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e.Message);
+            }
+
+
+            return objSolicitudes;
+
+        }
+
+
+
+        public int spRegistrarVacante(clVacanteE objDatosVacante, int opcion) {
+
+            int idValorRetorno = 0;
+
+            if (opcion == 1)
+            {
+
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("spRegistrarVacante", objConexion.MtdAbrirConexion());
+                    cmd.Parameters.AddWithValue("@idUsuario", objDatosVacante.titulo);
+                    cmd.Parameters.AddWithValue("@parametro", objDatosVacante.descripcion);
+                    cmd.Parameters.AddWithValue("@parametro", objDatosVacante.tiempoExperiencia);
+                    cmd.Parameters.AddWithValue("@parametro", objDatosVacante.salario);
+                    cmd.Parameters.AddWithValue("@parametro", objDatosVacante.jornada);
+                    cmd.Parameters.AddWithValue("@parametro", objDatosVacante.horario);
+                    cmd.Parameters.AddWithValue("@parametro", objDatosVacante.idiomaRequerido);
+                    cmd.Parameters.AddWithValue("@parametro", objDatosVacante.fechaInicio);
+                    cmd.Parameters.AddWithValue("@parametro", objDatosVacante.fechaLimite);
+                    cmd.Parameters.AddWithValue("@parametro", objDatosVacante.fechaPublicacion);
+                    cmd.Parameters.AddWithValue("@parametro", objDatosVacante.idTipoEmpleo);
+                    cmd.Parameters.AddWithValue("@parametro", objDatosVacante.idTipoContrato);
+                    cmd.Parameters.AddWithValue("@parametro", objDatosVacante.idEmpresa);
+                    cmd.Parameters.AddWithValue("@parametro", objDatosVacante.idMunicipio);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+
+                    SqlParameter idVacanteR = new SqlParameter("@parametroDevuelto", SqlDbType.Int)
+                    {
+                        Direction = ParameterDirection.Output
+                    };
+                    cmd.Parameters.Add(idVacanteR);
+                    cmd.ExecuteNonQuery();
+
+                    objConexion.MtdCerrarConexion();
+                    idValorRetorno = int.Parse(idVacanteR.Value.ToString());
+                    objConexion.MtdCerrarConexion();
+
+
+                }
+                catch (Exception e)
+                {
+
+                    Console.WriteLine(e.Message);
+                }
+
+            }
+            else
+            {
+                
+
+
+
+            }
+
+            return idValorRetorno;
+
+        }
+
+
     }
 
 }

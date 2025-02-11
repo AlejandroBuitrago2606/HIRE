@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vista/menu.Master" AutoEventWireup="true" CodeBehind="busquedaVacante.aspx.cs" Inherits="HIRE.Vista.busqueda" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="Content_Head" runat="server">    
+<asp:Content ID="Content1" ContentPlaceHolderID="Content_Head" runat="server">
     <title>Explorar</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content_Body" runat="server">
@@ -272,7 +272,8 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                    <button type="button" class="btn color2" style="color: white">Postularse</button>
+                                    <asp:Button ID="btnPostulacion" CssClass="btn color2" CommandName="postulacion" CommandArgument='<%# Eval("idVacante") %>' style="color: white" OnClick="btnPostulacion_Click" runat="server" Text="Postularme" />
+                                    
                                 </div>
                             </div>
                         </div>
@@ -282,8 +283,31 @@
 
                 </div>
             </div>
+
             <div class="col-md-2" runat="server" id="contenedorDerecho"></div>
+
         </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modalPostularse" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel2">Confirmar</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Deseas postularte a esta vacante.
+                    </div>
+                    <div class="modal-footer">                   
+                        <button type="button" id="btnPostularse" onserverclick="btnPostularse_ServerClick" class="btn btn-warning" runat="server">Postularme</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
     </div>
 
 

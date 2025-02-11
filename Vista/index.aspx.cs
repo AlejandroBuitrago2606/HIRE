@@ -17,6 +17,11 @@ namespace HIRE.Vista
 
             if (!IsPostBack)
             {
+                clPerfilL objPErfilL = new clPerfilL();
+                clTraerPerfilCV objDatosCV = objPErfilL.mtdListarCV(int.Parse(Session["idUsuario"].ToString()));
+                Session["idCV"] = objDatosCV.objDatosCV.idCurriculumVitae;
+
+
                 clUsuarioL objDatosL = new clUsuarioL();
                 clUsuarioE objDatosUsuario = objDatosL.mtdValidarUsuario(null, int.Parse(Session["idUsuario"].ToString()));
 
