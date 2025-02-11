@@ -64,7 +64,9 @@
 
                                         </div>
                                         <div class="col-md-3">
-                                            <asp:Button runat="server" CssClass="btn btn-warning" Style="color: black; margin-top: 40px; width: 80px; margin-left: 50%;" Text="Ir" />
+                                            <asp:Button ID="btnPanelEmpresa" OnClick="btnPanelEmpresa_Click" CssClass=" btn btn-warning" runat="server" Text="Ir" />
+                                            <asp:HiddenField ID="hfIdEmpresa" Value='<%# Eval("idEmpresa") %>' runat="server" />
+
                                         </div>
 
 

@@ -882,7 +882,6 @@ namespace HIRE.Vista
                 switch (opcion)
                 {
 
-
                     case 2:
 
                         HiddenField hfIDcvc = (HiddenField)item.FindControl("hfIDcvc");

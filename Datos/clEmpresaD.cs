@@ -206,6 +206,8 @@ namespace HIRE.Datos
                     {
 
                         objEmpresaE.idEmpresa = int.Parse(fila["idEmpresa"].ToString());
+                        objEmpresaE.nit = fila["nit"].ToString();
+                        objEmpresaE.fechaConstitucion = fila["fechaConstitucion"].ToString();
                         objEmpresaE.nombre = fila["nombre"].ToString();
                         objEmpresaE.foto = fila["foto"].ToString();
                         objEmpresaE.descripcion = fila["descripcion"].ToString();
@@ -213,8 +215,14 @@ namespace HIRE.Datos
                         objEmpresaE.direccion = fila["direccion"].ToString();
                         objEmpresaE.municipio = fila["municipio"].ToString();
                         objEmpresaE.telefono1 = fila["telefono1"].ToString();
+                        objEmpresaE.telefono2 = fila["telefono2"].ToString();
+                        objEmpresaE.ubicacion = fila["ubicacion"].ToString(); 
                         objEmpresaE.correo = fila["correo"].ToString();
                         objEmpresaE.url = fila["url"].ToString();
+                        objEmpresaE.idUsuario = int.Parse(fila["idUsuario"].ToString());
+                        objEmpresaE.idMunicipio = int.Parse(fila["idMunicipio"].ToString());
+                        objEmpresaE.idTipoNegocio =  int.Parse(fila["idTipoNegocio"].ToString());
+                        objEmpresaE.idSector = int.Parse(fila["idSector"].ToString());
 
                     };
 
@@ -463,6 +471,45 @@ namespace HIRE.Datos
             }
 
             return contador;
+
+        }
+
+        public bool mtdActualizarEmpresa(clEmpresaE objDatosEmpresa)
+        {
+            bool validar = false;
+
+            try
+            {
+                SqlCommand cmd = new SqlCommand("spActualizarEmpresa", objConexion.MtdAbrirConexion());
+                cmd.Parameters.AddWithValue("@nombre", objDatosEmpresa.nombre);
+                cmd.Parameters.AddWithValue("@nit", objDatosEmpresa.nit);
+                cmd.Parameters.AddWithValue("@descripcion", objDatosEmpresa.descripcion);
+                cmd.Parameters.AddWithValue("@numeroEmpleados", int.Parse(objDatosEmpresa.numeroEmpleados));
+                cmd.Parameters.AddWithValue("@fechaConstitucion", objDatosEmpresa.fechaConstitucion);
+                cmd.Parameters.AddWithValue("@direccion", objDatosEmpresa.direccion);
+                cmd.Parameters.AddWithValue("@ubicacion", objDatosEmpresa.ubicacion);
+                cmd.Parameters.AddWithValue("@telefono1", objDatosEmpresa.telefono1);
+                cmd.Parameters.AddWithValue("@telefono2", objDatosEmpresa.telefono2);
+                cmd.Parameters.AddWithValue("@correo", objDatosEmpresa.correo);
+                cmd.Parameters.AddWithValue("@url", objDatosEmpresa.url);
+                cmd.Parameters.AddWithValue("@foto", objDatosEmpresa.foto);
+                cmd.Parameters.AddWithValue("@idTipoNegocio", objDatosEmpresa.idTipoNegocio);
+                cmd.Parameters.AddWithValue("@idMunicipio", objDatosEmpresa.idMunicipio);
+                cmd.Parameters.AddWithValue("@idSector", objDatosEmpresa.idSector);
+                cmd.Parameters.AddWithValue("@idEmpresa", objDatosEmpresa.idEmpresa);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.ExecuteNonQuery();
+                validar = true;
+
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e.Message);
+
+            }
+
+            return validar;
 
         }
 

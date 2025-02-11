@@ -15,6 +15,7 @@ namespace HIRE.Vista
         {
             if (!IsPostBack)
             {
+                Session["idEmpresa"] = "";
 
                 int idUsuario = int.Parse(Session["idUsuario"].ToString());
                 clEmpresaL objEmpresaL = new clEmpresaL();
@@ -42,6 +43,23 @@ namespace HIRE.Vista
         {
             Response.Redirect("registroEmpresa.aspx");
         }
+
+        protected void btnPanelEmpresa_Click(object sender, EventArgs e)
+        {
+            Button boton = (Button)sender;
+            RepeaterItem item = (RepeaterItem)boton.NamingContainer;
+            HiddenField hfIdEmpresa = (HiddenField)item.FindControl("hfIdEmpresa");
+
+            if (!string.IsNullOrEmpty(hfIdEmpresa.Value))
+            {
+
+                Session["idEmpresa"] = hfIdEmpresa.Value;
+                Response.Redirect("indexEmpresa.aspx");
+
+            }
+
+        }
+
     }
 
 }

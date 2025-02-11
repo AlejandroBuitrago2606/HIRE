@@ -283,9 +283,8 @@
                     <div class="input-group d-flex justify-content-center">
                         <asp:UpdatePanel runat="server">
                             <ContentTemplate>
-                                <a class="btn btn-secondary" href="perfilUsuario.aspx">Cancelar</a>
+                                <a class="btn btn-secondary" href="perfilUsuario.aspx">Cerrar</a>
                             </ContentTemplate>
-
                         </asp:UpdatePanel>
 
                         <asp:UpdatePanel runat="server">
@@ -302,6 +301,11 @@
                 <asp:UpdatePanel runat="server">
                     <ContentTemplate>
                         <input type="hidden" runat="server" id="hfFtUsuario" />
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+
+                <asp:UpdatePanel runat="server">
+                    <ContentTemplate>
                         <input type="hidden" runat="server" id="hfCoordenadas" />
                     </ContentTemplate>
                 </asp:UpdatePanel>

@@ -41,6 +41,7 @@ namespace HIRE
             Session["fotoEmpresa"] = "";
             Session["coordenadas"] = "";
             Session["idCV"] = "";
+            Session["idEmpresa"] = 0;
 
         }
 
@@ -74,6 +75,7 @@ namespace HIRE
             Session["fotoEmpresa"] = "";
             Session["coordenadas"] = "";            
             Session["idCV"] = "";
+            Session["idEmpresa"] = 0;
 
         }
 

@@ -127,7 +127,9 @@
     <Content Include="Vista\css\style.css" />
     <Content Include="Vista\index.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="Vista\indexEmpresa.aspx" />
     <Content Include="Vista\listaEmpresas.aspx" />
+    <Content Include="Vista\perfilEmpresa.aspx" />
     <Content Include="Vista\perfilUsuario.aspx" />
     <Content Include="Vista\recuperarContrasena.aspx" />
     <Content Include="Vista\recursos\css\index.css" />
@@ -199,6 +201,7 @@
     <Content Include="Vista\recursos\js\main2.js" />
     <Content Include="Vista\recursos\js\main4.js" />
     <Content Include="Vista\recursos\js\main5.js" />
+    <Content Include="Vista\recursos\js\main6.js" />
     <Content Include="Vista\recursos\js\nicepage.js" />
     <Content Include="Vista\recursos\js\sb-admin-2.js" />
     <Content Include="Vista\recursos\js\sb-admin-2.min.js" />
@@ -1951,6 +1954,13 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Vista\indexEmpresa.aspx.cs">
+      <DependentUpon>indexEmpresa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\indexEmpresa.aspx.designer.cs">
+      <DependentUpon>indexEmpresa.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Vista\listaEmpresas.aspx.cs">
       <DependentUpon>listaEmpresas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1972,12 +1982,26 @@
     <Compile Include="Vista\menu.Master.designer.cs">
       <DependentUpon>menu.Master</DependentUpon>
     </Compile>
+    <Compile Include="Vista\panelEmpresa.Master.cs">
+      <DependentUpon>panelEmpresa.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\panelEmpresa.Master.designer.cs">
+      <DependentUpon>panelEmpresa.Master</DependentUpon>
+    </Compile>
     <Compile Include="Vista\perfilCV.aspx.cs">
       <DependentUpon>perfilCV.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Vista\perfilCV.aspx.designer.cs">
       <DependentUpon>perfilCV.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\perfilEmpresa.aspx.cs">
+      <DependentUpon>perfilEmpresa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\perfilEmpresa.aspx.designer.cs">
+      <DependentUpon>perfilEmpresa.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\perfilUsuario.aspx.cs">
       <DependentUpon>perfilUsuario.aspx</DependentUpon>
@@ -2253,6 +2277,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Content Include="Vista\panelEmpresa.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

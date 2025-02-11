@@ -24,8 +24,6 @@ namespace HIRE.Vista
         protected void Page_Load(object sender, EventArgs e)
         {
 
-
-
             if (!IsPostBack)
             {
                 clVacanteL objfiltrosL = new clVacanteL();
@@ -219,7 +217,6 @@ namespace HIRE.Vista
 
                     foreach (ListItem item in dpMunicipios.Items)
                     {
-
 
                         if (datosUsuario.idMunicipio == item.Value)
                         {

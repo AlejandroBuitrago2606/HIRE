@@ -35,7 +35,7 @@ namespace HIRE.Entidades
             clEmpresaE objEmpresaE = objEmpresaD.mtdTraerEmpresa(idEmpresa).Item1;
             List<clVacanteE> objVacantesE = objEmpresaD.mtdTraerEmpresa(idEmpresa).Item2;
 
-            return (objEmpresaE, objVacantesE);           
+            return (objEmpresaE, objVacantesE);
 
         }
 
@@ -45,17 +45,25 @@ namespace HIRE.Entidades
             return validacion;
         }
 
-        public (List<clMunicipioE>, List<clTipoNegocioE>, List<clSectorE>) mtdListarFiltros() { 
-        
+        public (List<clMunicipioE>, List<clTipoNegocioE>, List<clSectorE>) mtdListarFiltros()
+        {
+
             var filtros = objEmpresaD.mtdListarFiltros();
             return (filtros.Item1, filtros.Item2, filtros.Item3);
 
         }
 
-        public (int,int) mtdValidarEmpresa(string nit, string correo)
+        public (int, int) mtdValidarEmpresa(string nit, string correo)
         {
             return (objEmpresaD.mtdValidarEmpresa(nit, null), objEmpresaD.mtdValidarEmpresa(null, correo));
         }
 
+
+        public bool mtdActualizarEmpresa(clEmpresaE objDatosEmpresa)
+        {
+            return (objEmpresaD.mtdActualizarEmpresa(objDatosEmpresa));
+        }
+
     }
+
 }
