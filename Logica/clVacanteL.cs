@@ -61,8 +61,8 @@ namespace HIRE.Logica
         public (List<clSolicitudE>, List<clVacanteE>) mtdListarSolicitudes(int idUsuario)
         {
             var objListadoSolicitudes = objVacanteD.mtdListarSolicitudes(idUsuario);
-
             return (objListadoSolicitudes.Item1, objListadoSolicitudes.Item2);
+
         }
 
 
@@ -71,5 +71,48 @@ namespace HIRE.Logica
             return (objVacanteD.mtdBuscarSolicitud(idUsuario, parametro));
         }
 
+
+        public int spRegistrarVacante(clVacanteE objDatosVacante = null, List<clFuncionE> objFuncion = null, List<clRequisitoE> objRequisito = null, List<clNivelAcademicoE> objNivelAcademico = null, List<clCompetenciaE> objCompetencia = null)
+        {
+            int contador = 0;
+            int idVacanteRegistrado = objVacanteD.mtdRegistrarVacante(1, objDatosVacante, 0, null, null, null, null).Item1;
+
+            if (idVacanteRegistrado > 0)
+            {
+                contador++;
+                bool validacion = objVacanteD.mtdRegistrarVacante(2, null, idVacanteRegistrado, objFuncion, objRequisito, objNivelAcademico, objCompetencia).Item2;
+
+                if (validacion)
+                {
+                    contador++;
+                }
+                else
+                {
+                    objVacanteD.mtdEliminarVacante(idVacanteRegistrado);
+                    contador = 3;
+                }
+
+            }
+
+            return contador;
+
+        }
+
+
+        public (List<clVacanteE>, int) mtdListarVacantes(int opcion, int idEmpresa = 0, int idVacante = 0)
+        {
+
+            return (objVacanteD.mtdListarVacantes(opcion, idEmpresa, idVacante));
+
+        }
+
+        public List<clVacanteE> mtdListarVacantesBusqueda(int idEmpresa, string parametros)
+        {
+
+            return (objVacanteD.mtdListarVacantesBusqueda(idEmpresa, parametros));
+
+        }
+
     }
+
 }

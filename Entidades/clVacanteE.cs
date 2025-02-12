@@ -32,6 +32,7 @@ namespace HIRE.Entidades
     public class clNivelAcademicoE
     {
         public int idVacanteNivelAcademico { get; set; }
+        public int idNivelAcademico { get; set; }
         public string nivelAcademico { get; set; }
 
     }

@@ -1,15 +1,15 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vista/panelTrabajador.Master" AutoEventWireup="true" CodeBehind="solicitudesUsuario.aspx.cs" Inherits="HIRE.Vista.solicitudesUsuario" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vista/panelEmpresa.Master" AutoEventWireup="true" CodeBehind="vacantesEmpresa.aspx.cs" Inherits="HIRE.Vista.indexEmpresa" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="Content_Head" runat="server">
-    <link href="Vista/recursos/css/main3.css" rel="stylesheet" />
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentHead" runat="server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="Content_Body" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentBody" runat="server">
 
     <div class="content-body-scrollable">
         <div class="container">
+
             <br />
             <div class=" d-flex justify-content-center">
-                <h3>Solicitudes de empleo enviadas</h3>
+                <h3>Tus vacantes publicadas</h3>
                 <br />
             </div>
 
@@ -17,41 +17,49 @@
 
             <div class="d-flex justify-content-center">
                 <div class="input-group mb-3" style="width: 50%;">
-                    <asp:TextBox ID="txtBuscar" CssClass="form-control" placeholder="Buscar postulaciones..." runat="server"></asp:TextBox>                    
-                    <button class="btn btn-outline-warning" runat="server" onserverclick="btnBuscarSolicitud_ServerClick" id="btnBuscarSolicitud">Buscar</button>
+                    <asp:TextBox ID="txtBuscarVacante" CssClass="form-control" placeholder="Buscar vacantes..." runat="server"></asp:TextBox>
+                    <button class="btn btn-outline-warning" onserverclick="btnBuscarVacante_ServerClick" runat="server" id="btnBuscarVacante">Buscar</button>
                 </div>
             </div>
+
             <br />
 
             <div runat="server" id="domMsg" class="mt-4" visible="false">
                 <div class="d-flex justify-content-center">
-                    <h4 runat="server" id="tituloMsg">No has hecho ningun solicitud de empleo</h4>
+                    <h4 runat="server" id="tituloMsg">No has publicado ninguna vacante</h4>
                 </div>
                 <div class="d-flex justify-content-center">
-                    <a href="busquedaVacante.aspx" runat="server" id="btnRegresar" class="btn btn-success">Postularme a un empleo</a>
+                    <a href="#" runat="server" id="btnPublicar" class="btn btn-success">Publicar vacante</a>
                 </div>
             </div>
+
+
+
+
             <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
                     <%-- contenido de la pagina aqui --%>
-                    <asp:Repeater runat="server" ID="rpSolicitudes">
+                    <asp:Repeater runat="server" ID="rpVacantes">
                         <ItemTemplate>
                             <div class="card sombra1 mb-4 shadow-sm">
                                 <div class="card-body" style="margin-top: 0">
                                     <div class="row">
                                         <div class="col-md-9">
                                             <div class="row">
-                                                <h3 runat="server" style="font-size: 100%;" id="txtTitulo"><b>Vacante:</b><%# " " + Eval("titulo") %></h3>
+                                                <h3 style="font-size: 100%;" id="txtTitulo"><b>Vacante:</b><%# " " + Eval("titulo") %></h3>
                                             </div>
                                             <div class="row">
-                                                <h4 runat="server" style="font-size: 80%; color: gray;" id="H1"><b>Fecha de postulación:</b><%# " " + Convert.ToDateTime(Eval("fechaEnvio")).ToString("yyyy-MM-dd") %></h4>
+                                                <h4 style="font-size: 80%; color: gray;" id="H1"><b>Fecha de publicación:</b><%# " " + Convert.ToDateTime(Eval("fechaPublicacion")).ToString("yyyy-MM-dd") %></h4>
+
+                                            </div>
+                                            <div class="row">
+                                                <h3 style="font-size: 80%;"><b>Numero de postulados:</b><%# " " + Eval("numeroPostulados") %></h3>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
-                                            <asp:Button ID="btnPanelEmpresa" CssClass="btn btn-warning" OnCommand="btnVerVacante_Click" data-bs-toggle="modal" data-bs-target="#datosVacante"
-                                                CommandName="enviarIDVacante" CommandArgument='<%# Eval("idVacante") %>' runat="server" Text="Ver vacante" />
-                                            <asp:HiddenField ID="hfIdSolicitud" Value='<%# Eval("idSolicitud") %>' runat="server" />
+                                            <asp:Button ID="btnPanelEmpresa" CssClass="btn btn-warning" OnCommand="btnVerVacante_Click" CommandName="enviarIDVacante" CommandArgument='<%# Eval("idVacante") %>' runat="server" Text="Ver vacante" />
+
                                         </div>
                                     </div>
                                 </div>
@@ -64,8 +72,6 @@
         </div>
 
     </div>
-
-
 
 
     <div class="modal fade" id="datosVacante" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

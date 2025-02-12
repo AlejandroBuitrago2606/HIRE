@@ -368,7 +368,6 @@ namespace HIRE.Datos
 
                 }
 
-
             }
             catch (Exception e)
             {
@@ -491,7 +490,7 @@ namespace HIRE.Datos
                 validar = true;
 
                 objConexion.MtdCerrarConexion();
-                
+
             }
             catch (Exception e)
             {
@@ -577,7 +576,7 @@ namespace HIRE.Datos
 
         }
 
-        public List<clSolicitudE> mtdBuscarSolicitud (int idUsuario, string parametro)
+        public List<clSolicitudE> mtdBuscarSolicitud(int idUsuario, string parametro)
         {
             List<clSolicitudE> objSolicitudes = new List<clSolicitudE>();
             try
@@ -586,7 +585,7 @@ namespace HIRE.Datos
                 cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
                 cmd.Parameters.AddWithValue("@parametro", parametro);
                 cmd.CommandType = CommandType.StoredProcedure;
-                
+
 
 
                 using (SqlDataReader fila = cmd.ExecuteReader())
@@ -615,7 +614,7 @@ namespace HIRE.Datos
                 }
 
                 objConexion.MtdCerrarConexion();
-               
+
             }
             catch (Exception e)
             {
@@ -628,32 +627,32 @@ namespace HIRE.Datos
 
         }
 
-
-
-        public int spRegistrarVacante(clVacanteE objDatosVacante, int opcion) {
+        public (int, bool) mtdRegistrarVacante(int opcion, clVacanteE objDatosVacante = null, int idVacante = 0, List<clFuncionE> objFuncion = null, List<clRequisitoE> objRequisito = null, List<clNivelAcademicoE> objNivelAcademico = null, List<clCompetenciaE> objCompetencia = null)
+        {
 
             int idValorRetorno = 0;
+            bool validar = false;
 
-            if (opcion == 1)
+            if (opcion == 1 && objDatosVacante != null)
             {
 
                 try
                 {
                     SqlCommand cmd = new SqlCommand("spRegistrarVacante", objConexion.MtdAbrirConexion());
-                    cmd.Parameters.AddWithValue("@idUsuario", objDatosVacante.titulo);
-                    cmd.Parameters.AddWithValue("@parametro", objDatosVacante.descripcion);
-                    cmd.Parameters.AddWithValue("@parametro", objDatosVacante.tiempoExperiencia);
-                    cmd.Parameters.AddWithValue("@parametro", objDatosVacante.salario);
-                    cmd.Parameters.AddWithValue("@parametro", objDatosVacante.jornada);
-                    cmd.Parameters.AddWithValue("@parametro", objDatosVacante.horario);
-                    cmd.Parameters.AddWithValue("@parametro", objDatosVacante.idiomaRequerido);
-                    cmd.Parameters.AddWithValue("@parametro", objDatosVacante.fechaInicio);
-                    cmd.Parameters.AddWithValue("@parametro", objDatosVacante.fechaLimite);
-                    cmd.Parameters.AddWithValue("@parametro", objDatosVacante.fechaPublicacion);
-                    cmd.Parameters.AddWithValue("@parametro", objDatosVacante.idTipoEmpleo);
-                    cmd.Parameters.AddWithValue("@parametro", objDatosVacante.idTipoContrato);
-                    cmd.Parameters.AddWithValue("@parametro", objDatosVacante.idEmpresa);
-                    cmd.Parameters.AddWithValue("@parametro", objDatosVacante.idMunicipio);
+                    cmd.Parameters.AddWithValue("@titulo", objDatosVacante.titulo);
+                    cmd.Parameters.AddWithValue("@descripcion", objDatosVacante.descripcion);
+                    cmd.Parameters.AddWithValue("@tiempoExperiencia", objDatosVacante.tiempoExperiencia);
+                    cmd.Parameters.AddWithValue("@salario", objDatosVacante.salario);
+                    cmd.Parameters.AddWithValue("@jornada", objDatosVacante.jornada);
+                    cmd.Parameters.AddWithValue("@horario", objDatosVacante.horario);
+                    cmd.Parameters.AddWithValue("@idiomaRequerido", objDatosVacante.idiomaRequerido);
+                    cmd.Parameters.AddWithValue("@fechaInicio", objDatosVacante.fechaInicio);
+                    cmd.Parameters.AddWithValue("@fechaLimite", objDatosVacante.fechaLimite);
+                    cmd.Parameters.AddWithValue("@fechaPublicacion", objDatosVacante.fechaPublicacion);
+                    cmd.Parameters.AddWithValue("@idTipoEmpleo", objDatosVacante.idTipoEmpleo);
+                    cmd.Parameters.AddWithValue("@idTipoContrato", objDatosVacante.idTipoContrato);
+                    cmd.Parameters.AddWithValue("@idEmpresa", objDatosVacante.idEmpresa);
+                    cmd.Parameters.AddWithValue("@idMunicipio", objDatosVacante.idMunicipio);
                     cmd.CommandType = CommandType.StoredProcedure;
 
 
@@ -679,16 +678,223 @@ namespace HIRE.Datos
             }
             else
             {
-                
+                if (idVacante > 0)
+                {
+
+                    try
+                    {
+                        if (objFuncion != null)
+                        {
+                            foreach (clFuncionE funciones in objFuncion)
+                            {
+
+                                SqlCommand cmd = new SqlCommand("spAgregarDetallesVacante", objConexion.MtdAbrirConexion());
+                                cmd.Parameters.AddWithValue("@idVacante", idVacante);
+                                cmd.Parameters.AddWithValue("@descripcionFuncion", funciones.descripcionFuncion);
+                                cmd.CommandType = CommandType.StoredProcedure;
+                                cmd.ExecuteNonQuery();
+                                objConexion.MtdCerrarConexion();
+
+                            }
+                        }
 
 
+                        else if (objRequisito != null)
+                        {
+                            foreach (clRequisitoE requisitos in objRequisito)
+                            {
+                                SqlCommand cmd = new SqlCommand("spAgregarDetallesVacante", objConexion.MtdAbrirConexion());
+                                cmd.Parameters.AddWithValue("@idVacante", idVacante);
+                                cmd.Parameters.AddWithValue("@descripcionRequisito", requisitos.descripcionRequisito);
+                                cmd.CommandType = CommandType.StoredProcedure;
+                                cmd.ExecuteNonQuery();
+                                objConexion.MtdCerrarConexion();
+
+                            }
+                        }
+
+
+                        else if (objCompetencia != null)
+                        {
+
+                            foreach (clCompetenciaE competencias in objCompetencia)
+                            {
+                                SqlCommand cmd = new SqlCommand("spAgregarDetallesVacante", objConexion.MtdAbrirConexion());
+                                cmd.Parameters.AddWithValue("@idVacante", idVacante);
+                                cmd.Parameters.AddWithValue("@idCompetencia", competencias.idCompetencia);
+                                cmd.CommandType = CommandType.StoredProcedure;
+                                cmd.ExecuteNonQuery();
+                                objConexion.MtdCerrarConexion();
+
+                            }
+
+                        }
+
+
+                        else if (objNivelAcademico != null)
+                        {
+
+                            foreach (clNivelAcademicoE nivelesAcademicos in objNivelAcademico)
+                            {
+                                SqlCommand cmd = new SqlCommand("spAgregarDetallesVacante", objConexion.MtdAbrirConexion());
+                                cmd.Parameters.AddWithValue("@idVacante", idVacante);
+                                cmd.Parameters.AddWithValue("@idNivelAcademico", nivelesAcademicos.idNivelAcademico);
+                                cmd.CommandType = CommandType.StoredProcedure;
+                                cmd.ExecuteNonQuery();
+                                objConexion.MtdCerrarConexion();
+                            }
+
+                        }
+
+                        validar = true;
+
+                    }
+                    catch (Exception e)
+                    {
+
+                        Console.WriteLine(e.Message);
+                    }
+
+                }
 
             }
 
-            return idValorRetorno;
+            return (idValorRetorno, validar);
 
         }
 
+        public bool mtdEliminarVacante(int idVacante)
+        {
+
+            bool validacion = false;
+
+            try
+            {
+                SqlCommand cmd = new SqlCommand("spEliminarVacante", objConexion.MtdAbrirConexion());
+                cmd.Parameters.AddWithValue("@idVacante", idVacante);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.ExecuteNonQuery();
+                objConexion.MtdCerrarConexion();
+                validacion = true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return validacion;
+
+        }
+
+        public (List<clVacanteE>, int) mtdListarVacantes(int opcion, int idEmpresa = 0, int idVacante = 0)
+        {
+            List<clVacanteE> vacantes = new List<clVacanteE>();
+            int numeroPostulados = 0;
+
+            try
+            {
+                if (opcion == 1 && idEmpresa > 0)
+                {
+                    SqlCommand cmd = new SqlCommand("spListarVacantesEmpresa", objConexion.MtdAbrirConexion());
+                    cmd.Parameters.AddWithValue("@idEmpresa", idEmpresa);
+                    cmd.Parameters.AddWithValue("@opcion", opcion);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataReader fila = cmd.ExecuteReader())
+                    {
+                        if (fila.HasRows)
+                        {
+                            while (fila.Read())
+                            {
+                                vacantes.Add(new clVacanteE
+                                {
+                                    idVacante = int.Parse(fila["idVacante"].ToString()),
+                                    titulo = fila["titulo"].ToString(),
+                                    fechaPublicacion = fila["fechaPublicacion"].ToString()
+                                });
+
+                            }
+                        }
+
+                        fila.Close();
+                        objConexion.MtdCerrarConexion();
+
+                    }
+
+
+                }
+                else if (opcion == 2)
+                {
+                    SqlCommand cmd = new SqlCommand("spListarVacantesEmpresa", objConexion.MtdAbrirConexion());
+                    cmd.Parameters.AddWithValue("@idVacante", idVacante);
+                    cmd.Parameters.AddWithValue("@opcion", opcion);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataReader fila = cmd.ExecuteReader())
+                    {
+                        if (fila.HasRows)
+                        {
+                            while (fila.Read())
+                            {
+                                numeroPostulados++;
+                            }
+                        }
+
+                        fila.Close();
+                        objConexion.MtdCerrarConexion();
+
+                    }
+
+                }
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e.Message);
+            }
+
+            return (vacantes, numeroPostulados);
+
+        }
+
+        public List<clVacanteE> mtdListarVacantesBusqueda(int idEmpresa, string parametros)
+        {
+            List<clVacanteE> vacantes = new List<clVacanteE>();
+
+
+            try
+            {
+                SqlCommand cmd = new SqlCommand("spBuscarVacantes", objConexion.MtdAbrirConexion());
+                cmd.Parameters.AddWithValue("@idEmpresa", idEmpresa);
+                cmd.Parameters.AddWithValue("@parametros", parametros);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                using (SqlDataReader fila = cmd.ExecuteReader())
+                {
+                    if (fila.HasRows)
+                    {
+                        while (fila.Read())
+                        {
+                            vacantes.Add(new clVacanteE
+                            {
+                                idVacante = int.Parse(fila["idVacante"].ToString()),
+                                titulo = fila["titulo"].ToString(),
+                                fechaPublicacion = fila["fechaPublicacion"].ToString()
+                            });
+
+                        }
+                    }
+
+                    fila.Close();
+                    objConexion.MtdCerrarConexion();
+
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return vacantes;
+        }
 
     }
 

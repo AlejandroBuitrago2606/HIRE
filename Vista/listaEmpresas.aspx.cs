@@ -54,7 +54,7 @@ namespace HIRE.Vista
             {
 
                 Session["idEmpresa"] = hfIdEmpresa.Value;
-                Response.Redirect("indexEmpresa.aspx");
+                Response.Redirect("vacantesEmpresa.aspx");
 
             }
 

@@ -127,7 +127,7 @@
     <Content Include="Vista\css\style.css" />
     <Content Include="Vista\index.aspx" />
     <Content Include="Default.aspx" />
-    <Content Include="Vista\indexEmpresa.aspx" />
+    <Content Include="Vista\vacantesEmpresa.aspx" />
     <Content Include="Vista\listaEmpresas.aspx" />
     <Content Include="Vista\perfilEmpresa.aspx" />
     <Content Include="Vista\perfilUsuario.aspx" />
@@ -1956,12 +1956,12 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Vista\indexEmpresa.aspx.cs">
-      <DependentUpon>indexEmpresa.aspx</DependentUpon>
+    <Compile Include="Vista\vacantesEmpresa.aspx.cs">
+      <DependentUpon>vacantesEmpresa.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Vista\indexEmpresa.aspx.designer.cs">
-      <DependentUpon>indexEmpresa.aspx</DependentUpon>
+    <Compile Include="Vista\vacantesEmpresa.aspx.designer.cs">
+      <DependentUpon>vacantesEmpresa.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\listaEmpresas.aspx.cs">
       <DependentUpon>listaEmpresas.aspx</DependentUpon>
