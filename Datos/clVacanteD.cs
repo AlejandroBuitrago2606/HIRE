@@ -256,112 +256,104 @@ namespace HIRE.Datos
 
                     if (fila.HasRows)
                     {
-
-
                         while (fila.Read())
                         {
 
                             objNivelAcademico.Add(new clNivelAcademicoE { nivelAcademico = fila["nivelAcademico"].ToString() });
 
                         }
-
-                        if (fila.NextResult())
-                        {
-
-                            if (fila.HasRows)
-                            {
-
-                                while (fila.Read())
-                                {
-                                    objFuncion.Add(new clFuncionE { descripcionFuncion = fila["descripcionFuncion"].ToString() });
-
-
-                                }
-                            }
-
-                        }
-
-                        if (fila.NextResult())
-                        {
-
-                            if (fila.HasRows)
-                            {
-
-                                while (fila.Read())
-                                {
-
-                                    objRequisito.Add(new clRequisitoE { descripcionRequisito = fila["descripcionRequisito"].ToString() });
-
-
-                                }
-                            }
-
-                        }
-
-                        if (fila.NextResult())
-                        {
-
-                            if (fila.HasRows)
-                            {
-
-                                while (fila.Read())
-                                {
-
-                                    objHabilidad.Add(new clHabilidadE
-                                    {
-
-                                        nombreCompetencia = fila["nombreCompetencia"].ToString(),
-                                        descripcion = fila["descripcion"].ToString()
-
-                                    });
-
-                                }
-                            }
-
-                        }
-
-                        if (fila.NextResult())
-                        {
-                            if (fila.HasRows)
-                            {
-
-                                while (fila.Read())
-                                {
-
-                                    objVacante.titulo = fila["titulo"].ToString();
-                                    objVacante.descripcion = fila["descripcion"].ToString();
-                                    objVacante.tiempoExperiencia = fila["tiempoExperiencia"].ToString();
-                                    objVacante.salario = fila["salario"].ToString();
-                                    objVacante.jornada = fila["jornada"].ToString();
-                                    objVacante.horario = fila["horario"].ToString();
-                                    objVacante.idiomaRequerido = fila["idiomaRequerido"].ToString();
-                                    objVacante.fechaInicio = fila["fechaInicio"].ToString();
-                                    objVacante.fechaLimite = fila["fechaLimite"].ToString();
-                                    objVacante.fechaPublicacion = fila["fechaPublicacion"].ToString();
-                                    objVacante.tipoEmpleo = fila["tipoEmpleo"].ToString();
-                                    objVacante.tipoContrato = fila["tipoContrato"].ToString();
-                                    objVacante.municipio = fila["municipio"].ToString();
-
-                                }
-
-                            }
-
-
-                        }
-
-
-                        objDatosVacante.objNivelAcademico = objNivelAcademico;
-                        objDatosVacante.objFuncion = objFuncion;
-                        objDatosVacante.objRequisito = objRequisito;
-                        objDatosVacante.objHabilidad = objHabilidad;
-                        objDatosVacante.objVacante = objVacante;
-
                     }
-                    else
+
+                    if (fila.NextResult())
                     {
-                        objDatosVacante = null;
+
+                        if (fila.HasRows)
+                        {
+
+                            while (fila.Read())
+                            {
+                                objFuncion.Add(new clFuncionE { descripcionFuncion = fila["descripcionFuncion"].ToString() });
+
+
+                            }
+                        }
 
                     }
+
+                    if (fila.NextResult())
+                    {
+
+                        if (fila.HasRows)
+                        {
+
+                            while (fila.Read())
+                            {
+
+                                objRequisito.Add(new clRequisitoE { descripcionRequisito = fila["descripcionRequisito"].ToString() });
+
+
+                            }
+                        }
+
+                    }
+
+                    if (fila.NextResult())
+                    {
+
+                        if (fila.HasRows)
+                        {
+
+                            while (fila.Read())
+                            {
+
+                                objHabilidad.Add(new clHabilidadE
+                                {
+
+                                    nombreCompetencia = fila["nombreCompetencia"].ToString(),
+                                    descripcion = fila["descripcion"].ToString()
+
+                                });
+
+                            }
+                        }
+
+                    }
+
+                    if (fila.NextResult())
+                    {
+                        if (fila.HasRows)
+                        {
+
+                            while (fila.Read())
+                            {
+
+                                objVacante.titulo = fila["titulo"].ToString();
+                                objVacante.descripcion = fila["descripcion"].ToString();
+                                objVacante.tiempoExperiencia = fila["tiempoExperiencia"].ToString();
+                                objVacante.salario = fila["salario"].ToString();
+                                objVacante.jornada = fila["jornada"].ToString();
+                                objVacante.horario = fila["horario"].ToString();
+                                objVacante.idiomaRequerido = fila["idiomaRequerido"].ToString();
+                                objVacante.fechaInicio = fila["fechaInicio"].ToString();
+                                objVacante.fechaLimite = fila["fechaLimite"].ToString();
+                                objVacante.fechaPublicacion = fila["fechaPublicacion"].ToString();
+                                objVacante.tipoEmpleo = fila["tipoEmpleo"].ToString();
+                                objVacante.tipoContrato = fila["tipoContrato"].ToString();
+                                objVacante.municipio = fila["municipio"].ToString();
+
+                            }
+
+                        }
+
+
+                    }
+
+
+                    objDatosVacante.objNivelAcademico = objNivelAcademico;
+                    objDatosVacante.objFuncion = objFuncion;
+                    objDatosVacante.objRequisito = objRequisito;
+                    objDatosVacante.objHabilidad = objHabilidad;
+                    objDatosVacante.objVacante = objVacante;
 
                     fila.Close();
                     objConexion.MtdCerrarConexion();
@@ -530,6 +522,7 @@ namespace HIRE.Datos
                                 idSolicitud = int.Parse(filas["idSolicitud"].ToString()),
                                 idCurriculumVitae = int.Parse(filas["idCurriculumVitae"].ToString()),
                                 fechaEnvio = filas["fechaEnvio"].ToString(),
+                                estado = int.Parse(filas["estado"].ToString()),
                                 idUsuario = int.Parse(filas["idUsuario"].ToString()),
                                 idVacante = int.Parse(filas["idVacante"].ToString())
 
@@ -663,7 +656,6 @@ namespace HIRE.Datos
                     cmd.Parameters.Add(idVacanteR);
                     cmd.ExecuteNonQuery();
 
-                    objConexion.MtdCerrarConexion();
                     idValorRetorno = int.Parse(idVacanteR.Value.ToString());
                     objConexion.MtdCerrarConexion();
 
@@ -683,24 +675,27 @@ namespace HIRE.Datos
 
                     try
                     {
+
                         if (objFuncion != null)
                         {
+
                             foreach (clFuncionE funciones in objFuncion)
                             {
-
                                 SqlCommand cmd = new SqlCommand("spAgregarDetallesVacante", objConexion.MtdAbrirConexion());
                                 cmd.Parameters.AddWithValue("@idVacante", idVacante);
                                 cmd.Parameters.AddWithValue("@descripcionFuncion", funciones.descripcionFuncion);
                                 cmd.CommandType = CommandType.StoredProcedure;
                                 cmd.ExecuteNonQuery();
                                 objConexion.MtdCerrarConexion();
-
                             }
+
+
                         }
 
 
-                        else if (objRequisito != null)
+                        if (objRequisito != null)
                         {
+
                             foreach (clRequisitoE requisitos in objRequisito)
                             {
                                 SqlCommand cmd = new SqlCommand("spAgregarDetallesVacante", objConexion.MtdAbrirConexion());
@@ -711,10 +706,11 @@ namespace HIRE.Datos
                                 objConexion.MtdCerrarConexion();
 
                             }
+
                         }
 
 
-                        else if (objCompetencia != null)
+                        if (objCompetencia != null)
                         {
 
                             foreach (clCompetenciaE competencias in objCompetencia)
@@ -731,7 +727,7 @@ namespace HIRE.Datos
                         }
 
 
-                        else if (objNivelAcademico != null)
+                        if (objNivelAcademico != null)
                         {
 
                             foreach (clNivelAcademicoE nivelesAcademicos in objNivelAcademico)
@@ -895,6 +891,140 @@ namespace HIRE.Datos
 
             return vacantes;
         }
+
+        public (List<clVacanteE>, List<clVacanteE>) mtdListarFiltros2()
+        {
+
+            List<clVacanteE> tipoContrato = new List<clVacanteE>();
+            List<clVacanteE> tipoEmpleo = new List<clVacanteE>();
+            try
+            {
+                SqlCommand cmd = new SqlCommand("spListarFiltros2", objConexion.MtdAbrirConexion());
+
+                using (SqlDataReader filas = cmd.ExecuteReader())
+                {
+
+
+                    if (filas.HasRows)
+                    {
+                        while (filas.Read())
+                        {
+                            tipoEmpleo.Add(new clVacanteE
+                            {
+                                idTipoEmpleo = int.Parse(filas["idTipoEmpleo"].ToString()),
+                                tipoEmpleo = filas["tipoEmpleo"].ToString()
+                            });
+
+                        }
+                    }
+
+                    if (filas.NextResult())
+                    {
+
+                        while (filas.Read())
+                        {
+                            tipoContrato.Add(new clVacanteE
+                            {
+
+                                idTipoContrato = int.Parse(filas["idTipoContrato"].ToString()),
+                                tipoContrato = filas["tipoContrato"].ToString()
+
+                            });
+
+                        }
+
+                    }
+
+
+                    filas.Close();
+                    objConexion.MtdCerrarConexion();
+
+                }
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e.Message);
+            }
+
+            return (tipoEmpleo, tipoContrato);
+
+        }
+
+
+        public (List<clSolicitudE>, List<clVacanteE>) mtdListarSolicitudesEmpresa(int idEmpresa)
+        {
+
+
+            List<clSolicitudE> objSolicitudes = new List<clSolicitudE>();
+            List<clVacanteE> objVacantes = new List<clVacanteE>();
+            try
+            {
+
+
+                SqlCommand cmd = new SqlCommand("spListarSolicitudesEmpresa", objConexion.MtdAbrirConexion());
+                cmd.Parameters.AddWithValue("@idEmpresa", idEmpresa);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                using (SqlDataReader filas = cmd.ExecuteReader())
+                {
+                    if (filas.HasRows)
+                    {
+                        while (filas.Read())
+                        {
+                            objSolicitudes.Add(new clSolicitudE
+                            {
+
+                                idSolicitud = int.Parse(filas["idSolicitud"].ToString()),
+                                idCurriculumVitae = int.Parse(filas["idCurriculumVitae"].ToString()),
+                                fechaEnvio = filas["fechaEnvio"].ToString(),                                
+                                estado = int.Parse(filas["estado"].ToString()),
+                                idUsuario = int.Parse(filas["idUsuario"].ToString()),
+                                idVacante = int.Parse(filas["idVacante"].ToString())
+
+                            });
+
+                        }
+
+                    }
+                    if (filas.NextResult())
+                    {
+                        if (filas.HasRows)
+                        {
+                            while (filas.Read())
+                            {
+
+                                objVacantes.Add(new clVacanteE
+                                {
+
+                                    idVacante = int.Parse(filas["idVacante"].ToString()),
+                                    titulo = filas["titulo"].ToString(),
+                                    fechaInicio = filas["fechaInicio"].ToString(),
+                                    fechaLimite = filas["fechaLimite"].ToString(),
+
+                                });
+
+                            }
+
+                        }
+
+                    }
+
+                    filas.Close();
+                    objConexion.MtdCerrarConexion();
+
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return (objSolicitudes, objVacantes);
+
+        }
+
 
     }
 

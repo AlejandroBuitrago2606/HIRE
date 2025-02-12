@@ -72,7 +72,7 @@ namespace HIRE.Logica
         }
 
 
-        public int spRegistrarVacante(clVacanteE objDatosVacante = null, List<clFuncionE> objFuncion = null, List<clRequisitoE> objRequisito = null, List<clNivelAcademicoE> objNivelAcademico = null, List<clCompetenciaE> objCompetencia = null)
+        public bool mtdRegistrarVacante(clVacanteE objDatosVacante = null, List<clFuncionE> objFuncion = null, List<clRequisitoE> objRequisito = null, List<clNivelAcademicoE> objNivelAcademico = null, List<clCompetenciaE> objCompetencia = null)
         {
             int contador = 0;
             int idVacanteRegistrado = objVacanteD.mtdRegistrarVacante(1, objDatosVacante, 0, null, null, null, null).Item1;
@@ -94,7 +94,7 @@ namespace HIRE.Logica
 
             }
 
-            return contador;
+            return (contador == 2 ? true : false);
 
         }
 
@@ -113,6 +113,34 @@ namespace HIRE.Logica
 
         }
 
-    }
+        public (List<clVacanteE>, List<clVacanteE>) mtdListarFiltros2()
+        {
 
+            var resultado = objVacanteD.mtdListarFiltros2();
+            List<clVacanteE> tipoEmpleo = resultado.Item1;
+            List<clVacanteE> tipoContrato = resultado.Item2;
+
+            return (tipoEmpleo, tipoContrato);
+
+
+
+        }
+
+        public bool mtdEliminarVacante(int idVacante)
+        {
+            return objVacanteD.mtdEliminarVacante(idVacante);
+        }
+
+
+        public (List<clSolicitudE>, List<clVacanteE>) mtdListarSolicitudesEmpresa(int idEmpresa)
+        {
+
+            var resultado = objVacanteD.mtdListarSolicitudesEmpresa(idEmpresa);
+            List <clSolicitudE> objSolicitudes = resultado.Item1;
+            List<clVacanteE> objVacantes = resultado.Item2;
+
+            return(objSolicitudes, objVacantes);
+        }
+
+    }
 }

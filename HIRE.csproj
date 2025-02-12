@@ -127,6 +127,7 @@
     <Content Include="Vista\css\style.css" />
     <Content Include="Vista\index.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="Vista\solicitudesEmpresa.aspx" />
     <Content Include="Vista\vacantesEmpresa.aspx" />
     <Content Include="Vista\listaEmpresas.aspx" />
     <Content Include="Vista\perfilEmpresa.aspx" />
@@ -1893,6 +1894,8 @@
     <Content Include="Vista\recursos\videos\video_Login.mp4" />
     <Content Include="Vista\registroEmpresa.aspx" />
     <Content Include="Vista\solicitudesUsuario.aspx" />
+    <Content Include="Vista\verCvEmpresa.aspx" />
+    <Content Include="Vista\verUsuarioEmpresa.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -1955,6 +1958,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\solicitudesEmpresa.aspx.cs">
+      <DependentUpon>solicitudesEmpresa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\solicitudesEmpresa.aspx.designer.cs">
+      <DependentUpon>solicitudesEmpresa.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\vacantesEmpresa.aspx.cs">
       <DependentUpon>vacantesEmpresa.aspx</DependentUpon>
@@ -2039,6 +2049,20 @@
     </Compile>
     <Compile Include="Vista\solicitudesUsuario.aspx.designer.cs">
       <DependentUpon>solicitudesUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\verCvEmpresa.aspx.cs">
+      <DependentUpon>verCvEmpresa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\verCvEmpresa.aspx.designer.cs">
+      <DependentUpon>verCvEmpresa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\verUsuarioEmpresa.aspx.cs">
+      <DependentUpon>verUsuarioEmpresa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\verUsuarioEmpresa.aspx.designer.cs">
+      <DependentUpon>verUsuarioEmpresa.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

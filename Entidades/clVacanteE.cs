@@ -41,6 +41,7 @@ namespace HIRE.Entidades
     {
         public int idFuncion { get; set; }
         public string descripcionFuncion { get; set; }
+
     }
 
 

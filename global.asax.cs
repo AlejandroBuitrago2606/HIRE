@@ -44,6 +44,11 @@ namespace HIRE
             Session["idEmpresa"] = 0;
             Session["idTipoUsuario"] = 0;
             Session["idVacante"] = 0;
+            Session["funciones"] = null;
+            Session["requisitos"] = null;
+            Session["competencias"] = null;
+            Session["nivelesAcademicos"] = null;
+
 
         }
 
@@ -80,6 +85,10 @@ namespace HIRE
             Session["idEmpresa"] = 0;
             Session["idTipoUsuario"] = 0;
             Session["idVacante"] = 0;
+            Session["funciones"] = null;
+            Session["requisitos"] = null;
+            Session["competencias"] = null;
+            Session["nivelesAcademicos"] = null;
 
         }
 

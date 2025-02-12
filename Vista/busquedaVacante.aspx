@@ -83,7 +83,7 @@
                                     </div>
                                     <br />
                                     <div class="row">
-                                        <h6 runat="server" style="font-size: 83%; color: mediumseagreen;"><b><%# Eval("salario") %></b></h6>
+                                        <h6 runat="server" style="font-size: 83%; color: mediumseagreen;"><b>$<%# Eval("salario") %></b></h6>
 
                                     </div>
                                     <div class="row">
@@ -197,13 +197,13 @@
 
                                     <br />
 
-                                    <div class="input-group">
+                                    <div class="form-group">
                                         <h6><b>Nivel academico: </b></h6>
                                         <asp:Repeater ID="rpNivelAcademico" runat="server">
 
                                             <ItemTemplate>
-                                                <div class="row">
-                                                    <h6><%# Eval("nivelAcademico") %></h6>
+                                                <div class="row mb-3" style="margin-left: 5%">
+                                                    <h6>●<%# Eval("nivelAcademico") %></h6>
                                                 </div>
                                             </ItemTemplate>
 
@@ -213,13 +213,14 @@
 
                                     </div>
 
-                                    <div class="input-group">
+                                    <br />
+                                    <div class="form-group">
                                         <h6><b>Requisitos: </b></h6>
                                         <asp:Repeater ID="rpRequisitos" runat="server">
 
                                             <ItemTemplate>
-                                                <div class="row">
-                                                    <h6><%# Eval("descripcionRequisito") %></h6>
+                                                <div class="row mb-3" style="margin-left: 5%">
+                                                    <h6>●<%# Eval("descripcionRequisito") %></h6>
                                                 </div>
                                             </ItemTemplate>
 
@@ -229,14 +230,16 @@
 
                                     </div>
 
-                                    <div class="input-group">
+                                    <br />
+
+                                    <div class="form-group">
                                         <h6><b>Habilidades: </b></h6>
                                         <asp:Repeater ID="rpHabilidades" runat="server">
 
                                             <ItemTemplate>
 
-                                                <div class="row" style="margin-left: 5%">
-                                                    <h6><b><%# Eval("nombreCompetencia") %></b></h6>
+                                                <div class="row mb-3" style="margin-left: 5%">
+                                                    <h6><b>●<%# Eval("nombreCompetencia") %></b></h6>
                                                     <h6><%# Eval("descripcion") %></h6>
                                                 </div>
                                             </ItemTemplate>
@@ -249,18 +252,23 @@
 
                                     <br />
 
-                                    <div class="input-group">
+                                    <div class="form-group">
+
                                         <h6><b>Funciones: </b></h6>
+
+
                                         <asp:Repeater ID="rpFunciones" runat="server">
 
                                             <ItemTemplate>
-                                                <div class="row">
-                                                    <h6><%# Eval("descripcionFuncion") %></h6>
+                                                <div class="row mb-3" style="margin-left: 5%">
+
+                                                    <h6>●<%# Eval("descripcionFuncion") %></h6>
                                                 </div>
                                             </ItemTemplate>
 
                                         </asp:Repeater>
 
+                                        <br />
                                     </div>
 
                                     <div class="input-group">
@@ -272,8 +280,8 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                    <asp:Button ID="btnPostulacion" CssClass="btn color2" CommandName="postulacion" CommandArgument='<%# Eval("idVacante") %>' style="color: white" OnClick="btnPostulacion_Click" runat="server" Text="Postularme" />
-                                    
+                                    <asp:Button ID="btnPostulacion" CssClass="btn color2" CommandName="postulacion" CommandArgument='<%# Eval("idVacante") %>' Style="color: white" OnClick="btnPostulacion_Click" runat="server" Text="Postularme" />
+
                                 </div>
                             </div>
                         </div>
@@ -299,7 +307,7 @@
                     <div class="modal-body">
                         Deseas postularte a esta vacante.
                     </div>
-                    <div class="modal-footer">                   
+                    <div class="modal-footer">
                         <button type="button" id="btnPostularse" onserverclick="btnPostularse_ServerClick" class="btn btn-warning" runat="server">Postularme</button>
                     </div>
                 </div>

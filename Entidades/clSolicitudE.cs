@@ -12,6 +12,7 @@ namespace HIRE.Entidades
         public int idVacante { get; set; }
         public int idUsuario { get; set; }
         public string fechaEnvio { get; set; }
+        public int estado { get; set; }
 
     }
 

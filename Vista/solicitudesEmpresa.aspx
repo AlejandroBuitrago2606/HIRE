@@ -1,9 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vista/panelTrabajador.Master" AutoEventWireup="true" CodeBehind="solicitudesUsuario.aspx.cs" Inherits="HIRE.Vista.solicitudesUsuario" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vista/panelEmpresa.Master" AutoEventWireup="true" CodeBehind="solicitudesEmpresa.aspx.cs" Inherits="HIRE.Vista.solicitudesEmpresa" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="Content_Head" runat="server">
-    <link href="Vista/recursos/css/main3.css" rel="stylesheet" />
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentHead" runat="server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="Content_Body" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentBody" runat="server">
 
     <div class="content-body-scrollable">
         <div class="container">
@@ -25,33 +24,57 @@
 
             <div runat="server" id="domMsg" class="mt-4" visible="false">
                 <div class="d-flex justify-content-center">
-                    <h4 runat="server" id="tituloMsg">No has hecho ningun solicitud de empleo</h4>
-                </div>
-                <div class="d-flex justify-content-center">
-                    <a href="busquedaVacante.aspx" runat="server" id="btnRegresar" class="btn btn-success">Postularme a un empleo</a>
+                    <h4 runat="server" id="tituloMsg">No tienes ninguna solicitud de empleo pendiente</h4>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
                     <%-- contenido de la pagina aqui --%>
                     <asp:Repeater runat="server" ID="rpSolicitudes">
                         <ItemTemplate>
                             <div class="card sombra1 mb-4 shadow-sm">
                                 <div class="card-body" style="margin-top: 0">
                                     <div class="row">
-                                        <div class="col-md-9">
+                                        <div class="col-md-4">
                                             <div class="row">
                                                 <h3 runat="server" style="font-size: 100%;" id="txtTitulo"><b>Vacante:</b><%# " " + Eval("titulo") %></h3>
                                             </div>
                                             <div class="row">
                                                 <h4 runat="server" style="font-size: 80%; color: gray;" id="H1"><b>Fecha de postulación:</b><%# " " + Convert.ToDateTime(Eval("fechaEnvio")).ToString("yyyy-MM-dd") %></h4>
                                             </div>
+                                            <div class="row">
+                                                <h4 runat="server" style="font-size: 80%;" id="H2"><b>Estado:</b><%# " " + Eval("estado") %></h4>
+                                            </div>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
                                             <asp:Button ID="btnPanelEmpresa" CssClass="btn btn-warning" OnCommand="btnVerVacante_Click" data-bs-toggle="modal" data-bs-target="#datosVacante"
-                                                CommandName="enviarIDVacante" CommandArgument='<%# Eval("idVacante") %>' runat="server" Text="Ver vacante" />
-                                            <asp:HiddenField ID="hfIdSolicitud" Value='<%# Eval("idSolicitud") %>' runat="server" />
+                                                CommandName="enviarIDVacante" CommandArgument='<%# Eval("idVacante") %>' runat="server" Text="Vacante" />
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="row">
+                                                        <asp:Button ID="btnVerCV" OnCommand="btnVerCV_Command" CssClass="btn colorBase" CommandArgument='<%# Eval("idUsuario") %>' runat="server" Text="Ver CV del candidato" />
+                                                    </div>
+                                                    <div class="row">
+                                                        <asp:Button ID="btnVerUsuario" OnCommand="btnVerUsuario_Command" CssClass="btn btn-warning" CommandArgument='<%# Eval("idUsuario") %>' runat="server" Text="Ver Perfil del usuario" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+
+                                                    <div class="row">
+                                                        <asp:Button ID="btnSi" OnClick="btnEvaluarSolicitud_Click" CommandName="evaluarSolicitud" CommandArgument='<%# Eval("idSolicitud") %>' CssClass="btn btn-success" runat="server" Text="Si aplica" />
+                                                    </div>
+                                                    <div class="row">
+                                                        <asp:Button ID="btnNo" OnClick="btnEvaluarSolicitud_Click" CommandArgument='<%# Eval("idSolicitud") %>' CssClass="btn btn-danger" runat="server" Text="No aplica" />
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -59,7 +82,7 @@
                         </ItemTemplate>
                     </asp:Repeater>
                 </div>
-                <div class="col-md-2"></div>
+                <div class="col-md-1"></div>
             </div>
         </div>
 
@@ -233,6 +256,7 @@
             </div>
         </div>
     </div>
+
 
 
 </asp:Content>
