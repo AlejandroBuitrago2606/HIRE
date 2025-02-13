@@ -1,6 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vista/panelEmpresa.Master" AutoEventWireup="true" CodeBehind="solicitudesEmpresa.aspx.cs" Inherits="HIRE.Vista.solicitudesEmpresa" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vista/panelEmpresa.Master" EnableEventValidation="true" AutoEventWireup="true" CodeBehind="solicitudesEmpresa.aspx.cs" Inherits="HIRE.Vista.solicitudesEmpresa" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentHead" runat="server">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/Content/alertifyjs/alertify.css" />
+    <link rel="stylesheet" href="/Content/alertifyjs/themes/default.css" />
+    <script src="/Scripts/alertify.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentBody" runat="server">
 
@@ -8,7 +14,7 @@
         <div class="container">
             <br />
             <div class=" d-flex justify-content-center">
-                <h3>Solicitudes de empleo enviadas</h3>
+                <h3>Solicitudes de empleo recibidas</h3>
                 <br />
             </div>
 
@@ -17,7 +23,7 @@
             <div class="d-flex justify-content-center">
                 <div class="input-group mb-3" style="width: 50%;">
                     <asp:TextBox ID="txtBuscar" CssClass="form-control" placeholder="Buscar postulaciones..." runat="server"></asp:TextBox>
-                    <button class="btn btn-outline-warning" runat="server" onserverclick="btnBuscarSolicitud_ServerClick" id="btnBuscarSolicitud">Buscar</button>
+                    <button class="btn btn-outline-warning" runat="server" id="btnBuscarSolicitud">Buscar</button>
                 </div>
             </div>
             <br />
@@ -28,8 +34,8 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-10">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
                     <%-- contenido de la pagina aqui --%>
                     <asp:Repeater runat="server" ID="rpSolicitudes">
                         <ItemTemplate>
@@ -43,9 +49,6 @@
                                             <div class="row">
                                                 <h4 runat="server" style="font-size: 80%; color: gray;" id="H1"><b>Fecha de postulación:</b><%# " " + Convert.ToDateTime(Eval("fechaEnvio")).ToString("yyyy-MM-dd") %></h4>
                                             </div>
-                                            <div class="row">
-                                                <h4 runat="server" style="font-size: 80%;" id="H2"><b>Estado:</b><%# " " + Eval("estado") %></h4>
-                                            </div>
                                         </div>
                                         <div class="col-md-2">
                                             <asp:Button ID="btnPanelEmpresa" CssClass="btn btn-warning" OnCommand="btnVerVacante_Click" data-bs-toggle="modal" data-bs-target="#datosVacante"
@@ -56,10 +59,10 @@
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="row">
-                                                        <asp:Button ID="btnVerCV" OnCommand="btnVerCV_Command" CssClass="btn colorBase" CommandArgument='<%# Eval("idUsuario") %>' runat="server" Text="Ver CV del candidato" />
+                                                        <asp:Button ID="btnVerCV" OnCommand="btnVerDatos_Command" CommandName="verDatos" CssClass="btn colorBase" CommandArgument='<%# Eval("idUsuario") %>' runat="server" Text="Ver CV del candidato" />
                                                     </div>
                                                     <div class="row">
-                                                        <asp:Button ID="btnVerUsuario" OnCommand="btnVerUsuario_Command" CssClass="btn btn-warning" CommandArgument='<%# Eval("idUsuario") %>' runat="server" Text="Ver Perfil del usuario" />
+                                                        <asp:Button ID="btnVerUsuario" OnCommand="btnVerDatos_Command" CommandName="verDatos" CssClass="btn btn-warning" CommandArgument='<%# Eval("idUsuario") %>' runat="server" Text="Ver Perfil del candidato" />
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
@@ -82,7 +85,7 @@
                         </ItemTemplate>
                     </asp:Repeater>
                 </div>
-                <div class="col-md-1"></div>
+                <div class="col-md-2"></div>
             </div>
         </div>
 

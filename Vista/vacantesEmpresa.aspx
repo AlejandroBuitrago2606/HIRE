@@ -432,7 +432,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="btnAgregarVacante" CommandName="agregarVacante" OnClick="btnAgregarVacante_Click" CssClass="btn btn-success" runat="server" Text="Registrar" />
+                    <asp:Button ID="btnAgregarVacante" CommandName="agregarVacante" OnClick="btnAgregarVacante_Click" CssClass="btn btn-success" runat="server" Text="Publicar" />
                 </div>
             </div>
 

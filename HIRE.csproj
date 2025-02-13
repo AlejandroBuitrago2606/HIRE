@@ -127,6 +127,7 @@
     <Content Include="Vista\css\style.css" />
     <Content Include="Vista\index.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="Vista\recursos\js\main7.js" />
     <Content Include="Vista\solicitudesEmpresa.aspx" />
     <Content Include="Vista\vacantesEmpresa.aspx" />
     <Content Include="Vista\listaEmpresas.aspx" />
@@ -1894,14 +1895,15 @@
     <Content Include="Vista\recursos\videos\video_Login.mp4" />
     <Content Include="Vista\registroEmpresa.aspx" />
     <Content Include="Vista\solicitudesUsuario.aspx" />
-    <Content Include="Vista\verCvEmpresa.aspx" />
-    <Content Include="Vista\verUsuarioEmpresa.aspx" />
+    <Content Include="Vista\verCV.aspx" />
+    <Content Include="Vista\verUsuario.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Datos\clConexion.cs" />
     <Compile Include="Datos\clEmpresaD.cs" />
     <Compile Include="Datos\clPerfilD.cs" />
+    <Compile Include="Datos\clSolicitudD.cs" />
     <Compile Include="Datos\clUsuarioD.cs" />
     <Compile Include="Datos\clVacanteD.cs" />
     <Compile Include="Entidades\clEmpresaE.cs" />
@@ -1916,6 +1918,7 @@
       <DependentUpon>global.asax</DependentUpon>
     </Compile>
     <Compile Include="Logica\clPerfilL.cs" />
+    <Compile Include="Logica\clSolicitudL.cs" />
     <Compile Include="Logica\clUsuarioL.cs" />
     <Compile Include="Logica\clVacanteL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2050,19 +2053,19 @@
     <Compile Include="Vista\solicitudesUsuario.aspx.designer.cs">
       <DependentUpon>solicitudesUsuario.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Vista\verCvEmpresa.aspx.cs">
-      <DependentUpon>verCvEmpresa.aspx</DependentUpon>
+    <Compile Include="Vista\verCV.aspx.cs">
+      <DependentUpon>verCV.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Vista\verCvEmpresa.aspx.designer.cs">
-      <DependentUpon>verCvEmpresa.aspx</DependentUpon>
+    <Compile Include="Vista\verCV.aspx.designer.cs">
+      <DependentUpon>verCV.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Vista\verUsuarioEmpresa.aspx.cs">
-      <DependentUpon>verUsuarioEmpresa.aspx</DependentUpon>
+    <Compile Include="Vista\verUsuario.aspx.cs">
+      <DependentUpon>verUsuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Vista\verUsuarioEmpresa.aspx.designer.cs">
-      <DependentUpon>verUsuarioEmpresa.aspx</DependentUpon>
+    <Compile Include="Vista\verUsuario.aspx.designer.cs">
+      <DependentUpon>verUsuario.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

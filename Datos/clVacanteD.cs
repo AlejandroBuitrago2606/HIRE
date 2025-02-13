@@ -475,6 +475,7 @@ namespace HIRE.Datos
                 SqlCommand cmd = new SqlCommand("spRegistrarSolicitud", objConexion.MtdAbrirConexion());
                 cmd.Parameters.AddWithValue("@idVacante", idVacante);
                 cmd.Parameters.AddWithValue("@fechaEnvio", fechaEnvio);
+                cmd.Parameters.AddWithValue("@estado", 0);
                 cmd.Parameters.AddWithValue("@idCV", idCV);
                 cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
                 cmd.CommandType = CommandType.StoredProcedure;

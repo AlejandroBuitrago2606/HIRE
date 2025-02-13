@@ -48,7 +48,7 @@ namespace HIRE
             Session["requisitos"] = null;
             Session["competencias"] = null;
             Session["nivelesAcademicos"] = null;
-
+            Session["idUsuarioVer"] = 0;
 
         }
 
@@ -89,6 +89,7 @@ namespace HIRE
             Session["requisitos"] = null;
             Session["competencias"] = null;
             Session["nivelesAcademicos"] = null;
+            Session["idUsuarioVer"] = 0;
 
         }
 

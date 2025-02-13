@@ -18,8 +18,6 @@
                 }
             }
         });
-    } else {
-        alert("No se encontró el input de archivo.");
     }
 });
 
@@ -49,8 +47,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             }
         });
-    } else {
-        alert("No se encontró el input de archivo.");
     }
 });
 
@@ -198,4 +194,3 @@ function mostrarSoportePDF() {
 
     urlSoporte.value = '';
 }
-

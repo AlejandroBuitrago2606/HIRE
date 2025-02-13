@@ -21,6 +21,29 @@
         }
     }
 }
+function mostrarUbicacion2() {
+    var coordenadasJSON = document.getElementById('ContentBody_hfCoordenadas').value;
+
+    if (coordenadasJSON) {
+        try {
+            var coordenadas = JSON.parse(coordenadasJSON); // Convertir de JSON a objeto
+            var lat = coordenadas.lat;
+            var lng = coordenadas.lng;
+
+            var map = L.map('ContentBody_map').setView([lat, lng], 13);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+
+            L.marker([lat, lng]).addTo(map)
+                .bindPopup('Ubicación: ' + lat + '</br>' + lng)
+                .openPopup();
+        } catch (error) {
+            console.error('Error al cargar tu ubicación:', error);
+        }
+    }
+}
 
 
 function obtenerUbicacion() {

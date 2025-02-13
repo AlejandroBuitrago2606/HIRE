@@ -3,6 +3,8 @@ using HIRE.Logica;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -21,44 +23,48 @@ namespace HIRE.Vista
             List<clVacanteE> listaVacantes = resultado.Item2;
             List<clSolicitudesEmpresa> objSolicitudesEmpresa = new List<clSolicitudesEmpresa>();
 
-            if (listasolicitudes.Count > 0 && listaVacantes.Count > 0 && listasolicitudes.Count == listaVacantes.Count)
+            if (!IsPostBack)
             {
-                domMsg.Visible = false;
-                for (int i = 0; i < listasolicitudes.Count; i++)
+                Session["idUsuarioVer"] = 0;
+                if (listasolicitudes.Count > 0 && listaVacantes.Count > 0 && listasolicitudes.Count == listaVacantes.Count)
                 {
-
-                    string estado = "";
-                    if (listasolicitudes[i].ToString() == "0")
+                    domMsg.Visible = false;
+                    for (int i = 0; i < listasolicitudes.Count; i++)
                     {
-                        estado = "En revision";
+
+                        string estado = "";
+                        if (listasolicitudes[i].ToString() == "0")
+                        {
+                            estado = "En revision";
+                        }
+
+                        objSolicitudesEmpresa.Add(new clSolicitudesEmpresa
+                        {
+
+                            titulo = listaVacantes[i].titulo.ToString(),
+                            fechaEnvio = listasolicitudes[i].fechaEnvio.ToString(),
+                            estado = estado,
+                            idUsuario = int.Parse(listasolicitudes[i].idUsuario.ToString()),
+                            idVacante = int.Parse(listaVacantes[i].idVacante.ToString()),
+                            idSolicitud = int.Parse(listasolicitudes[i].idSolicitud.ToString())
+
+                        });
+
+
                     }
-
-                    objSolicitudesEmpresa.Add(new clSolicitudesEmpresa
-                    {
-
-                        titulo = listaVacantes[i].titulo.ToString(),
-                        fechaEnvio = listasolicitudes[i].fechaEnvio.ToString(),
-                        estado = estado,
-                        idUsuario = int.Parse(listasolicitudes[i].idUsuario.ToString()),                        
-                        idVacante = int.Parse(listaVacantes[i].idVacante.ToString()),
-                        idSolicitud = int.Parse(listasolicitudes[i].idSolicitud.ToString())
-
-                    });
 
 
                 }
+                else
+                {
 
+                    domMsg.Visible = true;
 
+                }
+
+                rpSolicitudes.DataSource = objSolicitudesEmpresa;
+                rpSolicitudes.DataBind();
             }
-            else
-            {
-
-                domMsg.Visible = true;
-
-            }
-
-            rpSolicitudes.DataSource = objSolicitudesEmpresa;
-            rpSolicitudes.DataBind();
 
         }
 
@@ -142,19 +148,101 @@ namespace HIRE.Vista
 
         }
 
-        protected void btnVerCV_Command(object sender, CommandEventArgs e)
+        protected void btnVerDatos_Command(object sender, EventArgs e)
         {
+            Session["idUsuarioVer"] = 0;
 
-        }
+            Button btn = (Button)sender;
 
-        protected void btnVerUsuario_Command(object sender, CommandEventArgs e)
-        {
+
+            if (btn.CommandName == "verDatos")
+            {
+
+                if (!string.IsNullOrEmpty(btn.CommandArgument))
+                {
+
+                    if (btn.ID == "btnVerCV")
+                    {
+                        Session["idUsuarioVer"] = int.Parse(btn.CommandArgument);
+                        Response.Redirect("~/Vista/verCV.aspx");
+
+
+                    }
+                    else if (btn.ID == "btnVerUsuario")
+                    {
+                        Session["idUsuarioVer"] = int.Parse(btn.CommandArgument);
+                        Response.Redirect("~/Vista/verUsuario.aspx");
+                    }
+
+
+                }
+
+
+            }
 
         }
 
         protected void btnEvaluarSolicitud_Click(object sender, EventArgs e)
         {
+            Button btn = (Button)sender;
+            clSolicitudL objSolicitudL = new clSolicitudL();
+
+            if (!string.IsNullOrEmpty(btn.CommandArgument))
+            {
+                int idSolicitud = int.Parse(btn.CommandArgument);
+
+                switch (btn.ID)
+                {
+
+                    case "btnSi":
+
+
+
+                        if (objSolicitudL.mtdEvaluarSolicitud(idSolicitud, 1))
+                        {
+                            string evaluarSi = "alertify.success('Solicitud Evaluada.'); setTimeout(function(){ window.location.href = '../Vista/solicitudesEmpresa.aspx'; }, 900);";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "evaluarSi", evaluarSi, true);
+                        }
+                        else
+                        {
+                            string evaluarNo = "alert('Ocurrio un error, solicitud no evaluada.');";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "evaluarNo", evaluarNo, true);
+                        }
+
+
+
+                        break;
+
+
+                    case "btnNo":
+
+
+
+                        if (objSolicitudL.mtdEvaluarSolicitud(idSolicitud, 2))
+                        {
+                            string evaluarSi = "alertify.success('Solicitud Evaluada.'); setTimeout(function(){ window.location.href = '../Vista/solicitudesEmpresa.aspx'; }, 900);";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "evaluarSi", evaluarSi, true);
+                        }
+                        else
+                        {
+                            string evaluarNo = "alert('Ocurrio un error, solicitud no evaluada.');";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "evaluarNo", evaluarNo, true);
+                        }
+
+
+
+                        break;
+
+
+                }
+
+            }
+
+
+
 
         }
+
     }
+
 }
