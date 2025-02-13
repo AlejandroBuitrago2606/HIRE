@@ -14,6 +14,7 @@
     <link href="recursos/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="recursos/css/main.css" rel="stylesheet" />
     <link rel="icon" href="../Vista/recursos/imagenes/iPestana.jpg" type="image/png">
+
     <title></title>
 
     <asp:ContentPlaceHolder ID="Content_Head" runat="server">
@@ -24,7 +25,7 @@
         <div>
 
 
-            <!-- Page Wrapper -->
+            <!-- Menu lateral -->
             <div id="wrapper">
 
                 <!-- Sidebar -->
@@ -105,15 +106,6 @@
                         <a class="nav-link collapsed" href="registroEmpresa.aspx">
                             <i class="fas fa-plus-circle"></i>
                             <span>Registrar Empresa</span>
-                        </a>
-                    </li>
-
-                    <hr class="sidebar-divider d-none d-md-block">
-
-                    <li class="nav-item">
-                        <a class="nav-link collapsed" href="#">
-                            <i class="fas fa-fw fa-cog"></i>
-                            <span>Ajustes</span>
                         </a>
                     </li>
 
@@ -206,8 +198,8 @@
 
 
 
-                                <!-- Nav Item - Alerts -->
-                                <li id="alerta" runat="server" class="nav-item dropdown no-arrow mx-1" visible="true">
+                                <!-- CAMPANITA DE NOTIFICACIONES -->
+                                <%--<li id="alerta" runat="server" class="nav-item dropdown no-arrow mx-1 disabled" visible="true">
                                     <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fas fa-bell fa-fw"></i>
@@ -254,7 +246,8 @@
                                         </a>
                                         <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                                     </div>
-                                </li>
+                                </li>--%>
+
 
 
                                 <div id="barraDivisora" runat="server" class="topbar-divider d-none d-sm-block"></div>
@@ -328,7 +321,7 @@
                     <!-- End of Footer -->
 
                 </div>
-                <!-- End of Content Wrapper -->
+                <!-- fin menu lateral-->
 
             </div>
             <!-- End of Page Wrapper -->

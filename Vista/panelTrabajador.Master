@@ -19,16 +19,21 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-image: linear-gradient(180deg,#09296e 10%,#4E73DF 100%);">
                 <div class="container-fluid d-flex justify-content-between align-items-center">
+
+                    <!-- Logo a la izquierda -->
+                    <div class="sidebar-brand-icon">
+                        <img src="../Vista/recursos/imagenes/logoWeb-white2.png" width="230" height="40" />
+                    </div>
 
                     <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link active text-center" aria-current="page" href="solicitudesUsuario.aspx">Solicitudes de empleo</a>
+                                <a class="nav-link active text-center text-white" aria-current="page" href="solicitudesUsuario.aspx">Solicitudes de empleo</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-center" href="#">Mis empleos</a>
+                                <a class="nav-link text-center text-white" href="empleoUsuario.aspx">Mis empleos</a>
                             </li>
                         </ul>
                     </div>
@@ -37,20 +42,21 @@
                         <a class="navbar-brand me-2" href="#">
                             <img src="#" id="imgUsuario" runat="server" alt="error" width="32" height="32" class="d-inline-block align-text-top img-profile rounded-circle">
                         </a>
-                        <p id="h6NombreUsuario" runat="server" class="mb-0 fw-bold me-3"></p>
+                        <p id="h6NombreUsuario" runat="server" class="mb-0 fw-bold me-3 text-white"></p>
                         <div class="dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" style="color:white;" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="bi bi-chevron-down"></i>
-                                <!-- Icono de flecha hacia abajo -->
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
                                 <li><a class="dropdown-item" href="perfilUsuario.aspx">Informacion de mi cuenta</a></li>
+                                <li><a class="dropdown-item" href="perfilCV.aspx">Mi CV</a></li>
                                 <li><a class="dropdown-item" href="index.aspx">Volver a la página principal</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </nav>
+
             <asp:ContentPlaceHolder ID="Content_Body" runat="server">
             </asp:ContentPlaceHolder>
         </div>

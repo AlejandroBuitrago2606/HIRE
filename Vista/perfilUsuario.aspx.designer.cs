@@ -78,15 +78,6 @@ namespace HIRE.Vista
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblNombreFoto;
 
         /// <summary>
-        /// Control txtEstado.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtEstado;
-
-        /// <summary>
         /// Control domBtnSolicitudA.
         /// </summary>
         /// <remarks>
@@ -103,15 +94,6 @@ namespace HIRE.Vista
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSolicitudA;
-
-        /// <summary>
-        /// Control btnEliminarCuenta.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEliminarCuenta;
 
         /// <summary>
         /// Control lblNombreApellido.

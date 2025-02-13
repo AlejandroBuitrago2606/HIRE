@@ -497,7 +497,7 @@ namespace HIRE.Datos
 
         }
 
-        public (List<clSolicitudE>, List<clVacanteE>) mtdListarSolicitudes(int idUsuario)
+        public (List<clSolicitudE>, List<clVacanteE>) mtdListarSolicitudes(int idUsuario, int estado, int idEmpresa)
         {
 
 
@@ -509,6 +509,8 @@ namespace HIRE.Datos
 
                 SqlCommand cmd = new SqlCommand("spListarSolicitudes", objConexion.MtdAbrirConexion());
                 cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
+                cmd.Parameters.AddWithValue("@idEmpresa", idEmpresa);
+                cmd.Parameters.AddWithValue("@estado", estado);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 using (SqlDataReader filas = cmd.ExecuteReader())
@@ -570,7 +572,7 @@ namespace HIRE.Datos
 
         }
 
-        public List<clSolicitudE> mtdBuscarSolicitud(int idUsuario, string parametro)
+        public List<clSolicitudE> mtdBuscarSolicitud(int idUsuario, string parametro, int estado, int idEmpresa)
         {
             List<clSolicitudE> objSolicitudes = new List<clSolicitudE>();
             try
@@ -578,9 +580,9 @@ namespace HIRE.Datos
                 SqlCommand cmd = new SqlCommand("spBuscarSolicitud", objConexion.MtdAbrirConexion());
                 cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
                 cmd.Parameters.AddWithValue("@parametro", parametro);
+                cmd.Parameters.AddWithValue("@idEmpresa", idEmpresa);
+                cmd.Parameters.AddWithValue("@estado", estado);
                 cmd.CommandType = CommandType.StoredProcedure;
-
-
 
                 using (SqlDataReader fila = cmd.ExecuteReader())
                 {

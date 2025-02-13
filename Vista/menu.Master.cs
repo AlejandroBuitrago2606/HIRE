@@ -25,7 +25,6 @@ namespace HIRE.Vista
                     opcionesAdministracion.Visible = false;
                     imgFotoPerfil.Visible = false;
                     logoutModal.Visible = false;
-                    alerta.Visible = false;
                     barraDivisora.Visible = false;
                     menuSuperior.Attributes["style"] = "position: sticky";
 

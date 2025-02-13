@@ -13,7 +13,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentBody" runat="server">
 
     <div class="container">
-
+        <br />
         <h3 style="text-align: center">Perfil del candidato</h3>
 
         <div class="row container-fluid" style="margin-top: 30px;">

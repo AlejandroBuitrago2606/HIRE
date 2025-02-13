@@ -129,8 +129,7 @@ namespace HIRE.Vista
 
             domAccionesFoto.Visible = true;
             domActualizarFoto.Visible = true;
-            lblNombreFoto.Visible = false;
-            txtEstado.Visible = false;
+            lblNombreFoto.Visible = false;            
             domBtnSolicitudA.Visible = false;
             lblNombreApellido.Visible = false;
             domNombreApellido.Visible = true;
@@ -215,7 +214,7 @@ namespace HIRE.Vista
                     lblCorreo.InnerHtml = "<b>Correo:</b>" + " " + datosUsuario.correo;
                     lblTelefono.InnerHtml = "<b>Teléfono:</b>" + " " + datosUsuario.telefono;
                     lblDireccion.InnerHtml = "<b>Dirección:</b>" + " " + datosUsuario.direccion;
-                    txtEstado.InnerHtml = "<b>Estado:</b>"+ " " + datosUsuario.estado;
+                    
 
                     foreach (ListItem item in dpMunicipios.Items)
                     {

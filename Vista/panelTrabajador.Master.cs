@@ -29,7 +29,7 @@ namespace HIRE.Vista
                     {
                         imgUsuario.Src = ResolveUrl(objDatosUsuario.foto);
                     }
-                    h6NombreUsuario.InnerText = objDatosUsuario.nombre + " " + objDatosUsuario.apellido + " (" + objDatosUsuario.estado + ") ";
+                    h6NombreUsuario.InnerText = objDatosUsuario.nombre + " " + objDatosUsuario.apellido;
 
                 }
             }

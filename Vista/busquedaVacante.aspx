@@ -16,7 +16,7 @@
                     <div class="search-bar input-group" style="position: sticky;">
 
                         <asp:TextBox ID="txtParametros" TextMode="SingleLine" CssClass="form-control search-input" Style="width: auto; height: 52px" placeholder="Buscar..." runat="server"></asp:TextBox>
-                        <button class="btn search-button" id="buscarVacante" style="height: 52px;" runat="server" onserverclick="buscarVacante_ServerClick">
+                        <button class="btn" id="buscarVacante" style="height: 52px; background-color: #10317a;" runat="server" onserverclick="buscarVacante_ServerClick">
                             <i class="fas fa-fw fa-search" style="color: white;"></i>
                         </button>
 
@@ -53,7 +53,7 @@
 
                         </div>
                         <div class="col-md-2" style="display: flex; align-items: center; justify-content: center;">
-                            <button class="btn search-button rounded-circle" id="btnBuscarVacanteFiltros" style="height: 47px; width: 47px; border-radius: 15px; margin-left: 0; margin-right: 100%;" runat="server" onserverclick="btnBuscarVacanteFiltros_ServerClick">
+                            <button class="btn rounded-circle" id="btnBuscarVacanteFiltros" style="height: 47px; width: 47px; border-radius: 15px; margin-left: 0; margin-right: 100%; background-color: #10317a" runat="server" onserverclick="btnBuscarVacanteFiltros_ServerClick">
                                 <i class="fas fa-fw fa-search" style="color: white;"></i>
                             </button>
                         </div>

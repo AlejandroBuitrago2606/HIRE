@@ -11,196 +11,232 @@ namespace HIRE.Vista
 {
 
 
-    public partial class menu
+    public partial class empleoUsuario
     {
 
         /// <summary>
-        /// Control Content_Head.
+        /// Control txtBuscar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder Content_Head;
+        protected global::System.Web.UI.WebControls.TextBox txtBuscar;
 
         /// <summary>
-        /// Control body.
+        /// Control btnBuscarSolicitud.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl body;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnBuscarSolicitud;
 
         /// <summary>
-        /// Control form1.
+        /// Control domMsg.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl domMsg;
 
         /// <summary>
-        /// Control menuLateral.
+        /// Control tituloMsg.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl menuLateral;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tituloMsg;
 
         /// <summary>
-        /// Control menuSuperior.
+        /// Control btnRegresar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl menuSuperior;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnRegresar;
 
         /// <summary>
-        /// Control ftLogo.
+        /// Control rpSolicitudes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ftLogo;
+        protected global::System.Web.UI.WebControls.Repeater rpSolicitudes;
 
         /// <summary>
-        /// Control HyperLink1.
+        /// Control txtTitulo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtTitulo;
 
         /// <summary>
-        /// Control opcionesBusqueda.
+        /// Control txtDescripcion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl opcionesBusqueda;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtDescripcion;
 
         /// <summary>
-        /// Control inicioItem.
+        /// Control txtTipoEmpleo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl inicioItem;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtTipoEmpleo;
 
         /// <summary>
-        /// Control empleosItem.
+        /// Control txtTipoContrato.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl empleosItem;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtTipoContrato;
 
         /// <summary>
-        /// Control empresasItem.
+        /// Control txtJornada.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl empresasItem;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtJornada;
 
         /// <summary>
-        /// Control barraDivisora.
+        /// Control txtHorario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl barraDivisora;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtHorario;
 
         /// <summary>
-        /// Control pcsAutenticacion.
+        /// Control txtSalario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl pcsAutenticacion;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtSalario;
 
         /// <summary>
-        /// Control btnCrearCuenta.
+        /// Control txtIdiomaRequerido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink btnCrearCuenta;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtIdiomaRequerido;
 
         /// <summary>
-        /// Control btnIniciarSesion.
+        /// Control txtFechaInicio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink btnIniciarSesion;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtFechaInicio;
 
         /// <summary>
-        /// Control opcionesAdministracion.
+        /// Control txtFechaLimite.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl opcionesAdministracion;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtFechaLimite;
 
         /// <summary>
-        /// Control txtNombreUsuario.
+        /// Control txtFechaPublicacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtNombreUsuario;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtFechaPublicacion;
 
         /// <summary>
-        /// Control imgFotoPerfil.
+        /// Control txtMunicipio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage imgFotoPerfil;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtMunicipio;
 
         /// <summary>
-        /// Control Content_Body.
+        /// Control rpNivelAcademico.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder Content_Body;
+        protected global::System.Web.UI.WebControls.Repeater rpNivelAcademico;
 
         /// <summary>
-        /// Control logoutModal.
+        /// Control rpRequisitos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl logoutModal;
+        protected global::System.Web.UI.WebControls.Repeater rpRequisitos;
 
         /// <summary>
-        /// Control btnCerrarSesion.
+        /// Control rpHabilidades.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCerrarSesion;
+        protected global::System.Web.UI.WebControls.Repeater rpHabilidades;
+
+        /// <summary>
+        /// Control rpFunciones.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rpFunciones;
+
+        /// <summary>
+        /// Control txtExperienciaMinima.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtExperienciaMinima;
+
+        /// <summary>
+        /// Control hfIDsolicitud.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfIDsolicitud;
+
+        /// <summary>
+        /// Control btnRenunciar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRenunciar;
     }
 }

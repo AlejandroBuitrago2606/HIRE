@@ -69,6 +69,81 @@ namespace HIRE.Vista
         }
 
 
+        protected void btnBuscarSolicitud_ServerClick(object sender, EventArgs e)
+        {
+            clVacanteL objDatos = new clVacanteL();
+
+            int idEmpresa = int.Parse(Session["idEmpresa"].ToString());
+
+            List<clSolicitudE> objSolicitudesEncontradas = objDatos.mtdBuscarSolicitud(0, txtBuscar.Text, 0, idEmpresa);
+            List<clSolicitudesUsuario> listaMostrarSolicitudes = new List<clSolicitudesUsuario>();
+            if (objSolicitudesEncontradas.Count > 0)
+            {
+                domMsg.Visible = false;
+                tituloMsg.InnerText = "No has hecho ninguna solicitud de empleo";
+
+
+                // Obtener las solicitudes y vacantes del usuario
+                var objListarDatos = objDatos.mtdListarSolicitudes(0, 0, idEmpresa);
+                List<clSolicitudE> listasolicitudes = objListarDatos.Item1;
+                List<clVacanteE> listaVacantes = objListarDatos.Item2;
+
+                // Usar un HashSet para mejorar la búsqueda
+                var solicitudesEncontradasSet = new HashSet<int>(objSolicitudesEncontradas.Select(s => s.idSolicitud));
+
+                // Filtrar las solicitudes y vacantes
+                for (int j = 0; j < listasolicitudes.Count; j++)
+                {
+                    if (solicitudesEncontradasSet.Contains(listasolicitudes[j].idSolicitud))
+                    {
+                        // Encontrar la vacante correspondiente
+                        var vacante = listaVacantes.FirstOrDefault(v => v.idVacante == listasolicitudes[j].idVacante);
+                        if (vacante != null)
+                        {
+                            listaMostrarSolicitudes.Add(new clSolicitudesUsuario
+                            {
+                                titulo = vacante.titulo,
+                                fechaEnvio = listasolicitudes[j].fechaEnvio,
+                                idVacante = vacante.idVacante,
+                                idSolicitud = listasolicitudes[j].idSolicitud
+                            });
+                        }
+                    }
+                }
+
+                // Asignar la lista filtrada al Repeater
+                rpSolicitudes.DataSource = listaMostrarSolicitudes;
+                rpSolicitudes.DataBind();
+            }
+            else
+            {
+
+                domMsg.Visible = true;
+                tituloMsg.InnerText = "No se encontraron vacantes";
+                rpSolicitudes.DataSource = null;
+                rpSolicitudes.DataBind();
+
+            }
+
+
+
+
+        }
+
+        private class clSolicitudesUsuario
+        {
+
+            public int idSolicitud { get; set; }
+            public int idCV { get; set; }
+            public string fechaEnvio { get; set; }
+            public int idUsuario { get; set; }
+            public int idVacante { get; set; }
+            public string titulo { get; set; }
+
+        }
+
+
+
         private class clSolicitudesEmpresa
         {
 
@@ -81,9 +156,6 @@ namespace HIRE.Vista
             public string estado { get; set; }
 
         }
-
-
-
 
         protected void btnVerVacante_Click(object sender, CommandEventArgs e)
         {

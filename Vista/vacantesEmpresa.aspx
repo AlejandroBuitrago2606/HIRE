@@ -24,20 +24,17 @@
             <div class="d-flex justify-content-center">
                 <div class="input-group mb-3" style="width: 50%;">
                     <asp:TextBox ID="txtBuscarVacante" CssClass="form-control" placeholder="Buscar vacantes..." runat="server"></asp:TextBox>
-                    <button class="btn btn-outline-warning" onserverclick="btnBuscarVacante_ServerClick" runat="server" id="btnBuscarVacante">Buscar</button>
+                    <button class="btn" style="background-color: #10317a;" onserverclick="btnBuscarVacante_ServerClick" runat="server" id="btnBuscarVacante">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path fill="#fff" d="M9.5 16q-2.725 0-4.612-1.888T3 9.5t1.888-4.612T9.5 3t4.613 1.888T16 9.5q0 1.1-.35 2.075T14.7 13.3l5.6 5.6q.275.275.275.7t-.275.7t-.7.275t-.7-.275l-5.6-5.6q-.75.6-1.725.95T9.5 16m0-2q1.875 0 3.188-1.312T14 9.5t-1.312-3.187T9.5 5T6.313 6.313T5 9.5t1.313 3.188T9.5 14" />
+                        </svg>
+                    </button>
                 </div>
             </div>
 
             <br />
 
-            <div runat="server" id="domMsg" class="mt-4" visible="false">
-                <div class="d-flex justify-content-center">
-                    <h4 runat="server" id="tituloMsg">No has publicado ninguna vacante</h4>
-                </div>
-                <div class="d-flex justify-content-center">
-                    <a href="#" runat="server" id="btnPublicar" class="btn btn-success">Publicar vacante</a>
-                </div>
-            </div>
+
 
 
 
@@ -46,36 +43,44 @@
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
 
-                    <button runat="server" onserverclick="Unnamed_ServerClick" class="btn btn-success ml-0 mb-5">+ Agregar vacante</button>
+                    <button runat="server" id="btnAgregarV" onserverclick="Unnamed_ServerClick" class="btn btn-success ml-0 mb-5">Publicar vacante</button>
+
+                    <div runat="server" id="domMsg" class="mt-4" visible="false">
+                        <div class="d-flex justify-content-center">
+                            <h4 runat="server" id="tituloMsg">No has publicado ninguna vacante</h4>
+                        </div>
+                    </div>
 
 
-                    <%-- contenido de la pagina aqui --%>
-                    <asp:Repeater runat="server" ID="rpVacantes">
-                        <ItemTemplate>
-                            <div class="card sombra1 mb-4 shadow-sm">
-                                <div class="card-body" style="margin-top: 0">
-                                    <div class="row">
-                                        <div class="col-md-9">
-                                            <div class="row">
-                                                <h3 style="font-size: 100%;" id="txtTitulo"><b>Vacante:</b><%# " " + Eval("titulo") %></h3>
-                                            </div>
-                                            <div class="row">
-                                                <h4 style="font-size: 80%; color: gray;" id="H1"><b>Fecha de publicación:</b><%# " " + Convert.ToDateTime(Eval("fechaPublicacion")).ToString("yyyy-MM-dd") %></h4>
+                    <div style="overflow-y: auto">
+                        <%-- contenido de la pagina aqui --%>
+                        <asp:Repeater runat="server" ID="rpVacantes">
+                            <ItemTemplate>
+                                <div class="card sombra1 mb-4 shadow-sm">
+                                    <div class="card-body" style="margin-top: 0">
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <div class="row">
+                                                    <h3 style="font-size: 100%;" id="txtTitulo"><b>Vacante:</b><%# " " + Eval("titulo") %></h3>
+                                                </div>
+                                                <div class="row">
+                                                    <h4 style="font-size: 80%; color: gray;" id="H1"><b>Fecha de publicación:</b><%# " " + Convert.ToDateTime(Eval("fechaPublicacion")).ToString("yyyy-MM-dd") %></h4>
 
+                                                </div>
+                                                <div class="row">
+                                                    <h3 style="font-size: 80%;"><b>Numero de postulados:</b><%# " " + Eval("numeroPostulados") %></h3>
+                                                </div>
                                             </div>
-                                            <div class="row">
-                                                <h3 style="font-size: 80%;"><b>Numero de postulados:</b><%# " " + Eval("numeroPostulados") %></h3>
+                                            <div class="col-md-3">
+                                                <asp:Button ID="btnPanelEmpresa" CssClass="btn btn-warning" OnCommand="btnVerVacante_Click" CommandName="enviarIDVacante" CommandArgument='<%# Eval("idVacante") %>' runat="server" Text="Ver vacante" />
+                                                <asp:Button ID="btnEliminarVacante" OnClick="btnEliminarVacante_Click" CommandName="EliminarVacante" CommandArgument='<%# Eval("idVacante") %>' CssClass="btn btn-outline-danger" runat="server" Text="🗑️" />
                                             </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <asp:Button ID="btnPanelEmpresa" CssClass="btn btn-warning" OnCommand="btnVerVacante_Click" CommandName="enviarIDVacante" CommandArgument='<%# Eval("idVacante") %>' runat="server" Text="Ver vacante" />
-                                            <asp:Button ID="btnEliminarVacante" OnClick="btnEliminarVacante_Click" CommandName="EliminarVacante" CommandArgument='<%# Eval("idVacante") %>' CssClass="btn btn-outline-danger" runat="server" Text="🗑️" />
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </ItemTemplate>
-                    </asp:Repeater>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </div>
                 </div>
                 <div class="col-md-2"></div>
             </div>
@@ -260,7 +265,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="container content-body-scrollable">
+                    <div class="container">
                         <br />
 
                         <div class="form-group mt-4">
@@ -281,12 +286,14 @@
                                 <ContentTemplate>
 
                                     <asp:Repeater ID="rpFuncion" runat="server">
-                                        <ItemTemplate>
 
+                                        <ItemTemplate>
+                                            <br />
+                                            <br />
                                             <h6 id="txtFuncion" runat="server"><%#" " + Eval("descripcionFuncion") %></h6>
                                             <asp:Button ID="btnEliminar" CssClass="btn btn-outline-danger" OnClick="btnEliminar_Click" Text="X" runat="server" />
                                             <asp:HiddenField Value="1" runat="server" />
-                                            <br />
+
                                         </ItemTemplate>
 
                                     </asp:Repeater>
@@ -312,6 +319,8 @@
 
                                     <asp:Repeater ID="rpRequisito" runat="server">
                                         <ItemTemplate>
+                                            <br />
+                                            <br />
                                             <h6 id="txtRequisito" runat="server"><%# " " + Eval("descripcionRequisito") %></h6>
                                             <asp:Button ID="btnEliminar" CssClass="btn btn-outline-danger" OnClick="btnEliminar_Click" Text="X" runat="server" />
                                             <asp:HiddenField Value="2" runat="server" />
@@ -337,6 +346,8 @@
 
                                     <asp:Repeater ID="rpCompetencia" runat="server">
                                         <ItemTemplate>
+                                            <br />
+                                            <br />
                                             <h6 id="txtCompetencia" runat="server"><%#" " + Eval("nombre") %></h6>
                                             <asp:Button ID="btnEliminar" CssClass="btn btn-outline-danger" OnClick="btnEliminar_Click" Text="X" runat="server" />
                                             <asp:HiddenField Value="3" runat="server" />
@@ -345,7 +356,7 @@
 
                                     </asp:Repeater>
 
-                                    <div class="input-group">
+                                    <div class="input-group mt-2">
                                         <asp:DropDownList ID="dpCompetencias" CssClass="form-control" runat="server">
                                             <asp:ListItem Enabled="true" Value="0" Text="Selecciona la competencia...."></asp:ListItem>
 
@@ -365,7 +376,8 @@
 
                                     <asp:Repeater ID="rpNivelAcademicoAgregar" runat="server">
                                         <ItemTemplate>
-
+                                            <br />
+                                            <br />
                                             <h6 id="txtNivelAcademico" runat="server"><%# " " + Eval("nivelAcademico") %></h6>
                                             <asp:Button ID="btnEliminar" CssClass="btn btn-outline-danger" OnClick="btnEliminar_Click" Text="X" runat="server" />
                                             <asp:HiddenField Value="4" runat="server" />
@@ -373,7 +385,7 @@
                                         </ItemTemplate>
                                     </asp:Repeater>
 
-                                    <div class="input-group">
+                                    <div class="input-group mt-2">
                                         <asp:DropDownList ID="dpNivelAcademico" CssClass="form-control" runat="server">
                                             <asp:ListItem Enabled="true" Value="0" Text="Selecciona el nivel academico...."></asp:ListItem>
                                         </asp:DropDownList>
@@ -429,10 +441,13 @@
                                 <asp:ListItem Text="Selecciona un tipo de contrato" Value=""></asp:ListItem>
                             </asp:DropDownList>
                         </div>
+                        <br />
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <asp:Button ID="btnAgregarVacante" CommandName="agregarVacante" OnClick="btnAgregarVacante_Click" CssClass="btn btn-success" runat="server" Text="Publicar" />
+                <div class="modal-footer d-flex justify-content-center">
+
+                    <asp:Button ID="btnAgregarVacante" CommandName="agregarVacante" OnClick="btnAgregarVacante_Click" CssClass="btn btn-success w-25" runat="server" Text="Publicar" />
+
                 </div>
             </div>
 

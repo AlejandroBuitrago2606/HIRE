@@ -206,7 +206,7 @@
                     <div class="input-group d-flex justify-content-center">
                         <asp:UpdatePanel runat="server">
                             <ContentTemplate>
-                                <a class="btn btn-outline-secondary" href="perfilEmpresa.aspx">Cerrar</a>
+                                <a class="btn btn-secondary" href="perfilEmpresa.aspx">Cerrar</a>
                                 <asp:Button ID="btnActualizar" Text="Actualizar" OnClick="btnActualizar_Click" CssClass="btn btn-outline-warning" Style="margin-left: 30px;" runat="server" />
                             </ContentTemplate>
                         </asp:UpdatePanel>

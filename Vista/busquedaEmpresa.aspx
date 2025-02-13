@@ -17,7 +17,7 @@
                     <div class="search-bar input-group" style="position: sticky;">
 
                         <asp:TextBox ID="txtParametros" TextMode="SingleLine" CssClass="form-control search-input" Style="width: auto; height: 52px" placeholder="Buscar..." runat="server"></asp:TextBox>
-                        <button class="btn search-button" id="buscarEmpresa" style="height: 52px;" runat="server" onserverclick="buscarEmpresa_ServerClick">
+                        <button class="btn" id="buscarEmpresa" style="height: 52px; background-color: #10317a;" runat="server" onserverclick="buscarEmpresa_ServerClick">
                             <i class="fas fa-fw fa-search" style="color: white;"></i>
                         </button>
 

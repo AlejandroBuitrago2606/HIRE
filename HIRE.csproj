@@ -125,8 +125,10 @@
     <Content Include="Vista\busquedaVacante.aspx" />
     <Content Include="Vista\crearCuenta.aspx" />
     <Content Include="Vista\css\style.css" />
+    <Content Include="Vista\empleoUsuario.aspx" />
     <Content Include="Vista\index.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="Vista\recursos\imagenes\logoWeb-white2.png" />
     <Content Include="Vista\recursos\js\main7.js" />
     <Content Include="Vista\solicitudesEmpresa.aspx" />
     <Content Include="Vista\vacantesEmpresa.aspx" />
@@ -1947,6 +1949,13 @@
     </Compile>
     <Compile Include="Vista\crearCuenta.aspx.designer.cs">
       <DependentUpon>crearCuenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\empleoUsuario.aspx.cs">
+      <DependentUpon>empleoUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\empleoUsuario.aspx.designer.cs">
+      <DependentUpon>empleoUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>

@@ -75,6 +75,7 @@ namespace HIRE.Vista
 
                 if (objListarDatos.Item1.Count > 0)
                 {
+                    
                     foreach (clVacanteE objVacante in objListarDatos.Item1)
                     {
                         int numeroPostulaciones = objDatosL.mtdListarVacantes(2, 0, objVacante.idVacante).Item2;
@@ -190,11 +191,9 @@ namespace HIRE.Vista
 
             if (objVacantes.Count > 0)
             {
-
-                domMsg.Visible = false;
-                btnPublicar.Visible = true;
                 tituloMsg.InnerText = "No has publicado ninguna vacante";
-                tituloMsg.Visible = false;
+                domMsg.Visible = false;
+                rpVacantes.Visible = true;
 
                 foreach (clVacanteE objVacante in objVacantes)
                 {
@@ -218,11 +217,11 @@ namespace HIRE.Vista
             }
             else
             {
-                domMsg.Visible = true;
-                btnPublicar.Visible = false;
+                               
                 tituloMsg.InnerText = "No se encontraron vacantes relacionadas";
-                tituloMsg.Visible = true;
-
+                domMsg.Visible = true;
+                rpVacantes.Visible = false;
+           
             }
 
 
@@ -546,5 +545,6 @@ namespace HIRE.Vista
 
 
         }
+
     }
 }

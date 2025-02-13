@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace HIRE.Vista
@@ -46,7 +47,7 @@ namespace HIRE.Vista
 
         protected void btnPanelEmpresa_Click(object sender, EventArgs e)
         {
-            Button boton = (Button)sender;
+            HtmlButton boton = (HtmlButton)sender;
             RepeaterItem item = (RepeaterItem)boton.NamingContainer;
             HiddenField hfIdEmpresa = (HiddenField)item.FindControl("hfIdEmpresa");
 

@@ -58,17 +58,17 @@ namespace HIRE.Logica
             return (objVacanteD.mtdRegistrarSolicitud(idUsuario, idCV, idVacante, fechaEnvio));
         }
 
-        public (List<clSolicitudE>, List<clVacanteE>) mtdListarSolicitudes(int idUsuario)
+        public (List<clSolicitudE>, List<clVacanteE>) mtdListarSolicitudes(int idUsuario, int estado, int idEmpresa)
         {
-            var objListadoSolicitudes = objVacanteD.mtdListarSolicitudes(idUsuario);
+            var objListadoSolicitudes = objVacanteD.mtdListarSolicitudes(idUsuario, estado, idEmpresa);
             return (objListadoSolicitudes.Item1, objListadoSolicitudes.Item2);
 
         }
 
 
-        public List<clSolicitudE> mtdBuscarSolicitud(int idUsuario, string parametro)
+        public List<clSolicitudE> mtdBuscarSolicitud(int idUsuario, string parametro, int estado, int idEmpresa)
         {
-            return (objVacanteD.mtdBuscarSolicitud(idUsuario, parametro));
+            return (objVacanteD.mtdBuscarSolicitud(idUsuario, parametro, estado, idEmpresa));
         }
 
 

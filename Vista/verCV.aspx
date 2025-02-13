@@ -14,8 +14,7 @@
     <script src="/Scripts/alertify.js"></script>
     <title>Perfil CV</title>
     <link rel="stylesheet" href="recursos/css/main2.css" />
-    <script src="recursos/js/main7.js"></script>
-   <title>Ver CV</title>
+    <title>Ver CV</title>
 </asp:Content>
 
 
@@ -24,9 +23,11 @@
         <section class="u-clearfix u-section-1" id="block-1">
             <div class="u-clearfix u-sheet u-valign-top-xs u-sheet-1">
                 <div class="u-container-style u-custom-color-2 u-expanded-width u-group u-group-1">
-                    <div class="u-container-layout u-container-layout-1 fondo">
-                        <h4 id="txtNombreUsuario" runat="server" class="u-align-center-xs u-text u-text-default u-text-1"></h4>
-                        <h5 id="txtCargo" runat="server" class="u-text-2 d-flex justify-content-center"></h5>
+                    <div class="u-container-layout u-container-layout-1 fondo d-flex flex-column align-items-center">
+                        <div>
+                            <h4 id="txtNombreUsuario" runat="server" class="u-align-center-xs u-text u-text-default u-text-1"></h4>
+                            <h5 id="txtCargo" runat="server" class="u-text-2"></h5>
+                        </div>
                     </div>
                 </div>
                 <img class="u-image u-image-circle u-image-1" id="imgFotoPerfil" runat="server" src="#" alt="" data-image-width="400"
@@ -326,16 +327,17 @@
                 <div class="modal-content">
                     <div class="modal-header h-auto">
 
-                        <h4 class="modal-title fs-5" runat="server" style="text-align: center;">Hoja de vida</h4>
+                        <h4 class="modal-title fs-5" runat="server" style="text-align: center;"><b>Hoja de vida</b></h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
                     </div>
                     <div class="modal-body modal-bodyO d-flex justify-content-center">
                         <h6 runat="server" id="txtMensaje" visible="false"></h6>
 
-                        <div class="col-12 d-flex justify-content-between align-items-center">
-                            <div class="col-2">
-                                <button type="button" id="prev-page" class="btn btn-facebook btn-circle">
+                        <div class="col-12 d-flex justify-content-center align-items-center">
+
+                            <div class="col-2 d-flex justify-content-center">
+                                <button type="button" id="prev-page" class="btn btn-circle" style="background-color: #10317a; border-radius: 50%;" >
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                         <path fill="#fff" d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1 1 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1 1 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23a1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2" />
                                     </svg>
@@ -346,8 +348,8 @@
                                 <canvas id="pdf-canvasO"></canvas>
                             </div>
 
-                            <div class="col-2">
-                                <button type="button" id="next-page" class="btn btn-facebook btn-circle">
+                            <div class="col-2 d-flex justify-content-center">
+                                <button type="button" id="next-page" class="btn btn-circle" style="background-color: #10317a; border-radius: 50%;" >
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                         <path fill="#fff" d="M13.47 8.53a.75.75 0 0 1 1.06-1.06l4 4a.75.75 0 0 1 0 1.06l-4 4a.75.75 0 1 1-1.06-1.06l2.72-2.72H6.5a.75.75 0 0 1 0-1.5h9.69z" />
                                     </svg>
@@ -367,14 +369,14 @@
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title fs-5">Soporte</h4>
+                        <h4 class="modal-title fs-5"><b>Certificado de experiencia laboral</b></h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body modal-bodyO d-flex justify-content-center">
 
-                        <div class="col-12 d-flex justify-content-between align-items-center">
-                            <div class="col-2">
-                                <button type="button" id="prev-page2" class="btn btn-facebook btn-circle">
+                        <div class="col-12 d-flex justify-content-center align-items-center">
+                            <div class="col-2 d-flex justify-content-center">
+                                <button type="button" id="prev-page2" class="btn btn-circle" style="background-color: #10317a; border-radius: 50%;" >
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                         <path fill="#fff" d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1 1 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1 1 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23a1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2" />
                                     </svg>
@@ -384,8 +386,8 @@
                                 <canvas id="pdf-canvas2"></canvas>
 
                             </div>
-                            <div class="col-2">
-                                <button type="button" id="next-page2" style="border: 1px solid; border-radius: 50px;">
+                            <div class="col-2 d-flex justify-content-center">
+                                <button type="button" id="next-page2" class="btn btn-circle" style="background-color: #10317a; border-radius: 50%;" >
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                         <path fill="#fff" d="M13.47 8.53a.75.75 0 0 1 1.06-1.06l4 4a.75.75 0 0 1 0 1.06l-4 4a.75.75 0 1 1-1.06-1.06l2.72-2.72H6.5a.75.75 0 0 1 0-1.5h9.69z" />
                                     </svg>
@@ -400,5 +402,6 @@
 
         <asp:HiddenField ID="hfHojaVida" runat="server" />
         <asp:HiddenField ID="hfSoporte" runat="server" />
+        <script src="recursos/js/main7.js"></script>
     </div>
 </asp:Content>

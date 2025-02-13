@@ -1,17 +1,19 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vista/panelEmpresa.Master" EnableEventValidation="true" AutoEventWireup="true" CodeBehind="solicitudesEmpresa.aspx.cs" Inherits="HIRE.Vista.solicitudesEmpresa" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vista/panelTrabajador.Master" AutoEventWireup="true" CodeBehind="empleoUsuario.aspx.cs" Inherits="HIRE.Vista.empleoUsuario" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentHead" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="Content_Head" runat="server">
+    <link href="Vista/recursos/css/main3.css" rel="stylesheet" />
     <link rel="stylesheet" href="/Content/alertifyjs/alertify.css" />
     <link rel="stylesheet" href="/Content/alertifyjs/themes/default.css" />
     <script src="/Scripts/alertify.js"></script>
+
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentBody" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="Content_Body" runat="server">
 
     <div class="content-body-scrollable">
         <div class="container">
             <br />
             <div class=" d-flex justify-content-center">
-                <h3>Solicitudes de empleo recibidas</h3>
+                <h3>Empleos aprobados.</h3>
                 <br />
             </div>
 
@@ -31,68 +33,44 @@
 
             <div runat="server" id="domMsg" class="mt-4" visible="false">
                 <div class="d-flex justify-content-center">
-                    <h4 runat="server" id="tituloMsg">No tienes ninguna solicitud de empleo por evaluar</h4>
+                    <h4 runat="server" id="tituloMsg">No te han aprobado ninguna solicitud de empleo</h4>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <a href="busquedaVacante.aspx" runat="server" id="btnRegresar" class="btn btn-success">Postularme a un empleo</a>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
-                    <div style="overflow-y: auto; max-height: 100vh;">
-                        <%-- contenido de la pagina aqui --%>
-                        <asp:Repeater runat="server" ID="rpSolicitudes">
-                            <itemtemplate>
-                                <div class="card sombra1 mb-4 shadow-sm">
-                                    <div class="card-body" style="margin-top: 0">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="row">
-                                                    <h3 runat="server" style="font-size: 100%;" id="txtTitulo"><b>Vacante:</b><%# " " + Eval("titulo") %></h3>
-                                                </div>
-                                                <div class="row">
-                                                    <h4 runat="server" style="font-size: 80%; color: gray;" id="H1"><b>Fecha de postulación:</b><%# " " + Convert.ToDateTime(Eval("fechaEnvio")).ToString("yyyy-MM-dd") %></h4>
-                                                </div>
+                    <%-- contenido de la pagina aqui --%>
+                    <asp:Repeater runat="server" ID="rpSolicitudes">
+                        <ItemTemplate>
+                            <div class="card sombra1 mb-4 shadow-sm">
+                                <div class="card-body" style="margin-top: 0">
+                                    <div class="row">
+                                        <div class="col-md-7">
+                                            <div class="row">
+                                                <h3 runat="server" style="font-size: 100%;" id="txtTitulo"><b>Vacante:</b><%# " " + Eval("titulo") %></h3>
                                             </div>
-                                            <div class="col-md-2">
-
-                                                <asp:Button ID="btnPanelEmpresa" CssClass="btn btn-outline-warning" OnCommand="btnVerVacante_Click" data-bs-toggle="modal" data-bs-target="#datosVacante"
-                                                    CommandName="enviarIDVacante" CommandArgument='<%# Eval("idVacante") %>' runat="server" Text="Ver vacante" />
-
+                                            <div class="row">
+                                                <h4 runat="server" style="font-size: 80%; color: gray;" id="H1"><b>Fecha de postulación:</b><%# " " + Convert.ToDateTime(Eval("fechaEnvio")).ToString("yyyy-MM-dd") %></h4>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="row">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <asp:Button ID="btnPanelEmpresa" CssClass="btn btn-warning" OnCommand="btnVerVacante_Click" data-bs-toggle="modal" data-bs-target="#datosVacante"
+                                                CommandName="enviarIDVacante" CommandArgument='<%# Eval("idVacante") %>' runat="server" Text="Ver vacante" />
 
-                                                    <div class="col-6">
-                                                        <div class="container">
-                                                            <div class="row mb-3">
-                                                                <asp:Button ID="btnVerCV" OnCommand="btnVerDatos_Command" CommandName="verDatos" CssClass="btn" Style="background-color: #10317a; color: white;" CommandArgument='<%# Eval("idUsuario") %>' runat="server" Text="Ver CV del candidato" />
-                                                            </div>
-                                                            <div class="row">
-                                                                <asp:Button ID="btnVerUsuario" OnCommand="btnVerDatos_Command" CommandName="verDatos" CssClass="btn btn-warning" CommandArgument='<%# Eval("idUsuario") %>' runat="server" Text="Ver Perfil del candidato" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                        </div>
+                                        <div class="col-md-2">
 
+                                            <asp:Button ID="btnRenunciarEmpleo" OnClick="btnAbrirModalConfirmar_ServerClick" CssClass="btn btn-danger" CommandName="renunciarEmpleo" CommandArgument='<%# Eval("idSolicitud") %>' runat="server" Text="Dejar mi puesto" />
 
-                                                    <div class="col-6">
-                                                        <div class="container">
-                                                            <div class="row mb-3">
-                                                                <asp:Button ID="btnSi" OnClick="btnEvaluarSolicitud_Click" CommandName="evaluarSolicitud" CommandArgument='<%# Eval("idSolicitud") %>' CssClass="btn btn-success" runat="server" Text="Si aplica" />
-                                                            </div>
-                                                            <div class="row">
-                                                                <asp:Button ID="btnNo" OnClick="btnEvaluarSolicitud_Click" CommandArgument='<%# Eval("idSolicitud") %>' CssClass="btn btn-danger" runat="server" Text="No aplica" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </itemtemplate>
-                        </asp:Repeater>
-                    </div>
+                            </div>
+                        </ItemTemplate>
+                    </asp:Repeater>
                 </div>
                 <div class="col-md-2"></div>
             </div>
@@ -184,11 +162,11 @@
                         <h6><b>Nivel academico: </b></h6>
                         <asp:Repeater ID="rpNivelAcademico" runat="server">
 
-                            <itemtemplate>
+                            <ItemTemplate>
                                 <div class="row mb-3" style="margin-left: 5%">
                                     <h6>●<%# Eval("nivelAcademico") %></h6>
                                 </div>
-                            </itemtemplate>
+                            </ItemTemplate>
 
                         </asp:Repeater>
 
@@ -201,11 +179,11 @@
                         <h6><b>Requisitos: </b></h6>
                         <asp:Repeater ID="rpRequisitos" runat="server">
 
-                            <itemtemplate>
+                            <ItemTemplate>
                                 <div class="row mb-3" style="margin-left: 5%">
                                     <h6>●<%# Eval("descripcionRequisito") %></h6>
                                 </div>
-                            </itemtemplate>
+                            </ItemTemplate>
 
                         </asp:Repeater>
 
@@ -219,13 +197,13 @@
                         <h6><b>Habilidades: </b></h6>
                         <asp:Repeater ID="rpHabilidades" runat="server">
 
-                            <itemtemplate>
+                            <ItemTemplate>
 
                                 <div class="row mb-3" style="margin-left: 5%">
                                     <h6><b>●<%# Eval("nombreCompetencia") %></b></h6>
                                     <h6><%# Eval("descripcion") %></h6>
                                 </div>
-                            </itemtemplate>
+                            </ItemTemplate>
 
                         </asp:Repeater>
 
@@ -242,12 +220,12 @@
 
                         <asp:Repeater ID="rpFunciones" runat="server">
 
-                            <itemtemplate>
+                            <ItemTemplate>
                                 <div class="row mb-3" style="margin-left: 5%">
 
                                     <h6>●<%# Eval("descripcionFuncion") %></h6>
                                 </div>
-                            </itemtemplate>
+                            </ItemTemplate>
 
                         </asp:Repeater>
 
@@ -263,6 +241,26 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="modalRenunciar" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel2">Confirmar</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ⚠️¿Renunciaras a este puesto de trabajo?
+                    <asp:HiddenField ID="hfIDsolicitud" runat="server" />
+                </div>
+                <div class="modal-footer">
+                    <asp:Button ID="btnRenunciar" OnClick="btnRenunciar_ServerClick" CommandName="renunciarConfirmado" CssClass="btn btn-outline-danger" runat="server" Text="Renunciar a este empleo" />
 
                 </div>
             </div>

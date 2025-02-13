@@ -9,11 +9,8 @@ using System.Web.UI.WebControls;
 
 namespace HIRE.Vista
 {
-    public partial class solicitudesUsuario : System.Web.UI.Page
+    public partial class empleoUsuario : System.Web.UI.Page
     {
-
-
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -22,10 +19,11 @@ namespace HIRE.Vista
 
                 clVacanteL objDatosL = new clVacanteL();
                 int idUsuario = int.Parse(Session["idUsuario"].ToString());
-                var objListarDatos = objDatosL.mtdListarSolicitudes(idUsuario, 0, 0);
+                var objListarDatos = objDatosL.mtdListarSolicitudes(idUsuario, 1,0);
                 List<clSolicitudE> listasolicitudes = objListarDatos.Item1;
                 List<clVacanteE> listaVacantes = objListarDatos.Item2;
                 List<clSolicitudesUsuario> listaMostrarSolicitudes = new List<clSolicitudesUsuario>();
+
 
 
                 if (listasolicitudes.Count > 0 && listaVacantes.Count > 0 && listasolicitudes.Count == listaVacantes.Count)
@@ -144,17 +142,17 @@ namespace HIRE.Vista
 
             int idUsuario = int.Parse(Session["idUsuario"].ToString());
 
-            List<clSolicitudE> objSolicitudesEncontradas = objDatos.mtdBuscarSolicitud(idUsuario, txtBuscar.Text, 0, 0);
+            List<clSolicitudE> objSolicitudesEncontradas = objDatos.mtdBuscarSolicitud(idUsuario, txtBuscar.Text, 1, 0);
             List<clSolicitudesUsuario> listaMostrarSolicitudes = new List<clSolicitudesUsuario>();
             if (objSolicitudesEncontradas.Count > 0)
             {
                 domMsg.Visible = false;
                 btnRegresar.Visible = true;
-                tituloMsg.InnerText = "No has hecho ninguna solicitud de empleo";
+                tituloMsg.InnerText = "No te han aprobado ninguna solicitud de empleo";
 
 
                 // Obtener las solicitudes y vacantes del usuario
-                var objListarDatos = objDatos.mtdListarSolicitudes(idUsuario, 0, 0);
+                var objListarDatos = objDatos.mtdListarSolicitudes(idUsuario, 1, 0);
                 List<clSolicitudE> listasolicitudes = objListarDatos.Item1;
                 List<clVacanteE> listaVacantes = objListarDatos.Item2;
 
@@ -201,6 +199,51 @@ namespace HIRE.Vista
 
         }
 
-    }
+        protected void btnAbrirModalConfirmar_ServerClick(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            hfIDsolicitud.Value = "";
 
+            if (btn.CommandName == "renunciarEmpleo")
+            {
+                if (!string.IsNullOrEmpty(btn.CommandArgument))
+                {
+                    int idSolicitud = int.Parse(btn.CommandArgument);
+
+                    hfIDsolicitud.Value = idSolicitud.ToString();
+
+                    string abrirModal = @"const modal = new bootstrap.Modal(document.getElementById('modalRenunciar')); modal.show();";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "OpenModal", abrirModal, true);
+
+                }
+
+            }
+
+        }
+
+        protected void btnRenunciar_ServerClick(object sender, EventArgs e)
+        {
+
+            Button btn = (Button)sender;
+
+            if (btn.CommandName == "renunciarConfirmado" && !string.IsNullOrEmpty(hfIDsolicitud.Value))
+            {
+                int idSolicitud = int.Parse(hfIDsolicitud.Value);
+
+                clSolicitudL objSolicitudL = new clSolicitudL();
+
+                if (objSolicitudL.mtdEvaluarSolicitud(idSolicitud, 3))
+                {
+                    string evaluarSi = "alertify.success('Has renunciado a este empleo.'); setTimeout(function(){ window.location.href = '../Vista/empleoUsuario.aspx'; }, 900);";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "evaluarSi", evaluarSi, true);
+                }
+                else
+                {
+                    string evaluarNo = "alert('Ocurrio un error, la solicitud no se completo.');";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "evaluarNo", evaluarNo, true);
+                }
+
+            }
+        }
+    }
 }
