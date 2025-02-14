@@ -686,7 +686,7 @@
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title fs-5"><b>Soporte</b></h4>
+                        <h4 class="modal-title fs-5"><b>Certificado de experiencia laboral</b></h4>
                         <button runat="server" class="btn" data-bs-dismiss="modal" aria-label="Close">X</button>
                     </div>
                     <div class="modal-body modal-bodyO d-flex justify-content-center">

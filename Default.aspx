@@ -253,7 +253,7 @@
 
 
     <%-- Sección de Testimonios --%>
-    <div class="container py-5">
+<%--    <div class="container py-5">
         <h2 class="text-center mb-4">Lo que dicen nuestros usuarios</h2>
         <hr class="my-4 w-auto mx-auto" style="background-color: #10317A">
         <div class="owl-carousel testimonial-carousel">
@@ -388,7 +388,7 @@
                 <p>Arquitecta</p>
             </div>
         </div>
-    </div>
+    </div>--%>
 
 
     <%-- Sección de Preguntas Frecuentes (FAQ) --%>

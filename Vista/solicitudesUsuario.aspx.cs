@@ -144,7 +144,7 @@ namespace HIRE.Vista
 
             int idUsuario = int.Parse(Session["idUsuario"].ToString());
 
-            List<clSolicitudE> objSolicitudesEncontradas = objDatos.mtdBuscarSolicitud(idUsuario, txtBuscar.Text, 0, 0);
+            List<clSolicitudE> objSolicitudesEncontradas = objDatos.mtdBuscarSolicitud(idUsuario, "incluir parametro", 0, 0);
             List<clSolicitudesUsuario> listaMostrarSolicitudes = new List<clSolicitudesUsuario>();
             if (objSolicitudesEncontradas.Count > 0)
             {

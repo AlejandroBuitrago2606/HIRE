@@ -22,7 +22,7 @@ namespace HIRE.Vista
             {
 
 
-                int idUsuario = (int)Session["idUsuarioVer"];
+                int idUsuario = int.Parse(Session["idUsuarioVer"].ToString());
 
                 if (idUsuario > 0)
                 {

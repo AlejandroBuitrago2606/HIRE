@@ -19,7 +19,7 @@
 
             <br />
 
-            <div class="d-flex justify-content-center">
+<%--            <div class="d-flex justify-content-center">
                 <div class="input-group mb-3" style="width: 50%;">
                     <asp:TextBox ID="txtBuscar" CssClass="form-control" placeholder="Buscar postulaciones..." runat="server"></asp:TextBox>
                     <button class="btn" style="background-color: #10317a;" runat="server" onserverclick="btnBuscarSolicitud_ServerClick" id="btnBuscarSolicitud">
@@ -29,7 +29,7 @@
                     </button>
                 </div>
             </div>
-            <br />
+            <br />--%>
 
             <div runat="server" id="domMsg" class="mt-4" visible="false">
                 <div class="d-flex justify-content-center">

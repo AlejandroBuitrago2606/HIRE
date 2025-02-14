@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vista/menu.Master" AutoEventWireup="true" CodeBehind="busquedaEmpresa.aspx.cs" Inherits="HIRE.Vista.busquedaEmpresa" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="Content_Head" runat="server">    
+<asp:Content ID="Content1" ContentPlaceHolderID="Content_Head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content_Body" runat="server">
 
@@ -194,15 +194,6 @@
                                                             </div>
 
                                                         </div>
-
-                                                        <div class="card-footer">
-                                                            <div class="col-md-3" style="margin-bottom: 10px; margin-top: 2px;">
-
-                                                                <asp:Button ID="btnVerVacante" CssClass="btn btn-warning" data-bs-toggle="modal" runat="server" Style="color: black;" Text="Ver mas →" />
-                                                            </div>
-
-                                                        </div>
-
 
                                                     </div>
 

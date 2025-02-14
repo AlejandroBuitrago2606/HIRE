@@ -15,24 +15,6 @@ namespace HIRE.Vista
     {
 
         /// <summary>
-        /// Control txtBuscar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBuscar;
-
-        /// <summary>
-        /// Control btnBuscarSolicitud.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnBuscarSolicitud;
-
-        /// <summary>
         /// Control domMsg.
         /// </summary>
         /// <remarks>
